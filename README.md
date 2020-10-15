@@ -36,6 +36,8 @@ type VueDocPluginOptions = {
 - [x] markdown file
 - [x] vue demo preview
 - [x] vue demo source
+- [ ] add tests
+- [ ] add playground
 - [ ] sourcemap
 - [ ] better hmr
 - [ ] support highlight options
