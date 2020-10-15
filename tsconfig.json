@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "sourceMap": false,
-    "target": "esnext",
+    "target": "ES2019",
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
