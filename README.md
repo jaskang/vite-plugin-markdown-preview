@@ -6,7 +6,7 @@
 
 # vite-plugin-vuedoc
 
-A vite plugin for markdown & vue preview
+A markdown & vue preview plugin for vite.
 
 ## Install
 
