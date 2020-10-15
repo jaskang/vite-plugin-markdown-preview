@@ -40,7 +40,7 @@ type VueDocPluginOptions = {
 
 ## Quick Start
 
-1. use vite-plugin-vuedoc in vite.config.ts
+- use vite-plugin-vuedoc
 
 ```typescript
 // vite.config.ts
@@ -54,11 +54,25 @@ const config: UserConfig = {
 export default config
 ```
 
-2. markdown doc
+- import style
 
-![markdown doc](./playground/assets/WX20201015-120206.png)
+> import 'vite-plugin-vuedoc/style.css'
 
-3. import markdown
+```typescript
+// main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import 'vite-plugin-vuedoc/style.css'
+
+const app = createApp(App)
+app.mount('#app')
+```
+
+- markdown doc
+
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/WX20201015-120206.png?raw=true)
+
+- import markdown
 
 ```typescript
 // router.ts
@@ -86,10 +100,10 @@ export const router = createRouter({
 })
 ```
 
-4. screenshots
+- screenshots
 
-![markdown doc](./playground/assets/WX20201015-120910.png)
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/WX20201015-120910.png?raw=true)
 
-5. show code
+- show code
 
-![markdown doc](./playground/assets/WX20201015-121156.png)
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/WX20201015-121156.png?raw=true)
