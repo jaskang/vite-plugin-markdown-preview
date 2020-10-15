@@ -7,6 +7,9 @@ module.exports = {
   github: {
     release: true
   },
+  npm: {
+    skipChecks: true
+  },
   hooks: {
     'after:bump': 'npx auto-changelog -p'
   }
