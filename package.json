@@ -4,6 +4,8 @@
   "author": "jaskang",
   "license": "MIT",
   "homepage": "https://github.com/jaskang/vite-plugin-vuedoc",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "publishConfig": {
     "access": "public"
   },
