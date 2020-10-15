@@ -3,5 +3,8 @@
     "dev": "vite --debug",
     "build": "vite build --debug"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "vite": "^1.0.0-rc.4",
+    "vite-plugin-vuedoc": "^0.0.4"
+  }
 }

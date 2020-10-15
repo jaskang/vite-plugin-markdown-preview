@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import Doc from './vuedoc.md'
+import Doc from './components/button.docs.md'
 
 const App = {
   components: {

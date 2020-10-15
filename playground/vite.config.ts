@@ -1,7 +1,7 @@
 import { UserConfig } from 'vite'
-import jsPlugin from '../'
+import vitePluginVuedoc from 'vite-plugin-vuedoc'
 const config: UserConfig = {
-  plugins: [jsPlugin]
+  plugins: [vitePluginVuedoc()]
 }
 
 export default config

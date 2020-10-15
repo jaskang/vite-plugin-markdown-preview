@@ -17,7 +17,8 @@
     "vite",
     "vue3",
     "markdown",
-    "document"
+    "document",
+    "preview"
   ],
   "bugs": {
     "url": "https://github.com/jaskang/vite-plugin-vuedoc/issues"
@@ -31,6 +32,7 @@
     "build": "rm -rf dist && tsc -p .",
     "prepublishOnly": "yarn build",
     "test": "jest --runInBand",
+    "playground": "cd playground && yarn dev",
     "release": "release-it"
   },
   "dependencies": {
