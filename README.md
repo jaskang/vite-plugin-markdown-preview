@@ -8,6 +8,18 @@
 
 A markdown & vue preview plugin for vite.
 
+## Feature
+
+- [x] markdown file
+- [x] vue demo preview
+- [x] vue demo source
+- [ ] add tests
+- [ ] add playground
+- [ ] sourcemap
+- [ ] better hmr
+- [ ] support highlight options
+- [ ] gray-matter
+
 ## Install
 
 ```sh
@@ -31,21 +43,9 @@ type VueDocPluginOptions = {
 - markdownPlugins default: []
   > markdown-it plugins
 
-## Feature
-
-- [x] markdown file
-- [x] vue demo preview
-- [x] vue demo source
-- [ ] add tests
-- [ ] add playground
-- [ ] sourcemap
-- [ ] better hmr
-- [ ] support highlight options
-- [ ] gray-matter
-
 ## Quick Start
 
-- use vite-plugin-vuedoc
+#### use vite-plugin-vuedoc
 
 ```typescript
 // vite.config.ts
@@ -59,7 +59,7 @@ const config: UserConfig = {
 export default config
 ```
 
-- import style
+#### import style
 
 > import 'vite-plugin-vuedoc/style.css'
 
@@ -73,42 +73,30 @@ const app = createApp(App)
 app.mount('#app')
 ```
 
-- markdown doc
+#### markdown doc
 
-![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/WX20201015-120206.png?raw=true)
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/md.png?raw=true)
 
-- import markdown
+#### import markdown
 
 ```typescript
 // router.ts
-import { createRouter, createWebHistory } from 'vue-router'
-import Layout from './components/Layout.vue'
-
 export const router = createRouter({
-  history: createWebHistory(),
-  strict: true,
   routes: [
     { path: '/home', redirect: '/' },
     {
-      path: '/',
-      name: 'Layout',
-      component: Layout,
-      children: [
-        {
-          path: '/button',
-          name: 'button',
-          component: async () => import('./docs/Button.zh-CN.md')
-        }
-      ]
+      path: '/button',
+      name: 'button',
+      component: async () => import('./docs/Button.zh-CN.md')
     }
   ]
 })
 ```
 
-- screenshots
+## screenshots
 
-![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/WX20201015-120910.png?raw=true)
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/vue.gif?raw=true)
 
-- show code
+> vue javascript
 
-![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/WX20201015-121156.png?raw=true)
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/vue-js.gif?raw=true)

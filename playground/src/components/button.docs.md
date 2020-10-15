@@ -25,17 +25,21 @@ description
 
 ```vue
 <template>
+  <div>num: {{ num }}</div>
   <div>
-    <el-button type="primary" icon="el-icon-edit" @click="testclick"></el-button>
-    <el-button type="primary" icon="el-icon-share"></el-button>
-    <el-button type="primary" icon="el-icon-delete"></el-button>
+    <el-button type="primary" icon="el-icon-edit" @click="testclick">add</el-button>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      num: 0
+    }
+  },
   methods: {
     testclick() {
-      alert('testclick111222')
+      this.num++
     }
   }
 }
@@ -43,8 +47,3 @@ export default {
 ```
 
 ### Attributes
-
-| 参数 | 说明 | 类型   | 可选值                                             | 默认值 |
-| ---- | ---- | ------ | -------------------------------------------------- | ------ |
-| size | 尺寸 | string | medium / small / mini                              | —      |
-| type | 类型 | string | primary / success / warning / danger / info / text | —      |
