@@ -14,6 +14,30 @@ A vite plugin for markdown & vue preview
 yarn add vite-plugin-vuedoc
 ```
 
+## Options
+
+```typescript
+type VueDocPluginOptions = {
+  wrapperClass: string
+  previewClass: string
+  markdownPlugins: any[]
+}
+```
+
+- wrapperClass default: vuedoc
+  > classname wrapped markdown file
+- previewClass default: vuedoc-demo
+  > classname wrapped vuedemo
+- markdownPlugins default: []
+  > markdown-it plugins
+
+## Feature
+
+- [] sourcemap
+- [] better hmr
+- [] support highlight options
+- [] gray-matter
+
 ## Quick Start
 
 1. use vite-plugin-vuedoc in vite.config.ts
@@ -31,7 +55,8 @@ export default config
 ```
 
 2. markdown doc
-   ![markdown doc](./playground/assets/WX20201015-120206.png)
+
+![markdown doc](./playground/assets/WX20201015-120206.png)
 
 3. import markdown
 
@@ -62,30 +87,9 @@ export const router = createRouter({
 ```
 
 4. screenshots
-   ![markdown doc](./playground/assets/WX20201015-120910.png)
+
+![markdown doc](./playground/assets/WX20201015-120910.png)
 
 5. show code
-   ![markdown doc](./playground/assets/WX20201015-121156.png)
 
-## Options
-
-```typescript
-type VueDocPluginOptions = {
-  wrapperClass: string
-  previewClass: string
-  markdownPlugins: any[]
-}
-```
-
-- wrapperClass default: vuedoc
-  > classname wrapped markdown file
-- previewClass default: vuedoc-demo
-  > classname wrapped vuedemo
-- markdownPlugins default: []
-  > markdown-it plugins
-
-## Feature
-
-[] sourcemap
-[] better hmr
-[] support highlight options
+![markdown doc](./playground/assets/WX20201015-121156.png)
