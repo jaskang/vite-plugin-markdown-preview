@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "dev": "vite --debug",
+    "build": "vite build --debug"
+  },
+  "dependencies": {}
+}
