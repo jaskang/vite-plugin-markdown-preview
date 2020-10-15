@@ -33,10 +33,13 @@ type VueDocPluginOptions = {
 
 ## Feature
 
-- [] sourcemap
-- [] better hmr
-- [] support highlight options
-- [] gray-matter
+- [x] markdown file
+- [x] vue demo preview
+- [x] vue demo source
+- [ ] sourcemap
+- [ ] better hmr
+- [ ] support highlight options
+- [ ] gray-matter
 
 ## Quick Start
 
