@@ -41,17 +41,17 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
         // console.log(sourceHtml)
         demos.push({ id, code })
         return `<pre style="display:none;"></pre>
-        <div class="${previewClass}">
-          <div class="${previewClass}__inner">
-            <div class="${previewClass}__preview">
+        <div class="vuedoc-demo ${previewClass}">
+          <div class="vuedoc-demo__inner">
+            <div class="vuedoc-demo__preview">
               <${id} />
             </div>
-            <div :style="{ height: ${id}Height + 'px' }" class="${previewClass}__source">
-              <div ref="${id}Ref" class="${previewClass}__sourceref">
+            <div :style="{ height: ${id}Height + 'px' }" class="vuedoc-demo__source">
+              <div ref="${id}Ref" class="vuedoc-demo__sourceref">
                 ${wrap(sourceHtml, 'vue')}
               </div>
             </div>
-            <div class="${previewClass}__footer" @click="toggleCode(${demos.length - 1})">
+            <div class="vuedoc-demo__footer" @click="toggleCode(${demos.length - 1})">
               {{ ${id}Height > 0 ? '隐藏代码' : '显示代码' }}
             </div>
           </div>
@@ -97,7 +97,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
     const docComponent = `
     <template>
-      <div class="${wrapperClass}">
+      <div class="vuedoc ${wrapperClass}">
         ${template}
       </div>
     </template>

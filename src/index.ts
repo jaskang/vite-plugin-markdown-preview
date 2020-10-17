@@ -12,8 +12,8 @@ export type VueDocPluginOptions = {
 export default function createVueDocPlugin(options: Partial<VueDocPluginOptions> = {}): Plugin {
   const { wrapperClass = '', previewClass = '', markdownPlugins = [] } = options
   const _options: VueDocPluginOptions = {
-    wrapperClass: `vuedoc ${wrapperClass}`,
-    previewClass: `vuedoc-demo ${previewClass}`,
+    wrapperClass,
+    previewClass,
     markdownPlugins
   }
   return {
