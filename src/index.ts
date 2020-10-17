@@ -10,8 +10,12 @@ export type VueDocPluginOptions = {
 }
 
 export default function createVueDocPlugin(options: Partial<VueDocPluginOptions> = {}): Plugin {
-  const { wrapperClass = 'vuedoc', previewClass = 'vuedoc-demo', markdownPlugins = [] } = options
-  const _options: VueDocPluginOptions = { wrapperClass, previewClass, markdownPlugins }
+  const { wrapperClass = '', previewClass = '', markdownPlugins = [] } = options
+  const _options: VueDocPluginOptions = {
+    wrapperClass: `vuedoc ${wrapperClass}`,
+    previewClass: `vuedoc-demo ${previewClass}`,
+    markdownPlugins
+  }
   return {
     resolvers: [createResolver()],
     configureServer: [createVuedocServerPlugin(_options)],

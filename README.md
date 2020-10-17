@@ -36,9 +36,9 @@ type VueDocPluginOptions = {
 }
 ```
 
-- wrapperClass default: vuedoc
+- wrapperClass default: ''
   > classname wrapped markdown file
-- previewClass default: vuedoc-demo
+- previewClass default: ''
   > classname wrapped vuedemo
 - markdownPlugins default: []
   > markdown-it plugins

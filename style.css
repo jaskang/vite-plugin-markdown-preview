@@ -46,16 +46,8 @@
   background-color: #f9fafc;
 }
 
-/* PrismJS 1.20.0
-https://prismjs.com/download.html#themes=prism-coy&languages=markup+css+clike+javascript+typescript&plugins=normalize-whitespace */
-/**
- * prism.js Coy theme for JavaScript, CoffeeScript, CSS and HTML
- * Based on https://github.com/tshedor/workshop-wp-theme (Example: http://workshop.kansan.com/category/sessions/basics or http://workshop.timshedor.com/category/sessions/basics);
- * @author Tim  Shedor
- */
-
-code[class*='language-'],
-pre[class*='language-'] {
+.vuedoc-demo code[class*='language-'],
+.vuedoc-demo pre[class*='language-'] {
   color: black;
   /* background: none; */
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -78,14 +70,14 @@ pre[class*='language-'] {
 }
 
 /* Code blocks */
-pre[class*='language-'] {
+.vuedoc-demo pre[class*='language-'] {
   position: relative;
   padding: 10px 0;
   overflow: visible;
   padding: 0;
   margin: 0;
 }
-pre[class*='language-'] > code {
+.vuedoc-demo pre[class*='language-'] > code {
   position: relative;
   /* border-left: 10px solid #358ccb; */
   /* box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf; */
@@ -96,7 +88,7 @@ pre[class*='language-'] > code {
   background-attachment: local;
 }
 
-code[class*='language'] {
+.vuedoc-demo code[class*='language'] {
   max-height: inherit;
   height: inherit;
   padding: 0 1em;
@@ -105,8 +97,8 @@ code[class*='language'] {
 }
 
 /* Margin bottom to accommodate shadow */
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
+.vuedoc-demo :not(pre) > code[class*='language-'],
+.vuedoc-demo pre[class*='language-'] {
   /* background-color: #fdfdfd; */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -115,7 +107,7 @@ pre[class*='language-'] {
 }
 
 /* Inline code */
-:not(pre) > code[class*='language-'] {
+.vuedoc-demo :not(pre) > code[class*='language-'] {
   position: relative;
   padding: 0.2em;
   border-radius: 0.3em;
@@ -125,27 +117,27 @@ pre[class*='language-'] {
   white-space: normal;
 }
 
-pre[class*='language-']:before,
-pre[class*='language-']:after {
+.vuedoc-demo pre[class*='language-']:before,
+.vuedoc-demo pre[class*='language-']:after {
   /* content: '';
-   z-index: -2;
-   display: block;
-   position: absolute;
-   bottom: 0.75em;
-   left: 0.18em;
-   width: 40%;
-   height: 20%;
-   max-height: 13em; */
+    z-index: -2;
+    display: block;
+    position: absolute;
+    bottom: 0.75em;
+    left: 0.18em;
+    width: 40%;
+    height: 20%;
+    max-height: 13em; */
   /* box-shadow: 0px 13px 8px #979797;
-   -webkit-transform: rotate(-2deg);
-   -moz-transform: rotate(-2deg);
-   -ms-transform: rotate(-2deg);
-   -o-transform: rotate(-2deg);
-   transform: rotate(-2deg); */
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    -ms-transform: rotate(-2deg);
+    -o-transform: rotate(-2deg);
+    transform: rotate(-2deg); */
 }
 
-:not(pre) > code[class*='language-']:after,
-pre[class*='language-']:after {
+.vuedoc-demo :not(pre) > code[class*='language-']:after,
+.vuedoc-demo pre[class*='language-']:after {
   right: 0.75em;
   left: auto;
   -webkit-transform: rotate(2deg);
@@ -155,122 +147,122 @@ pre[class*='language-']:after {
   transform: rotate(2deg);
 }
 
-.token.comment,
-.token.block-comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
+.vuedoc-demo .token.comment,
+.vuedoc-demo .token.block-comment,
+.vuedoc-demo .token.prolog,
+.vuedoc-demo .token.doctype,
+.vuedoc-demo .token.cdata {
   color: #7d8b99;
 }
 
-.token.punctuation {
+.vuedoc-demo .token.punctuation {
   color: #5f6364;
 }
 
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.function-name,
-.token.constant,
-.token.symbol,
-.token.deleted {
+.vuedoc-demo .token.property,
+.vuedoc-demo .token.tag,
+.vuedoc-demo .token.boolean,
+.vuedoc-demo .token.number,
+.vuedoc-demo .token.function-name,
+.vuedoc-demo .token.constant,
+.vuedoc-demo .token.symbol,
+.vuedoc-demo .token.deleted {
   color: #c92c2c;
 }
 
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.function,
-.token.builtin,
-.token.inserted {
+.vuedoc-demo .token.selector,
+.vuedoc-demo .token.attr-name,
+.vuedoc-demo .token.string,
+.vuedoc-demo .token.char,
+.vuedoc-demo .token.function,
+.vuedoc-demo .token.builtin,
+.vuedoc-demo .token.inserted {
   color: #2f9c0a;
 }
 
-.token.operator,
-.token.entity,
-.token.url,
-.token.variable {
+.vuedoc-demo .token.operator,
+.vuedoc-demo .token.entity,
+.vuedoc-demo .token.url,
+.vuedoc-demo .token.variable {
   color: #a67f59;
   background: rgba(255, 255, 255, 0.5);
 }
 
-.token.atrule,
-.token.attr-value,
-.token.keyword,
-.token.class-name {
+.vuedoc-demo .token.atrule,
+.vuedoc-demo .token.attr-value,
+.vuedoc-demo .token.keyword,
+.vuedoc-demo .token.class-name {
   color: #1990b8;
 }
 
-.token.regex,
-.token.important {
+.vuedoc-demo .token.regex,
+.vuedoc-demo .token.important {
   color: #e90;
 }
 
-.language-css .token.string,
-.style .token.string {
+.vuedoc-demo .language-css .token.string,
+.vuedoc-demo .style .token.string {
   color: #a67f59;
   background: rgba(255, 255, 255, 0.5);
 }
 
-.token.important {
+.vuedoc-demo .token.important {
   font-weight: normal;
 }
 
-.token.bold {
+.vuedoc-demo .token.bold {
   font-weight: bold;
 }
-.token.italic {
+.vuedoc-demo .token.italic {
   font-style: italic;
 }
 
-.token.entity {
+.vuedoc-demo .token.entity {
   cursor: help;
 }
 
-.token.namespace {
+.vuedoc-demo .token.namespace {
   opacity: 0.7;
 }
 
 @media screen and (max-width: 767px) {
-  pre[class*='language-']:before,
-  pre[class*='language-']:after {
+  .vuedoc-demo pre[class*='language-']:before,
+  .vuedoc-demo pre[class*='language-']:after {
     bottom: 14px;
     box-shadow: none;
   }
 }
 
 /* Plugin styles */
-.token.tab:not(:empty):before,
-.token.cr:before,
-.token.lf:before {
+.vuedoc-demo .token.tab:not(:empty):before,
+.vuedoc-demo .token.cr:before,
+.vuedoc-demo .token.lf:before {
   color: #e0d7d1;
 }
 
 /* Plugin styles: Line Numbers */
-pre[class*='language-'].line-numbers.line-numbers {
+.vuedoc-demo pre[class*='language-'].line-numbers.line-numbers {
   padding-left: 0;
 }
 
-pre[class*='language-'].line-numbers.line-numbers code {
+.vuedoc-demo pre[class*='language-'].line-numbers.line-numbers code {
   padding-left: 3.8em;
 }
 
-pre[class*='language-'].line-numbers.line-numbers .line-numbers-rows {
+.vuedoc-demo pre[class*='language-'].line-numbers.line-numbers .line-numbers-rows {
   left: 0;
 }
 
 /* Plugin styles: Line Highlight */
-pre[class*='language-'][data-line] {
+.vuedoc-demo pre[class*='language-'][data-line] {
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 0;
 }
-pre[data-line] code {
+.vuedoc-demo pre[data-line] code {
   position: relative;
   padding-left: 4em;
 }
-pre .line-highlight {
+.vuedoc-demo pre .line-highlight {
   margin-top: 0;
 }
