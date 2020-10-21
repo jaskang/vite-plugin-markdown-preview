@@ -4,7 +4,12 @@ import { createMarkdownRenderFn, DemoType } from './markdownToVue'
 import { VUEDOC_DEMO_RE } from './resolver'
 import { VueDocPluginOptions } from '.'
 
-const cacheDemos: Map<string, { component: any; demos: DemoType[] }> = new Map()
+const slash = require('slash');
+const debug = require('debug')('vite:vuedoc:build')
+
+const cacheDemos: {
+  [key:string]:{ component: any; demos: DemoType[] }
+} = {}
 
 export function createVuedocBuildPlugin(options: VueDocPluginOptions): Plugin {
   const markdownToVue = createMarkdownRenderFn(options, true)
@@ -20,14 +25,18 @@ export function createVuedocBuildPlugin(options: VueDocPluginOptions): Plugin {
       if (id.indexOf('?vue') === -1) {
         if (VUEDOC_DEMO_RE.test(id)) {
           const [, filepath, demoid] = VUEDOC_DEMO_RE.exec(id) || []
-          const md = cacheDemos.get(filepath) || { component: '', demos: [] }
+          debug(`VUEDOC_DEMO:${id} filepath:${filepath} demoid:${demoid}`)
+          const md = cacheDemos[slash(filepath)] || { component: '', demos: [] }
           const demo = md.demos.find(item => item.id === demoid)
+          debug(`md get:${filepath}`)
           return demo?.code || ''
         }
         if (id.endsWith('.md')) {
+          debug(`VUEDOC_MAIN:${id}`)
           const content = await fs.readFile(id, 'utf-8')
           const { component, demos } = markdownToVue(content, id)
-          cacheDemos.set(id, { component, demos })
+          cacheDemos[slash(id)]= { component, demos }
+          debug(`md set:${id}`)
           return component
         }
       }

@@ -19,6 +19,7 @@ export default function createVueDocPlugin(options: Partial<VueDocPluginOptions>
   return {
     resolvers: [createResolver()],
     configureServer: [createVuedocServerPlugin(_options)],
+    // @ts-ignore
     rollupPluginVueOptions: {
       include: /\.(vue|md)$/
     },

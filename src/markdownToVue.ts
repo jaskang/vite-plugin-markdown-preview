@@ -2,11 +2,12 @@ import MarkdownIt from 'markdown-it'
 import matter from 'gray-matter'
 import { VUEDOC_DEMO_PREFIX } from './resolver'
 import { VueDocPluginOptions } from '.'
-
+import path from 'path';
+const slash = require('slash');
 const prism = require('prismjs')
 const loadLanguages = require('prismjs/components/index')
 const escapeHtml = require('escape-html')
-const debug = require('debug')('vuedoc:md')
+const debug = require('debug')('vite:vuedoc:md')
 
 // required to make embedded highlighting work...
 loadLanguages(['markup', 'css', 'less', 'scss', 'javascript', 'typescript'])
@@ -52,7 +53,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
               </div>
             </div>
             <div class="vuedoc-demo__footer" @click="toggleCode(${demos.length - 1})">
-              {{ ${id}Height > 0 ? '隐藏代码' : '显示代码' }}
+              {{ ${id}Height > 0 ? 'hidden' : 'show' }}
             </div>
           </div>
         </div>
@@ -88,7 +89,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
     markdown.use(...plugin)
   })
 
-  return (src: string, path: string) => {
+  return (src: string, publicPath: string) => {
     const start = Date.now()
 
     demos = []
@@ -105,7 +106,9 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
     import { defineComponent, reactive, ref, toRefs, onMounted } from 'vue';
     ${demos
       .map(demo => {
-        return `import ${demo.id} from '${path}/${demo.id}${isBuild ? '.vue' : ''}';`
+        const request = `${slash(publicPath)}/${demo.id}`
+        debug(`file:${publicPath} request:${request}`)
+        return `import ${demo.id} from '${request}${isBuild ? '.vue' : ''}';`
       })
       .join('\n')}
 
@@ -122,7 +125,6 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
         const toggleCode = (index) => {
           const id = '${VUEDOC_DEMO_PREFIX}' + index
-          console.log(id,refs)
           if (state[id+'Height'] === 0) {
             state[id+'Height'] = refs[index].value?.offsetHeight || 0
           } else {

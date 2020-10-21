@@ -1,10 +1,10 @@
 import path from 'path'
 import { Resolver } from 'vite'
-
-const debug = require('debug')('vuedoc:resolver')
+const slash = require('slash');
+const debug = require('debug')('vite:vuedoc:resolver')
 
 export const VUEDOC_DEMO_PREFIX = 'VUEDEMO_'
-export const VUEDOC_DEMO_RE = /(.*?\.md)\/(VUEDEMO_\d+)/
+export const VUEDOC_DEMO_RE = /(.*?\.md)[\/|\\](VUEDEMO_\d+)/
 
 export function createResolver(): Resolver {
   return {
@@ -20,7 +20,7 @@ export function createResolver(): Resolver {
     },
     fileToRequest(filePath, root) {
       if (filePath.endsWith('.md')) {
-        const request = '/' + path.relative(root, filePath)
+        const request = '/' + slash(path.relative(root, filePath))
         debug(`fileToRequest filePath:${filePath} root:${root} request:${request}`)
         return request
       }

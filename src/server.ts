@@ -3,10 +3,11 @@ import { ServerPlugin } from 'vite'
 import { createMarkdownRenderFn, DemoType } from './markdownToVue'
 import { VUEDOC_DEMO_RE } from './resolver'
 import { VueDocPluginOptions } from '.'
+import path from 'path'
 const getETag = require('etag')
 
-const debug = require('debug')('vuedoc:serve')
-const debugHmr = require('debug')('vuedoc:hmr')
+const debug = require('debug')('vite:vuedoc:serve')
+const debugHmr = require('debug')('vite:vuedoc:hmr')
 
 const cacheDemos: Map<string, DemoType[]> = new Map()
 
@@ -50,7 +51,10 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
         }
         const content = await fs.readFile(file, 'utf-8')
         const lastModified = fs.statSync(file).mtimeMs
-        const { component, demos } = markdownToVue(content, file)
+        const requestPath = path.join('/',path.relative(root,file)) 
+        debug(`requestPath:${requestPath}`)
+
+        const { component, demos } = markdownToVue(content, requestPath)
         cacheDemos.set(file, demos)
 
         ctx.vue = true
