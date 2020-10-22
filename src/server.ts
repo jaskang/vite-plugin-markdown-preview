@@ -4,7 +4,7 @@ import { createMarkdownRenderFn, DemoType } from './markdownToVue'
 import { VUEDOC_DEMO_RE } from './resolver'
 import { VueDocPluginOptions } from '.'
 import path from 'path'
-const getETag = require('etag')
+// const getETag = require('etag')
 
 const debug = require('debug')('vite:vuedoc:serve')
 const debugHmr = require('debug')('vite:vuedoc:hmr')
@@ -39,7 +39,7 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
 
         ctx.vue = true
         ctx.type = 'js'
-        ctx.etag = getETag(demo?.code)
+        ctx.set('Cache-Control', 'no-store')
         ctx.body = demo?.code
         await next()
         return
@@ -50,8 +50,7 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
           return next()
         }
         const content = await fs.readFile(file, 'utf-8')
-        const lastModified = fs.statSync(file).mtimeMs
-        const requestPath = path.join('/',path.relative(root,file)) 
+        const requestPath = path.join('/', path.relative(root, file))
         debug(`requestPath:${requestPath}`)
 
         const { component, demos } = markdownToVue(content, requestPath)
@@ -59,8 +58,7 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
 
         ctx.vue = true
         ctx.type = 'js'
-        ctx.etag = getETag(component)
-        ctx.lastModified = new Date(lastModified)
+        ctx.set('Cache-Control', 'no-store')
         ctx.body = component
         await next()
         debug(ctx.url, ctx.status)
