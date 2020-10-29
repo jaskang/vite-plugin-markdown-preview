@@ -126,7 +126,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
         const toggleCode = (index) => {
           const id = '${VUEDOC_DEMO_PREFIX}' + index
           if (state[id+'Height'] === 0) {
-            state[id+'Height'] = refs[index].value?.offsetHeight || 0
+            state[id+'Height'] = (refs[index].value ? refs[index].value.offsetHeight : 0) || 0
           } else {
             state[id+'Height'] = 0
           }
