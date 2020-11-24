@@ -4,6 +4,7 @@ import { createMarkdownRenderFn, DemoType } from './markdownToVue'
 import { VUEDOC_DEMO_RE } from './resolver'
 import { VueDocPluginOptions } from '.'
 import path from 'path'
+const slash = require('slash');
 // const getETag = require('etag')
 
 const debug = require('debug')('vite:vuedoc:serve')
@@ -24,9 +25,9 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
         cacheDemos.set(file, demos)
         const timestamp = Date.now()
         for (const demo of demos) {
-          watcher.handleVueReload(`${file}/${demo.id}`, timestamp, demo.code)
+          watcher.handleVueReload(`${slash(file)}/${demo.id}`, timestamp, demo.code)
         }
-        watcher.handleVueReload(`${file}`, timestamp, component)
+        watcher.handleVueReload(`${slash(file)}`, timestamp, component)
       }
     })
 
