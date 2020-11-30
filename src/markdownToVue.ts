@@ -2,8 +2,8 @@ import MarkdownIt from 'markdown-it'
 import matter from 'gray-matter'
 import { VUEDOC_DEMO_PREFIX } from './resolver'
 import { VueDocPluginOptions } from '.'
-import path from 'path';
-const slash = require('slash');
+import path from 'path'
+const slash = require('slash')
 const prism = require('prismjs')
 const loadLanguages = require('prismjs/components/index')
 const escapeHtml = require('escape-html')
@@ -98,7 +98,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
     const docComponent = `
     <template>
-      <div class="vuedoc ${wrapperClass}">
+      <div class="vuedoc ${wrapperClass} frontmatter.wrapperClass">
         ${template}
       </div>
     </template>
