@@ -1,6 +1,6 @@
 import path from 'path'
 import { Resolver } from 'vite'
-const slash = require('slash');
+const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:resolver')
 
 export const VUEDOC_DEMO_PREFIX = 'VUEDEMO_'
