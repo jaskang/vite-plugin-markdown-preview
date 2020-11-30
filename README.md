@@ -13,12 +13,12 @@ A markdown & vue preview plugin for vite.
 - [x] markdown file
 - [x] vue demo preview
 - [x] vue demo source
+- [x] gray-matter
 - [ ] add tests
 - [ ] add playground
 - [ ] sourcemap
 - [ ] better hmr
 - [ ] support highlight options
-- [ ] gray-matter
 
 ## Install
 
@@ -91,6 +91,23 @@ export const router = createRouter({
     }
   ]
 })
+```
+
+## gray-matter
+
+```
+// Button.zh-CN.md
+---
+wrapperClass: '' // wrapperClass will wrapped current md file
+title: 'title'
+desc: 'desc'
+---
+```
+
+```typescript
+import MdComp from './docs/Button.zh-CN.md'
+
+const { wrapperClass, title, desc } = MdComp.matter
 ```
 
 ## screenshots

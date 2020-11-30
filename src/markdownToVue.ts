@@ -98,7 +98,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
     const docComponent = `
     <template>
-      <div class="vuedoc ${wrapperClass} frontmatter.wrapperClass">
+      <div class="vuedoc ${wrapperClass} ${frontmatter.wrapperClass}">
         ${template}
       </div>
     </template>
