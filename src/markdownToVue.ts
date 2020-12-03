@@ -1,104 +1,49 @@
-import MarkdownIt from 'markdown-it'
-import matter from 'gray-matter'
-import { VUEDOC_DEMO_PREFIX } from './resolver'
+// import fs from 'fs-extra'
+import { VUEDOC_PREFIX } from './resolver'
+import unified from 'unified'
+import remarkCodeImport from './remark/remarkCodeImport'
+import remarkCodePrism from './remark/remarkCodePrism'
+import remarkFrontmatter from './remark/remarkFrontmatter'
 import { VueDocPluginOptions } from '.'
 import path from 'path'
 const slash = require('slash')
-const prism = require('prismjs')
-const loadLanguages = require('prismjs/components/index')
-const escapeHtml = require('escape-html')
 const debug = require('debug')('vite:vuedoc:md')
-
-// required to make embedded highlighting work...
-loadLanguages(['markup', 'css', 'less', 'scss', 'javascript', 'typescript'])
 
 export type DemoType = {
   id: string
   code: string
 }
 
-function wrap(code: string, lang: string): string {
-  if (lang === 'text') {
-    code = escapeHtml(code)
-  }
-  return `<pre v-pre><code class="language-${lang}">${code}</code></pre>`
-}
-
 export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = false) {
   const { wrapperClass, previewClass, markdownPlugins } = options
-  let demos: DemoType[] = []
-
-  const markdown = new MarkdownIt('default', {
-    html: true,
-    linkify: true,
-    typographer: true,
-    highlight: function (code: string, lang: string) {
-      if (!lang) {
-        return wrap(code, 'text')
-      }
-      if (lang === 'vue') {
-        const id = `${VUEDOC_DEMO_PREFIX}${demos.length}`
-        const sourceHtml = prism.highlight(code, prism.languages.markup, 'markup')
-        // console.log(sourceHtml)
-        demos.push({ id, code })
-        return `<pre style="display:none;"></pre>
-        <div class="vuedoc-demo ${previewClass}">
-          <div class="vuedoc-demo__inner">
-            <div class="vuedoc-demo__preview">
-              <${id} />
-            </div>
-            <div :style="{ height: ${id}Height + 'px' }" class="vuedoc-demo__source">
-              <div ref="${id}Ref" class="vuedoc-demo__sourceref">
-                ${wrap(sourceHtml, 'vue')}
-              </div>
-            </div>
-            <div class="vuedoc-demo__footer" @click="toggleCode(${demos.length - 1})">
-              {{ ${id}Height > 0 ? 'hidden' : 'show' }}
-            </div>
-          </div>
-        </div>
-        `
-      }
-      if (lang === 'html') {
-        lang = 'markup'
-      }
-      if (lang === 'md') {
-        lang = 'markdown'
-      }
-      if (lang === 'ts') {
-        lang = 'typescript'
-      }
-      if (lang === 'py') {
-        lang = 'python'
-      }
-      if (!prism.languages[lang]) {
-        try {
-          loadLanguages([lang])
-        } catch (e) {
-          console.error(`[vuedoc] Syntax highlight for language "${lang}" is not supported.`)
-        }
-      }
-      if (prism.languages[lang]) {
-        const result = prism.highlight(code, prism.languages[lang], lang)
-        return wrap(result, lang)
-      }
-      return wrap(code, 'text')
-    }
-  })
-  markdownPlugins.forEach((plugin: [any]) => {
-    markdown.use(...plugin)
-  })
-
-  return (src: string, publicPath: string) => {
+  return async (content: string, publicPath: string) => {
     const start = Date.now()
+    const vfile = await unified()
+      .use({
+        plugins: [
+          [require('remark-parse')],
+          [require('remark-frontmatter')],
+          [remarkFrontmatter],
+          [remarkCodeImport],
+          [remarkCodePrism, { previewClass, vuePrefix: VUEDOC_PREFIX }],
+          [require('remark-gemoji')],
+          ...markdownPlugins,
+          [require('remark-rehype'), { allowDangerousHtml: true }],
+          [require('rehype-raw')],
+          [require('rehype-stringify')]
+        ]
+      })
+      .process(content)
+    const vfileData: any = vfile.data
+    const demos: DemoType[] = vfileData.vueBlocks || []
+    const matterData = vfileData.matter || {}
 
-    demos = []
-    const { content, data: frontmatter } = matter(src)
-    const template = markdown.render(content, {})
+    const template = vfile.toString()
+    debug(vfile)
 
     const docComponent = `
     <template>
-      <div class="vuedoc ${wrapperClass} ${frontmatter.wrapperClass}">
+      <div class="vuedoc ${wrapperClass || ''} ${matterData.wrapperClass || ''}">
         ${template}
       </div>
     </template>
@@ -120,15 +65,15 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
         ${demos.map(demo => `const ${demo.id}Ref = ref()`).join('\n')}
         const refs = [${demos.map(demo => `${demo.id}Ref`).join(',')}]
         const state = reactive({
-          ${demos.map(demo => `${demo.id}Height: 0`).join(',')}
+          ${demos.map(demo => `${demo.id}Height: '0px'`).join(',')}
         })
 
         const toggleCode = (index) => {
-          const id = '${VUEDOC_DEMO_PREFIX}' + index
-          if (state[id+'Height'] === 0) {
-            state[id+'Height'] = (refs[index].value ? refs[index].value.offsetHeight : 0) || 0
+          const id = '${VUEDOC_PREFIX}' + index
+          if (state[id+'Height'] === '0px') {
+            state[id+'Height'] = ((refs[index].value ? refs[index].value.offsetHeight : 0) || 0) + 'px'
           } else {
-            state[id+'Height'] = 0
+            state[id+'Height'] = 0 + 'px'
           }
         }
 
@@ -139,7 +84,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
         }
       }
     });
-    script.matter = ${JSON.stringify(frontmatter)}
+    script.matter = ${JSON.stringify(matterData)}
     export default script;
     
     ${isBuild ? '' : 'if (import.meta.hot) { import.meta.hot.accept(); }'}

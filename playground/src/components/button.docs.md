@@ -1,3 +1,9 @@
+---
+title: sdfsa
+dics: 'asdfs'
+---
+
+<div>div</div>
 # vite-plugin-vuedoc
 
 demo preview
@@ -8,7 +14,29 @@ description
 
 > demo need vue code wrapped
 
-```vue
+```typescript test
+import { App, defineComponent } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
+
+const blockCls = getBlockCls('Main')
+
+const Main = defineComponent({
+  name: getCompName('Main'),
+  setup(_, { slots }) {
+    return () => <main class={blockCls}>{slots.default?.()}</main>
+  }
+})
+
+Main.install = (app: App): void => {
+  app.component(Main.name, Main)
+}
+
+export default Main
+```
+
+### primary button
+
+```vue demo
 <template>
   <div>
     <el-button>button</el-button>
@@ -17,7 +45,7 @@ description
 </template>
 ```
 
-### Icon Button
+### Icon `Button`
 
 description
 

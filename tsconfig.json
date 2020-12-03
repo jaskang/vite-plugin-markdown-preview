@@ -9,7 +9,8 @@
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "module": "commonjs",
-    "lib": ["esnext"]
+    "lib": ["esnext"],
+    "baseUrl": "."
   },
-  "include": ["./src"]
+  "include": ["./types", "./src"]
 }

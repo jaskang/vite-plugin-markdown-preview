@@ -46,8 +46,8 @@
   background-color: #f9fafc;
 }
 
-.vuedoc-demo code[class*='language-'],
-.vuedoc-demo pre[class*='language-'] {
+.vuedoc__code code[class*='language-'],
+.vuedoc__code pre[class*='language-'] {
   color: black;
   /* background: none; */
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -70,14 +70,14 @@
 }
 
 /* Code blocks */
-.vuedoc-demo pre[class*='language-'] {
+.vuedoc__code pre[class*='language-'] {
   position: relative;
   padding: 10px 0;
   overflow: visible;
   padding: 0;
   margin: 0;
 }
-.vuedoc-demo pre[class*='language-'] > code {
+.vuedoc__code pre[class*='language-'] > code {
   position: relative;
   /* border-left: 10px solid #358ccb; */
   /* box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf; */
@@ -88,7 +88,7 @@
   background-attachment: local;
 }
 
-.vuedoc-demo code[class*='language'] {
+.vuedoc__code code[class*='language'] {
   max-height: inherit;
   height: inherit;
   padding: 0 1em;
@@ -97,8 +97,8 @@
 }
 
 /* Margin bottom to accommodate shadow */
-.vuedoc-demo :not(pre) > code[class*='language-'],
-.vuedoc-demo pre[class*='language-'] {
+.vuedoc__code :not(pre) > code[class*='language-'],
+.vuedoc__code pre[class*='language-'] {
   /* background-color: #fdfdfd; */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -107,7 +107,7 @@
 }
 
 /* Inline code */
-.vuedoc-demo :not(pre) > code[class*='language-'] {
+.vuedoc__code :not(pre) > code[class*='language-'] {
   position: relative;
   padding: 0.2em;
   border-radius: 0.3em;
@@ -117,8 +117,8 @@
   white-space: normal;
 }
 
-.vuedoc-demo pre[class*='language-']:before,
-.vuedoc-demo pre[class*='language-']:after {
+.vuedoc__code pre[class*='language-']:before,
+.vuedoc__code pre[class*='language-']:after {
   /* content: '';
     z-index: -2;
     display: block;
@@ -136,8 +136,8 @@
     transform: rotate(-2deg); */
 }
 
-.vuedoc-demo :not(pre) > code[class*='language-']:after,
-.vuedoc-demo pre[class*='language-']:after {
+.vuedoc__code :not(pre) > code[class*='language-']:after,
+.vuedoc__code pre[class*='language-']:after {
   right: 0.75em;
   left: auto;
   -webkit-transform: rotate(2deg);
@@ -147,122 +147,122 @@
   transform: rotate(2deg);
 }
 
-.vuedoc-demo .token.comment,
-.vuedoc-demo .token.block-comment,
-.vuedoc-demo .token.prolog,
-.vuedoc-demo .token.doctype,
-.vuedoc-demo .token.cdata {
+.vuedoc__code .token.comment,
+.vuedoc__code .token.block-comment,
+.vuedoc__code .token.prolog,
+.vuedoc__code .token.doctype,
+.vuedoc__code .token.cdata {
   color: #7d8b99;
 }
 
-.vuedoc-demo .token.punctuation {
+.vuedoc__code .token.punctuation {
   color: #5f6364;
 }
 
-.vuedoc-demo .token.property,
-.vuedoc-demo .token.tag,
-.vuedoc-demo .token.boolean,
-.vuedoc-demo .token.number,
-.vuedoc-demo .token.function-name,
-.vuedoc-demo .token.constant,
-.vuedoc-demo .token.symbol,
-.vuedoc-demo .token.deleted {
+.vuedoc__code .token.property,
+.vuedoc__code .token.tag,
+.vuedoc__code .token.boolean,
+.vuedoc__code .token.number,
+.vuedoc__code .token.function-name,
+.vuedoc__code .token.constant,
+.vuedoc__code .token.symbol,
+.vuedoc__code .token.deleted {
   color: #c92c2c;
 }
 
-.vuedoc-demo .token.selector,
-.vuedoc-demo .token.attr-name,
-.vuedoc-demo .token.string,
-.vuedoc-demo .token.char,
-.vuedoc-demo .token.function,
-.vuedoc-demo .token.builtin,
-.vuedoc-demo .token.inserted {
+.vuedoc__code .token.selector,
+.vuedoc__code .token.attr-name,
+.vuedoc__code .token.string,
+.vuedoc__code .token.char,
+.vuedoc__code .token.function,
+.vuedoc__code .token.builtin,
+.vuedoc__code .token.inserted {
   color: #2f9c0a;
 }
 
-.vuedoc-demo .token.operator,
-.vuedoc-demo .token.entity,
-.vuedoc-demo .token.url,
-.vuedoc-demo .token.variable {
+.vuedoc__code .token.operator,
+.vuedoc__code .token.entity,
+.vuedoc__code .token.url,
+.vuedoc__code .token.variable {
   color: #a67f59;
   background: rgba(255, 255, 255, 0.5);
 }
 
-.vuedoc-demo .token.atrule,
-.vuedoc-demo .token.attr-value,
-.vuedoc-demo .token.keyword,
-.vuedoc-demo .token.class-name {
+.vuedoc__code .token.atrule,
+.vuedoc__code .token.attr-value,
+.vuedoc__code .token.keyword,
+.vuedoc__code .token.class-name {
   color: #1990b8;
 }
 
-.vuedoc-demo .token.regex,
-.vuedoc-demo .token.important {
+.vuedoc__code .token.regex,
+.vuedoc__code .token.important {
   color: #e90;
 }
 
-.vuedoc-demo .language-css .token.string,
-.vuedoc-demo .style .token.string {
+.vuedoc__code .language-css .token.string,
+.vuedoc__code .style .token.string {
   color: #a67f59;
   background: rgba(255, 255, 255, 0.5);
 }
 
-.vuedoc-demo .token.important {
+.vuedoc__code .token.important {
   font-weight: normal;
 }
 
-.vuedoc-demo .token.bold {
+.vuedoc__code .token.bold {
   font-weight: bold;
 }
-.vuedoc-demo .token.italic {
+.vuedoc__code .token.italic {
   font-style: italic;
 }
 
-.vuedoc-demo .token.entity {
+.vuedoc__code .token.entity {
   cursor: help;
 }
 
-.vuedoc-demo .token.namespace {
+.vuedoc__code .token.namespace {
   opacity: 0.7;
 }
 
 @media screen and (max-width: 767px) {
-  .vuedoc-demo pre[class*='language-']:before,
-  .vuedoc-demo pre[class*='language-']:after {
+  .vuedoc__code pre[class*='language-']:before,
+  .vuedoc__code pre[class*='language-']:after {
     bottom: 14px;
     box-shadow: none;
   }
 }
 
 /* Plugin styles */
-.vuedoc-demo .token.tab:not(:empty):before,
-.vuedoc-demo .token.cr:before,
-.vuedoc-demo .token.lf:before {
+.vuedoc__code .token.tab:not(:empty):before,
+.vuedoc__code .token.cr:before,
+.vuedoc__code .token.lf:before {
   color: #e0d7d1;
 }
 
 /* Plugin styles: Line Numbers */
-.vuedoc-demo pre[class*='language-'].line-numbers.line-numbers {
+.vuedoc__code pre[class*='language-'].line-numbers.line-numbers {
   padding-left: 0;
 }
 
-.vuedoc-demo pre[class*='language-'].line-numbers.line-numbers code {
+.vuedoc__code pre[class*='language-'].line-numbers.line-numbers code {
   padding-left: 3.8em;
 }
 
-.vuedoc-demo pre[class*='language-'].line-numbers.line-numbers .line-numbers-rows {
+.vuedoc__code pre[class*='language-'].line-numbers.line-numbers .line-numbers-rows {
   left: 0;
 }
 
 /* Plugin styles: Line Highlight */
-.vuedoc-demo pre[class*='language-'][data-line] {
+.vuedoc__code pre[class*='language-'][data-line] {
   padding-top: 0;
   padding-bottom: 0;
   padding-left: 0;
 }
-.vuedoc-demo pre[data-line] code {
+.vuedoc__code pre[data-line] code {
   position: relative;
   padding-left: 4em;
 }
-.vuedoc-demo pre .line-highlight {
+.vuedoc__code pre .line-highlight {
   margin-top: 0;
 }
