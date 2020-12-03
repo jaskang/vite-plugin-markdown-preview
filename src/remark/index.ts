@@ -32,6 +32,10 @@ export const remarkFile = async (
       plugins: [
         [require('remark-parse')],
         [require('remark-frontmatter')],
+        [require('remark-slug')],
+        [require('remark-autolink-headings')],
+        [require('remark-gfm')],
+        [require('remark-math')],
         [remarkFrontmatter],
         [remarkCodeImport],
         [remarkCodePrism, { previewClass, vuePrefix: vuePrefix }],
