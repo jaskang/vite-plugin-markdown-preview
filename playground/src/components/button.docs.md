@@ -7,6 +7,7 @@ dics: 'asdfs'
 # vite-plugin-vuedoc
 
 demo preview
+:+1:
 
 ### vue primary
 

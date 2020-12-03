@@ -1,12 +1,9 @@
 // import fs from 'fs-extra'
 import { VUEDOC_PREFIX } from './resolver'
-import unified from 'unified'
-import remarkCodeImport from './remark/remarkCodeImport'
-import remarkCodePrism from './remark/remarkCodePrism'
-import remarkFrontmatter from './remark/remarkFrontmatter'
 import { VueDocPluginOptions } from '.'
 import path from 'path'
-const toVfile = require('to-vfile')
+import { remarkFile } from './remark'
+
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:md')
 
@@ -19,28 +16,11 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
   const { wrapperClass, previewClass, markdownPlugins } = options
   return async (file: string, publicPath: string) => {
     const start = Date.now()
-    const vfile = await unified()
-      .use({
-        plugins: [
-          [require('remark-parse')],
-          [require('remark-frontmatter')],
-          [remarkFrontmatter],
-          [remarkCodeImport],
-          [remarkCodePrism, { previewClass, vuePrefix: VUEDOC_PREFIX }],
-          [require('remark-gemoji')],
-          ...markdownPlugins,
-          [require('remark-rehype'), { allowDangerousHtml: true }],
-          [require('rehype-raw')],
-          [require('rehype-stringify')]
-        ]
-      })
-      .process(toVfile.readSync(file))
-    const vfileData: any = vfile.data
-    const demos: DemoType[] = vfileData.vueBlocks || []
-    const matterData = vfileData.matter || {}
-
-    const template = vfile.toString()
-    debug(vfile)
+    const { template, vueBlocks: demos, matter: matterData } = await remarkFile(file, {
+      vuePrefix: VUEDOC_PREFIX,
+      previewClass,
+      plugins: markdownPlugins
+    })
 
     const docComponent = `
     <template>
