@@ -13,12 +13,15 @@ A markdown & vue preview plugin for vite.
 - [x] markdown component
 - [x] code prism
 - [x] code import
-- [x] vueblock preview
-- [x] vueblock sourcemap
+- [x] vueblock
+  - [x] preview
+  - [x] sourcemap
 - [x] markdown frontmatter
 - [x] hmr
 - [x] playground
-- [ ] prism options
+- [x] prism
+  - [x] theme
+  - [x] options
 - [ ] tests
 
 ## Install
@@ -44,6 +47,10 @@ type VueDocPluginOptions = {
   > classname wrapped vuedemo
 - markdownPlugins default: []
   > remark plugins
+- prism object
+  - theme -> 'default' | 'coy' | 'dark' | 'funky' | 'okaidia' | 'solarizedlight' | 'tomorrow' | 'twilight' | 'custom'
+    > code theme info -> https://prismjs.com/
+    > theme=custom will not insert code style,u can import style yourself
 
 ## Quick Start
 
@@ -56,20 +63,6 @@ const config: UserConfig = {
   plugins: [vitePluginVuedoc()]
 }
 export default config
-```
-
-#### style
-
-import `vite-plugin-vuedoc/style.css` entry file
-
-```typescript
-// main.ts
-import { createApp } from 'vue'
-import App from './App.vue'
-import 'vite-plugin-vuedoc/style.css'
-
-const app = createApp(App)
-app.mount('#app')
 ```
 
 #### markdown

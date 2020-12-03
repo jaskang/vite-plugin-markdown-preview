@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs-extra'
 import { VUEDOC_PREFIX } from './resolver'
 import { remarkFile } from './remark'
 import { VueDocPluginOptions } from '.'
@@ -6,8 +7,21 @@ import { VueDocPluginOptions } from '.'
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:md')
 
+const baseCss = fs.readFileSync(path.join(__dirname, '..', 'base.css'), 'utf8')
+const themes = {
+  default: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism.css'), 'utf8'),
+  coy: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism-coy.css'), 'utf8'),
+  dark: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism-dark.css'), 'utf8'),
+  funky: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism-funky.css'), 'utf8'),
+  okaidia: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism-okaidia.css'), 'utf8'),
+  solarizedlight: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism-solarizedlight.css'), 'utf8'),
+  tomorrow: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism-tomorrow.css'), 'utf8'),
+  twilight: fs.readFileSync(path.join(__dirname, '..', 'themes', 'prism-twilight.css'), 'utf8'),
+  custom: ''
+}
 export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = false) {
-  const { wrapperClass, previewClass, markdownPlugins } = options
+  const { wrapperClass, previewClass, markdownPlugins, prism } = options
+  const { theme = 'default' } = prism
   return async (file: string, publicPath: string) => {
     const start = Date.now()
     const { template, vueBlocks, matter } = await remarkFile(file, {
@@ -24,6 +38,9 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
     </template>
     <script>
     import { defineComponent, reactive, ref, toRefs, onMounted } from 'vue';
+
+    
+
     ${vueBlocks
       .map(demo => {
         const request = `${slash(publicPath)}/${demo.id}`
@@ -31,7 +48,19 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
         return `import ${demo.id} from '${request}${isBuild ? '.vue' : ''}';`
       })
       .join('\n')}
-
+    
+    function injectCss(css, id) {
+      if (!document.head.querySelector('#' + id)) {
+        const node = document.createElement('style')
+        node.textContent = css
+        node.type = 'text/css'
+        node.id = id
+        document.head.appendChild(node)
+      }
+    }
+    injectCss(${JSON.stringify(baseCss)},'__vd__base__')
+    injectCss(${JSON.stringify(themes[theme] || '')},'__vd__theme__')
+    
     const script = defineComponent({
       components: {
         ${vueBlocks.map(demo => demo.id).join(',')}

@@ -25,7 +25,8 @@
   },
   "files": [
     "dist",
-    "style.css"
+    "themes",
+    "base.css"
   ],
   "scripts": {
     "dev": "tsc -w -p .",
