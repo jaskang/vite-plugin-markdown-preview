@@ -10,15 +10,16 @@ A markdown & vue preview plugin for vite.
 
 ## Feature
 
-- [x] markdown file
-- [x] vue demo preview
-- [x] vue demo source
-- [x] gray-matter
-- [ ] add tests
-- [ ] add playground
-- [ ] sourcemap
-- [ ] better hmr
-- [ ] support highlight options
+- [x] markdown component
+- [x] code prism
+- [x] code import
+- [x] vueblock preview
+- [x] vueblock sourcemap
+- [x] markdown frontmatter
+- [x] hmr
+- [x] playground
+- [ ] prism options
+- [ ] tests
 
 ## Install
 
@@ -37,11 +38,12 @@ type VueDocPluginOptions = {
 ```
 
 - wrapperClass default: ''
-  > classname wrapped markdown file
+  > classname wrapped markdown component
+  > frontmatter `wrapperClass` will wrapped current markdown component
 - previewClass default: ''
   > classname wrapped vuedemo
 - markdownPlugins default: []
-  > markdown-it plugins
+  > remark plugins
 
 ## Quick Start
 
@@ -49,19 +51,16 @@ type VueDocPluginOptions = {
 
 ```typescript
 // vite.config.ts
-import type { UserConfig } from 'vite'
 import vitePluginVuedoc from 'vite-plugin-vuedoc'
-
 const config: UserConfig = {
   plugins: [vitePluginVuedoc()]
 }
-
 export default config
 ```
 
-#### import style
+#### style
 
-> import 'vite-plugin-vuedoc/style.css'
+import `vite-plugin-vuedoc/style.css` entry file
 
 ```typescript
 // main.ts
@@ -73,27 +72,40 @@ const app = createApp(App)
 app.mount('#app')
 ```
 
-#### markdown doc
+#### markdown
 
 ![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/md.png?raw=true)
 
-#### import markdown
+#### import
 
 ```typescript
-// router.ts
+import MdComp from './docs/Button.zh-CN.md'
 export const router = createRouter({
   routes: [
     { path: '/home', redirect: '/' },
     {
       path: '/button',
-      name: 'button',
-      component: async () => import('./docs/Button.zh-CN.md')
+      name: MdComp.matter.name || 'button',
+      component: MdComp
     }
   ]
 })
 ```
 
-## gray-matter
+## VueBlock preview
+
+If the vue block has a `demo` tag， it can preview the component
+
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/preview.png?raw=true)
+
+## code import
+
+in code block support import file like this:
+
+\`\`\`lang file=./test.vue  
+\`\`\`
+
+## frontmatter
 
 ```
 // Button.zh-CN.md

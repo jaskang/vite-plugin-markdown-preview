@@ -1,8 +1,7 @@
-// import visit from 'unist-util-visit'
 import map from 'unist-util-map'
 import { VFile } from 'vfile'
-const yaml = require('js-yaml')
 
+const yaml = require('js-yaml')
 const debug = require('debug')('vite:vuedoc:remarkFrontmatter')
 
 function remarkFrontmatter() {

@@ -1,9 +1,7 @@
-// import visit from 'unist-util-visit'
 import map from 'unist-util-map'
 import { VFile } from 'vfile'
 
 const prism = require('prismjs')
-// const escapeHtml = require('escape-html')
 const loadLanguages = require('prismjs/components/index')
 const debug = require('debug')('vite:vuedoc:remark-code-prismjs')
 

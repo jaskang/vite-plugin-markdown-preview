@@ -3,8 +3,8 @@ import { Resolver } from 'vite'
 // const slash = require('slash')
 // const debug = require('debug')('vite:vuedoc:resolver')
 
-export const VUEDOC_PREFIX = 'vp_'
-export const VUEDOC_RE = /(.*?\.md)[\/|\\](vp_\d+)/
+export const VUEDOC_PREFIX = 'vdpv_'
+export const VUEDOC_RE = /(.*?\.md)[\/|\\](vdpv_\d+)/
 
 export function createResolver(): Resolver {
   return {

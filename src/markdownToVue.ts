@@ -1,8 +1,7 @@
-// import fs from 'fs-extra'
-import { VUEDOC_PREFIX } from './resolver'
-import { VueDocPluginOptions } from '.'
 import path from 'path'
+import { VUEDOC_PREFIX } from './resolver'
 import { remarkFile } from './remark'
+import { VueDocPluginOptions } from '.'
 
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:md')

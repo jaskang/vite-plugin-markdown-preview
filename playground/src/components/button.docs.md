@@ -1,13 +1,8 @@
 ---
 title: sdfsa
 dics: 'asdfs'
+wrapperClass: test-wrap
 ---
-
-<div>div</div>
-# vite-plugin-vuedoc
-
-demo preview
-:+1:
 
 ### vue primary
 
@@ -32,7 +27,7 @@ description
 
 > demo need vue code wrapped
 
-```typescript test
+```typescript
 import { App, defineComponent } from 'vue'
 import { getBlockCls, getCompName } from '@/config'
 
@@ -58,7 +53,7 @@ description
 
 > demo need vue code wrapped
 
-```vue
+```vue demo
 <template>
   <div>num: {{ num }}</div>
   <div>

@@ -3,24 +3,21 @@ import { ServerPlugin } from 'vite'
 import { createMarkdownRenderFn } from './markdownToVue'
 import { VUEDOC_RE } from './resolver'
 import { VueDocPluginOptions } from '.'
-import path from 'path'
 import { VueBlockType } from './remark'
-// const getETag = require('etag')
 
 const debug = require('debug')('vite:vuedoc:serve')
-const debugHmr = require('debug')('vite:vuedoc:hmr')
 
 const cacheDemos: Map<string, VueBlockType[]> = new Map()
 
 export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPlugin {
-  return ({ app, root, watcher, resolver }) => {
+  return ({ app, watcher, resolver }) => {
     const markdownToVue = createMarkdownRenderFn(options)
 
     // hot reload .md files as .vue files
     watcher.on('change', async file => {
       if (file.endsWith('.md')) {
-        debugHmr(`reloading ${file}`)
-        const { component, demos } = await markdownToVue(file, file)
+        debug(`reloading ${file}`)
+        const { component, demos } = await markdownToVue(file, resolver.fileToRequest(file))
         cacheDemos.set(file, demos)
         const timestamp = Date.now()
         for (const demo of demos) {
@@ -47,12 +44,9 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
         if (!fs.existsSync(file)) {
           return next()
         }
-        const requestPath = path.join('/', path.relative(root, file))
-        debug(`requestPath:${requestPath}`)
-
-        const { component, demos } = await markdownToVue(file, requestPath)
+        debug(`ctx.path:${ctx.path}`)
+        const { component, demos } = await markdownToVue(file, ctx.path)
         cacheDemos.set(file, demos)
-
         ctx.vue = true
         ctx.body = component
         await next()
@@ -63,12 +57,3 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
     })
   }
 }
-
-// export async function createServer(options: ServerConfig = {}) {
-
-//   return createViteServer({
-//     ...options,
-//     configureServer: createVitePressPlugin(config),
-//     resolvers: [config.resolver]
-//   })
-// }
