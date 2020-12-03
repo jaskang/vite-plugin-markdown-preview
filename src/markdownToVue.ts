@@ -6,6 +6,7 @@ import remarkCodePrism from './remark/remarkCodePrism'
 import remarkFrontmatter from './remark/remarkFrontmatter'
 import { VueDocPluginOptions } from '.'
 import path from 'path'
+const toVfile = require('to-vfile')
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:md')
 
@@ -16,7 +17,7 @@ export type DemoType = {
 
 export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = false) {
   const { wrapperClass, previewClass, markdownPlugins } = options
-  return async (content: string, publicPath: string) => {
+  return async (file: string, publicPath: string) => {
     const start = Date.now()
     const vfile = await unified()
       .use({
@@ -33,7 +34,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
           [require('rehype-stringify')]
         ]
       })
-      .process(content)
+      .process(toVfile.readSync(file))
     const vfileData: any = vfile.data
     const demos: DemoType[] = vfileData.vueBlocks || []
     const matterData = vfileData.matter || {}

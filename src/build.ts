@@ -1,4 +1,4 @@
-import fs from 'fs-extra'
+// import fs from 'fs-extra'
 import { Plugin } from 'rollup'
 import { createMarkdownRenderFn, DemoType } from './markdownToVue'
 import { VUEDOC_RE } from './resolver'
@@ -33,8 +33,7 @@ export function createVuedocBuildPlugin(options: VueDocPluginOptions): Plugin {
         }
         if (id.endsWith('.md')) {
           debug(`VUEDOC_MAIN:${id}`)
-          const content = await fs.readFile(id, 'utf-8')
-          const { component, demos } = await markdownToVue(content, id)
+          const { component, demos } = await markdownToVue(id, id)
           cacheDemos[slash(id)] = { component, demos }
           debug(`md set:${id}`)
           return component

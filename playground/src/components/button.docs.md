@@ -8,7 +8,24 @@ dics: 'asdfs'
 
 demo preview
 
-### Button
+### vue primary
+
+```vue demo
+<template>
+  <div>
+    <el-button>button</el-button>
+    <el-button type="primary">primary button</el-button>
+  </div>
+</template>
+```
+
+### vue primary import
+
+```vue demo file=./test.vue
+
+```
+
+### typescript
 
 description
 
@@ -32,17 +49,6 @@ Main.install = (app: App): void => {
 }
 
 export default Main
-```
-
-### primary button
-
-```vue demo
-<template>
-  <div>
-    <el-button>button</el-button>
-    <el-button type="primary">primary button</el-button>
-  </div>
-</template>
 ```
 
 ### Icon `Button`

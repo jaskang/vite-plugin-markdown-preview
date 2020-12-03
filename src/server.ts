@@ -19,8 +19,7 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
     watcher.on('change', async file => {
       if (file.endsWith('.md')) {
         debugHmr(`reloading ${file}`)
-        const content = await fs.readFile(file, 'utf-8')
-        const { component, demos } = await markdownToVue(content, file)
+        const { component, demos } = await markdownToVue(file, file)
         cacheDemos.set(file, demos)
         const timestamp = Date.now()
         for (const demo of demos) {
@@ -48,11 +47,10 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
         if (!fs.existsSync(file)) {
           return next()
         }
-        const content = await fs.readFile(file, 'utf-8')
         const requestPath = path.join('/', path.relative(root, file))
         debug(`requestPath:${requestPath}`)
 
-        const { component, demos } = await markdownToVue(content, requestPath)
+        const { component, demos } = await markdownToVue(file, requestPath)
         cacheDemos.set(file, demos)
 
         ctx.vue = true
