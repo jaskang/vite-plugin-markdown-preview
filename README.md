@@ -74,7 +74,7 @@ app.mount('#app')
 
 #### markdown
 
-![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/md.png?raw=true)
+![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/playground/assets/main.png?raw=true)
 
 #### import
 

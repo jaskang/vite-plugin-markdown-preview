@@ -1,10 +1,10 @@
 ---
 title: sdfsa
-dics: 'asdfs'
+dics: asdfs
 wrapperClass: test-wrap
 ---
 
-### vue primary
+### vue preview
 
 ```vue demo
 <template>
@@ -15,15 +15,15 @@ wrapperClass: test-wrap
 </template>
 ```
 
-### vue primary import
+### vue import preview
 
 ```vue demo file=./test.vue
 
 ```
 
-### typescript
+### prism
 
-description
+code highlight
 
 > demo need vue code wrapped
 
