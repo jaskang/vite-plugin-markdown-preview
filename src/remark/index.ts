@@ -3,6 +3,8 @@ import remarkCodeImport from './remarkCodeImport'
 import remarkCodePrism from './remarkCodePrism'
 import remarkFrontmatter from './remarkFrontmatter'
 
+export { VueBlockType } from './remarkCodePrism'
+
 const toVfile = require('to-vfile')
 
 type remarkOption = {

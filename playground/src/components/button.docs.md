@@ -14,7 +14,7 @@ demo preview
 ```vue demo
 <template>
   <div>
-    <el-button>button</el-button>
+    <el-button>button test</el-button>
     <el-button type="primary">primary button</el-button>
   </div>
 </template>

@@ -41,9 +41,14 @@ const languages = [
 ]
 loadLanguages(languages)
 
-type codePrismOption = {
+export type codePrismOption = {
   previewClass?: string
   vuePrefix: string
+}
+
+export type VueBlockType = {
+  id: string
+  code: string
 }
 
 function remarkCodePrism(options: codePrismOption) {
@@ -53,10 +58,7 @@ function remarkCodePrism(options: codePrismOption) {
       file.data = {}
     }
     const data: any = file.data
-    const vueBlocks: {
-      id: string
-      code: string
-    }[] = (data.vueBlocks = [])
+    const vueBlocks: VueBlockType[] = (data.vueBlocks = [])
 
     return map(ast, (node: Node) => {
       const { meta, value } = node
@@ -72,7 +74,7 @@ function remarkCodePrism(options: codePrismOption) {
       } else {
         result = value || ''
       }
-      debug(result)
+      debug(`${node.lang} -> ${lang} ${meta}`)
 
       if (value && node.lang === 'vue' && isDemo) {
         const id = `${vuePrefix}${vueBlocks.length}`

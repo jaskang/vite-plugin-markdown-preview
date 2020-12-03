@@ -10,7 +10,6 @@ function remarkCodeImport(options = {}) {
     const codes: [Node, number, Parent | undefined][] = []
 
     const promises: Array<Promise<void>> = []
-    debug(ast)
 
     visit(ast, 'code', (node, index, parent) => {
       codes.push([node, index, parent])
@@ -23,7 +22,7 @@ function remarkCodeImport(options = {}) {
       }
       const filePath = fileMeta.slice('file='.length)
       const fileAbsPath = path.resolve(file.dirname || file.cwd, filePath)
-
+      debug(`code import ${fileAbsPath}`)
       promises.push(
         fs.readFile(fileAbsPath, 'utf-8').then(fileContent => {
           node.value = fileContent.trim()

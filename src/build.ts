@@ -1,14 +1,15 @@
 // import fs from 'fs-extra'
 import { Plugin } from 'rollup'
-import { createMarkdownRenderFn, DemoType } from './markdownToVue'
+import { createMarkdownRenderFn } from './markdownToVue'
 import { VUEDOC_RE } from './resolver'
 import { VueDocPluginOptions } from '.'
+import { VueBlockType } from './remark'
 
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:build')
 
 const cacheDemos: {
-  [key: string]: { component: any; demos: DemoType[] }
+  [key: string]: { component: any; demos: VueBlockType[] }
 } = {}
 
 export function createVuedocBuildPlugin(options: VueDocPluginOptions): Plugin {

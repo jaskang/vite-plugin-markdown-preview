@@ -14,7 +14,7 @@ function remarkFrontmatter() {
     return map(ast, (node: Node) => {
       if (node.type == 'yaml') {
         const parsedValue = yaml.safeLoad(node.value, 'utf8')
-        debug(parsedValue)
+        debug(`${file.name} -> frontmatter:${parsedValue}`)
         data.matter = parsedValue
         const newNode = Object.assign({}, node, { data: { parsedValue } })
         return newNode

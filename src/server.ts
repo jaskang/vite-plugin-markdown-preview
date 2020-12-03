@@ -1,15 +1,16 @@
 import fs from 'fs-extra'
 import { ServerPlugin } from 'vite'
-import { createMarkdownRenderFn, DemoType } from './markdownToVue'
+import { createMarkdownRenderFn } from './markdownToVue'
 import { VUEDOC_RE } from './resolver'
 import { VueDocPluginOptions } from '.'
 import path from 'path'
+import { VueBlockType } from './remark'
 // const getETag = require('etag')
 
 const debug = require('debug')('vite:vuedoc:serve')
 const debugHmr = require('debug')('vite:vuedoc:hmr')
 
-const cacheDemos: Map<string, DemoType[]> = new Map()
+const cacheDemos: Map<string, VueBlockType[]> = new Map()
 
 export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPlugin {
   return ({ app, root, watcher, resolver }) => {
@@ -37,7 +38,6 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
         const demo = demos.find(item => item.id === id)
 
         ctx.vue = true
-        ctx.type = 'js'
         ctx.body = demo?.code
         await next()
         return
@@ -54,7 +54,6 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
         cacheDemos.set(file, demos)
 
         ctx.vue = true
-        ctx.type = 'js'
         ctx.body = component
         await next()
         debug(ctx.url, ctx.status)

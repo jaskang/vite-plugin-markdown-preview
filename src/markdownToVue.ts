@@ -7,16 +7,11 @@ import { remarkFile } from './remark'
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:md')
 
-export type DemoType = {
-  id: string
-  code: string
-}
-
 export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = false) {
   const { wrapperClass, previewClass, markdownPlugins } = options
   return async (file: string, publicPath: string) => {
     const start = Date.now()
-    const { template, vueBlocks: demos, matter: matterData } = await remarkFile(file, {
+    const { template, vueBlocks, matter } = await remarkFile(file, {
       vuePrefix: VUEDOC_PREFIX,
       previewClass,
       plugins: markdownPlugins
@@ -24,13 +19,13 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
     const docComponent = `
     <template>
-      <div class="vuedoc ${wrapperClass || ''} ${matterData.wrapperClass || ''}">
+      <div class="vuedoc ${wrapperClass || ''} ${matter.wrapperClass || ''}">
         ${template}
       </div>
     </template>
     <script>
     import { defineComponent, reactive, ref, toRefs, onMounted } from 'vue';
-    ${demos
+    ${vueBlocks
       .map(demo => {
         const request = `${slash(publicPath)}/${demo.id}`
         debug(`file:${publicPath} request:${request}`)
@@ -40,13 +35,13 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
     const script = defineComponent({
       components: {
-        ${demos.map(demo => demo.id).join(',')}
+        ${vueBlocks.map(demo => demo.id).join(',')}
       },
       setup(props) {
-        ${demos.map(demo => `const ${demo.id}Ref = ref()`).join('\n')}
-        const refs = [${demos.map(demo => `${demo.id}Ref`).join(',')}]
+        ${vueBlocks.map(demo => `const ${demo.id}Ref = ref()`).join('\n')}
+        const refs = [${vueBlocks.map(demo => `${demo.id}Ref`).join(',')}]
         const state = reactive({
-          ${demos.map(demo => `${demo.id}Height: '0px'`).join(',')}
+          ${vueBlocks.map(demo => `${demo.id}Height: '0px'`).join(',')}
         })
 
         const toggleCode = (index) => {
@@ -61,11 +56,11 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
         return {
           toggleCode,
           ...toRefs(state),
-          ${demos.map(demo => `${demo.id}Ref`).join(',')}
+          ${vueBlocks.map(demo => `${demo.id}Ref`).join(',')}
         }
       }
     });
-    script.matter = ${JSON.stringify(matterData)}
+    script.matter = ${JSON.stringify(matter)}
     export default script;
     
     ${isBuild ? '' : 'if (import.meta.hot) { import.meta.hot.accept(); }'}
@@ -75,7 +70,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
     debug(`[render] ${path} in ${Date.now() - start}ms.`)
 
-    const result = { component: docComponent, demos: [...demos] }
+    const result = { component: docComponent, demos: [...vueBlocks] }
     return result
   }
 }
