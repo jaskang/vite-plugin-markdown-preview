@@ -20,7 +20,7 @@ export function createVuedocServerPlugin(options: VueDocPluginOptions): ServerPl
         cacheDemos.set(file, demos)
         const timestamp = Date.now()
         for (const demo of demos) {
-          watcher.handleVueReload(`${file}/${demo.id}`, timestamp, demo.code)
+          watcher.handleVueReload(`${file}_${demo.id}`, timestamp, demo.code)
         }
         watcher.handleVueReload(`${file}`, timestamp, component)
       }
