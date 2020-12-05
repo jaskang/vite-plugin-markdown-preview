@@ -21,6 +21,22 @@ wrapperClass: test-wrap
 
 ```
 
+### vue script import preview
+
+```vue demo
+<template>
+  <div>
+    <DmImport />
+  </div>
+</template>
+<script>
+import DmImport from './mdimport.vue'
+export default {
+  components: { DmImport }
+}
+</script>
+```
+
 ### prism
 
 code highlight

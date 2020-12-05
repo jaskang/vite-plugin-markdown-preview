@@ -1,11 +1,13 @@
 import path from 'path'
 import fs from 'fs-extra'
-import { VUEDOC_PREFIX } from './resolver'
 import { remarkFile } from './remark'
 import { VueDocPluginOptions } from '.'
 
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:md')
+
+export const VUEDOC_PREFIX = 'vdpv_'
+export const VUEDOC_RE = /(.*?\.md)_(vdpv_\d+)/
 
 const baseCss = fs.readFileSync(path.join(__dirname, '..', 'base.css'), 'utf8')
 const themes = {
@@ -43,7 +45,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
 
     ${vueBlocks
       .map(demo => {
-        const request = `${slash(publicPath)}/${demo.id}`
+        const request = `${slash(publicPath)}_${demo.id}`
         debug(`file:${publicPath} request:${request}`)
         return `import ${demo.id} from '${request}${isBuild ? '.vue' : ''}';`
       })

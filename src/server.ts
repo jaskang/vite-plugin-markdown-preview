@@ -1,7 +1,6 @@
 import fs from 'fs-extra'
 import { ServerPlugin } from 'vite'
-import { createMarkdownRenderFn } from './markdownToVue'
-import { VUEDOC_RE } from './resolver'
+import { createMarkdownRenderFn, VUEDOC_RE } from './markdownToVue'
 import { VueDocPluginOptions } from '.'
 import { VueBlockType } from './remark'
 

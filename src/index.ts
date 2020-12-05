@@ -1,6 +1,5 @@
 import { Plugin } from 'vite'
 import { createVuedocBuildPlugin } from './build'
-import { createResolver } from './resolver'
 import { createVuedocServerPlugin } from './server'
 
 export type VueDocPluginOptions = {
@@ -21,7 +20,6 @@ export default function createVueDocPlugin(options: Partial<VueDocPluginOptions>
     prism
   }
   return {
-    resolvers: [createResolver()],
     configureServer: [createVuedocServerPlugin(_options)],
     // @ts-ignore
     rollupPluginVueOptions: {
