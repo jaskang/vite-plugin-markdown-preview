@@ -5,18 +5,18 @@ import { createVuedocServerPlugin } from './server'
 export type VueDocPluginOptions = {
   wrapperClass: string
   previewClass: string
-  markdownPlugins: any[]
+  markdownItPlugins: any[]
   prism: {
     theme: 'default' | 'coy' | 'dark' | 'funky' | 'okaidia' | 'solarizedlight' | 'tomorrow' | 'twilight' | 'custom'
   }
 }
 
 export default function createVueDocPlugin(options: Partial<VueDocPluginOptions> = {}): Plugin {
-  const { wrapperClass = '', previewClass = '', markdownPlugins = [], prism = { theme: 'default' } } = options
+  const { wrapperClass = '', previewClass = '', markdownItPlugins = [], prism = { theme: 'default' } } = options
   const _options: VueDocPluginOptions = {
     wrapperClass,
     previewClass,
-    markdownPlugins,
+    markdownItPlugins,
     prism
   }
   return {

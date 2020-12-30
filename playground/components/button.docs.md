@@ -6,7 +6,7 @@ wrapperClass: test-wrap
 
 ### vue preview
 
-```vue demo
+```vue
 <template>
   <div>
     <el-button>button test</el-button>

@@ -3,7 +3,7 @@ import { Plugin } from 'rollup'
 import { createMarkdownRenderFn, VUEDOC_RE } from './markdownToVue'
 
 import { VueDocPluginOptions } from '.'
-import { VueBlockType } from './remark'
+import { VueBlockType } from './markdown-it'
 
 const slash = require('slash')
 const debug = require('debug')('vite:vuedoc:build')

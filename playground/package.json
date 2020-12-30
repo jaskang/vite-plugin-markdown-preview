@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "dev": "vite --debug",
-    "build": "vite build --debug"
-  },
-  "devDependencies": {
-    "vite": "^1.0.0-rc.13"
-  }
-}

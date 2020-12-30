@@ -1,6 +1,11 @@
 import { UserConfig } from 'vite'
-import vitePluginVuedoc from 'vite-plugin-vuedoc'
+import vitePluginVuedoc from './src'
+
 const config: UserConfig = {
+  entry: './playground/index.ts',
+  optimizeDeps: {
+    exclude: ['fs-extra', 'highlight.js', 'js-yaml', 'markdown-it']
+  },
   plugins: [
     vitePluginVuedoc({
       prism: {
