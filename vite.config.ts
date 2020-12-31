@@ -29,7 +29,7 @@ const config: UserConfig = {
   plugins: [
     vitePluginVuedoc({
       highlight: {
-        theme: 'okaidia'
+        theme: 'one-dark'
       }
     })
   ]

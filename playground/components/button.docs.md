@@ -11,8 +11,8 @@ wrapperClass: test-wrap
 ```vue demo
 <template>
   <div>
-    <el-button>button test</el-button>
-    <el-button type="primary">primary button</el-button>
+    <button>button test</button>
+    <button type="primary">primary button</button>
   </div>
 </template>
 ```
