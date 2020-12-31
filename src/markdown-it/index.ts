@@ -107,7 +107,7 @@ export const remarkFile = async (
                     </div>
                     <div :style="{ height: ${id}Height }" class="vuedoc-demo__source">
                       <div ref="${id}Ref" class="vuedoc-demo__sourceref">
-                      <div class="vuedoc__code ${previewClass}"><pre class="hljs language-${lang} hljs--${theme}" v-pre><code>${value}</code></pre></div>
+                      <div class="vuedoc__code ${previewClass}"><pre class="hljs vuedoc__hljs language-${lang} hljs--${theme}" v-pre><code>${value}</code></pre></div>
                       </div>
                     </div>
                     <div class="vuedoc-demo__footer" @click="toggleCode(${vueBlocks.length - 1})">
@@ -117,7 +117,7 @@ export const remarkFile = async (
                 </div>`
         }
       }
-      return `<pre style="display:none;"></pre><pre class="hljs language-${lang} hljs--${theme}"><code>${value}</code></pre>`
+      return `<pre style="display:none;"></pre><pre class="hljs vuedoc__hljs language-${lang} hljs--${theme}"><code>${value}</code></pre>`
     }
   })
 

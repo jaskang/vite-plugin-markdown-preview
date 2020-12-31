@@ -46,13 +46,13 @@
   color: #409eff;
   background-color: #f9fafc;
 }
-.vuedoc__code {
-  padding: 10px 15px;
-}
+
 .vuedoc__code > pre {
   margin: 0;
 }
-
+.hljs.vuedoc__hljs {
+  padding: 10px 15px;
+}
 .hljs--one-dark.hljs {
   display: block;
   overflow-x: auto;
