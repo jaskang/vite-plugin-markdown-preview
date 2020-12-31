@@ -43,6 +43,12 @@ const config: UserConfig = {
 export default config
 ```
 
+import style
+
+```
+import 'vite-plugin-vuedoc/style.css'
+```
+
 ## VueDocPluginOptions
 
 - wrapperClass: string
