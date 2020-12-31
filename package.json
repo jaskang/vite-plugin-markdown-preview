@@ -34,7 +34,6 @@
     "build": "rm -rf dist && tsc -p .",
     "prepublishOnly": "yarn build",
     "test": "jest --runInBand",
-    "playground": "cd playground && yarn dev",
     "release": "release-it"
   },
   "dependencies": {
