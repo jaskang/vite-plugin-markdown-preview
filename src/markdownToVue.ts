@@ -9,14 +9,13 @@ export const VUEDOC_PREFIX = 'vdpv_'
 export const VUEDOC_RE = /(.*?\.md)_(vdpv_\d+)/
 
 export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = false) {
-  const { wrapperClass, previewClass, markdownItPlugins } = options
+  const { wrapperClass } = options
   // const { theme = 'default' } = prism
   return async (file: string, publicPath: string) => {
     const start = Date.now()
     const { template, vueBlocks, matter } = await remarkFile(file, {
       vuePrefix: VUEDOC_PREFIX,
-      previewClass,
-      plugins: markdownItPlugins
+      ...options
     })
 
     const docComponent = `

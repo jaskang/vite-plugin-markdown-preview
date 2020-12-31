@@ -13,7 +13,7 @@ export function hljsDefineVue(hljs: any) {
         excludeEnd: true
       },
       {
-        begin: /^(\s*)(<script lang=["']ts["']>)/gm,
+        begin: /^(\s*)(<script lang=["'](ts|typescript)["']>)/gm,
         end: /^(\s*)(<\/script>)/gm,
         subLanguage: 'typescript',
         excludeBegin: true,
