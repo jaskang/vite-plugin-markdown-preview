@@ -2,7 +2,7 @@ import fs from 'fs-extra'
 import { ServerPlugin } from 'vite'
 import { createMarkdownRenderFn, VUEDOC_RE } from './markdownToVue'
 import { VueDocPluginOptions } from '.'
-import { VueBlockType } from './remark'
+import { VueBlockType } from './markdown-it'
 
 const debug = require('debug')('vite:vuedoc:serve')
 

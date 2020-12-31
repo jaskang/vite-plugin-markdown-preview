@@ -6,6 +6,8 @@ wrapperClass: test-wrap
 
 ### vue preview
 
+::: warning
+
 ```vue demo
 <template>
   <div>
@@ -15,9 +17,11 @@ wrapperClass: test-wrap
 </template>
 ```
 
+:::
+
 ### vue import preview
 
-```vue demo file=./test.vue
+```vue demo src="./test.vue"
 
 ```
 
@@ -93,3 +97,10 @@ export default {
 ```
 
 ### Attributes
+
+## table
+
+| First Header | Second Header |
+| ------------ | ------------- |
+| Content Cell | Content Cell  |
+| Content Cell | Content Cell  |
