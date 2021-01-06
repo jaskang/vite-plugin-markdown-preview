@@ -46,11 +46,6 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
       // store the resolved config
       config = resolvedConfig
     },
-    config() {
-      return {
-        transformInclude: [/\.md$/, /\.vdpv_\d+$/]
-      }
-    },
     resolveId(id) {
       if (/\.vdpv_\d+$/.test(id)) {
         return id
