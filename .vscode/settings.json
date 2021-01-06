@@ -1,6 +1,7 @@
 {
 "liveServer.settings.root": "/dist",
 "conventionalCommits.scopes": [
-    "deps"
+    "deps",
+    "readme"
 ]
 }

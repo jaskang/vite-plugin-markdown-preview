@@ -12,7 +12,7 @@
 
 ## vite 1.X
 
-vite1 vite-plugin-vuedoc [https://github.com/JasKang/vite-plugin-vuedoc/tree/2.0.0]
+vite 1 use vite-plugin-vuedoc 2.0 [https://github.com/JasKang/vite-plugin-vuedoc/tree/2.0.0]
 
 ## Feature
 
@@ -38,7 +38,7 @@ vite1 vite-plugin-vuedoc [https://github.com/JasKang/vite-plugin-vuedoc/tree/2.0
 ## Install
 
 ```sh
-yarn add vite-plugin-vuedoc@beta
+yarn add vite-plugin-vuedoc
 ```
 
 ```typescript
