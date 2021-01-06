@@ -21,6 +21,7 @@ import MarkdownItTasklists from 'markdown-it-task-lists'
 import MarkdownItSourceMap from 'markdown-it-source-map'
 // import MarkdownItContainer from 'markdown-it-container'
 
+// const revisionHash = require('rev-hash')
 const debug = require('debug')('vite:vuedoc:markdown-it')
 const highlightDebug = require('debug')('vite:vuedoc:highlight')
 
@@ -49,7 +50,7 @@ function unquote(str: string) {
 
 export const remarkFile = (
   source: string,
-  options: { vuePrefix: string; file: string } & VueDocPluginOptions
+  options: { vuePrefix: string; file: string; isServe: boolean } & VueDocPluginOptions
 ): {
   template: string
   matter: Record<string, any>
@@ -72,11 +73,12 @@ export const remarkFile = (
     highlight: function (_code: string, lang: string, attrStr: string) {
       let code = _code
       const attrs = attrStr.split(' ')
-      const srcAttr = attrs.find((attr: string) => attr.startsWith('src='))
       const isVueDemo = lang === 'vue' && attrs.includes('demo')
-      if (srcAttr) {
-        let importSrc = unquote((srcAttr.split('=')?.[1] || '').trim())
-        const importPath = path.resolve(path.dirname(file), importSrc)
+      const srcAttr = attrs.find((attr: string) => attr.startsWith('src='))
+      const importSrc = srcAttr ? unquote((srcAttr.split('=')?.[1] || '').trim()) : undefined
+      const isImport = !!importSrc
+      if (isImport) {
+        const importPath = path.resolve(path.dirname(file), importSrc!)
         try {
           const importSource = fs.readFileSync(importPath, 'utf-8')
           code = importSource
@@ -90,8 +92,26 @@ export const remarkFile = (
       const highlighted = hljs.highlight(lang, code, true)
       const { value = '' } = highlighted
       if (isVueDemo) {
+        const componentCode = isImport
+          ? `<template>
+              <ImportDemo />
+            </template>
+            <script>
+              import ImportDemo from '${importSrc}'
+              export default {
+                components:{
+                  ImportDemo
+                }
+              }
+            </script>
+            `
+          : code
+        // const id = `${vuePrefix}${demoBlocks.length}_${revisionHash(componentCode)}`
         const id = `${vuePrefix}${demoBlocks.length}`
-        demoBlocks.push({ id, code })
+        demoBlocks.push({
+          id,
+          code: `${componentCode}`
+        })
         if (previewComponent) {
           return `<pre style="display:none;"></pre><div class="vuedoc-demo ${previewClass}">
                     <${previewComponent} lang="${lang}" theme="${theme}">

@@ -1,4 +1,6 @@
 // import { remarkFile } from './remark'
+// import path from 'path'
+import { ResolvedConfig } from 'vite'
 import { remarkFile } from './markdown-it'
 import { VueDocPluginOptions } from './plugin'
 
@@ -8,7 +10,7 @@ const debug = require('debug')('vite:vuedoc:md')
 export const VUEDOC_PREFIX = 'vdpv_'
 export const VUEDOC_RE = /(.*?\.md)_(vdpv_\d+)/
 
-export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = false) {
+export function createMarkdownRenderFn(options: VueDocPluginOptions, config: ResolvedConfig) {
   const { wrapperClass } = options
   // const { theme = 'default' } = prism
   return (code: string, file: string) => {
@@ -16,10 +18,12 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
     const { template, demoBlocks, matter, toc } = remarkFile(code, {
       vuePrefix: VUEDOC_PREFIX,
       file: file,
+      isServe: config.command === 'serve',
       ...options
     })
     const $vd = { matter, toc }
-
+    // const fileName = path.basename(file)
+    // const publicPath = path.relative(config.root, file)
     const docComponent = `
     <template>
       <div class="vuedoc ${wrapperClass || ''} ${matter.wrapperClass || ''}">
@@ -28,9 +32,7 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
     </template>
     <script>
     import { defineComponent, reactive, ref, toRefs, onMounted } from 'vue'
-
     
-
     ${demoBlocks
       .map(demo => {
         const request = `${slash(file)}.${demo.id}`
@@ -78,8 +80,6 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, isBuild = f
     });
     script.$vd = ${JSON.stringify($vd)}
     export default script;
-    
-    ${isBuild ? '' : 'if (import.meta.hot) { import.meta.hot.accept(); }'}
     
     </script>
     `
