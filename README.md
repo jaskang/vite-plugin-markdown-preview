@@ -8,6 +8,11 @@
 
 - Use Markdown as Vue components
 - Use Markdown Code Block as Preview components
+- Support vite 2
+
+## vite 1.X
+
+vite1 vite-plugin-vuedoc [https://github.com/JasKang/vite-plugin-vuedoc/tree/2.0.0]
 
 ## Feature
 
@@ -33,15 +38,16 @@
 ## Install
 
 ```sh
-yarn add vite-plugin-vuedoc
+yarn add vite-plugin-vuedoc@beta
 ```
 
 ```typescript
 // vite.config.ts
 import vitePluginVuedoc from 'vite-plugin-vuedoc'
+import vue from '@vitejs/plugin-vue'
 
 const config: UserConfig = {
-  plugins: [vitePluginVuedoc()]
+  plugins: [vitePluginVuedoc(), vue()]
 }
 
 export default config
@@ -64,8 +70,6 @@ import 'vite-plugin-vuedoc/style.css'
 - markdownIt:
   - plugins: any[]
     > markdownIt plugins
-  - containers: string[]
-    > markdown-it-containers option name
 - highlight:
   - theme: 'one-dark' | 'one-light' | string
     > highlight theme. defalut: one-dark
