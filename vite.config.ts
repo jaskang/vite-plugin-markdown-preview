@@ -1,13 +1,16 @@
 import { UserConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import vitePluginVuedoc from './src'
 
 const config: UserConfig = {
-  entry: './playground/index.ts',
   optimizeDeps: {
+    auto: false,
     exclude: [
+      '@vue/compiler-sfc',
       'fs-extra',
+      'gray-matter',
       'highlight.js',
-      'highlightjs-vue',
       'js-yaml',
       'markdown-it',
       'markdown-it-abbr',
@@ -23,15 +26,19 @@ const config: UserConfig = {
       'markdown-it-sub',
       'markdown-it-sup',
       'markdown-it-task-lists',
-      'markdown-it-toc-and-anchor'
-    ]
+      'markdown-it-toc-and-anchor',
+      'vue'
+    ],
+    include: []
   },
   plugins: [
     vitePluginVuedoc({
       highlight: {
         theme: 'one-dark'
       }
-    })
+    }),
+    vue(),
+    vueJsx()
   ]
 }
 

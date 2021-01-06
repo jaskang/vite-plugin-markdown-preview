@@ -4,7 +4,7 @@ import MarkdownIt from 'markdown-it'
 import matter from 'gray-matter'
 import hljs from 'highlight.js'
 import { hljsDefineVue } from './../highlight/language-vue'
-import { VueDocPluginOptions } from '../'
+import { VueDocPluginOptions } from '../plugin'
 
 import MarkdownItEmoji from 'markdown-it-emoji'
 import MarkdownItSub from 'markdown-it-sub'
@@ -19,14 +19,14 @@ import MarkdownItKatex from 'markdown-it-katex'
 import MarkdownItTocAndAnchor from 'markdown-it-toc-and-anchor'
 import MarkdownItTasklists from 'markdown-it-task-lists'
 import MarkdownItSourceMap from 'markdown-it-source-map'
-import MarkdownItContainer from 'markdown-it-container'
+// import MarkdownItContainer from 'markdown-it-container'
 
 const debug = require('debug')('vite:vuedoc:markdown-it')
 const highlightDebug = require('debug')('vite:vuedoc:highlight')
 
 hljs.registerLanguage('vue', hljsDefineVue)
 
-export type VueBlockType = {
+export type DemoBlockType = {
   id: string
   code: string
   isImport?: boolean
@@ -47,19 +47,19 @@ function unquote(str: string) {
   return ret
 }
 
-export const remarkFile = async (
-  file: string,
-  options: { vuePrefix: string } & VueDocPluginOptions
-): Promise<{
+export const remarkFile = (
+  source: string,
+  options: { vuePrefix: string; file: string } & VueDocPluginOptions
+): {
   template: string
   matter: Record<string, any>
   toc: Array<{ content: string; anchor: string; level: number }>
-  vueBlocks: VueBlockType[]
-}> => {
-  const { vuePrefix, previewClass, previewComponent, markdownIt, highlight } = options
-  const { plugins, containers } = markdownIt
+  demoBlocks: DemoBlockType[]
+} => {
+  const { vuePrefix, file, previewClass, previewComponent, markdownIt, highlight } = options
+  const { plugins } = markdownIt
   const { theme } = highlight
-  const vueBlocks: VueBlockType[] = []
+  const demoBlocks: DemoBlockType[] = []
   let toc: Array<{ content: string; anchor: string; level: number }> = []
   const md = new MarkdownIt({
     html: true,
@@ -90,8 +90,8 @@ export const remarkFile = async (
       const highlighted = hljs.highlight(lang, code, true)
       const { value = '' } = highlighted
       if (isVueDemo) {
-        const id = `${vuePrefix}${vueBlocks.length}`
-        vueBlocks.push({ id, code })
+        const id = `${vuePrefix}${demoBlocks.length}`
+        demoBlocks.push({ id, code })
         if (previewComponent) {
           return `<pre style="display:none;"></pre><div class="vuedoc-demo ${previewClass}">
                     <${previewComponent} lang="${lang}" theme="${theme}">
@@ -110,7 +110,7 @@ export const remarkFile = async (
                       <div class="vuedoc__code ${previewClass}"><pre class="hljs vuedoc__hljs language-${lang} hljs--${theme}" v-pre><code>${value}</code></pre></div>
                       </div>
                     </div>
-                    <div class="vuedoc-demo__footer" @click="toggleCode(${vueBlocks.length - 1})">
+                    <div class="vuedoc-demo__footer" @click="toggleCode(${demoBlocks.length - 1})">
                       {{ ${id}Height > 0 ? 'hidden' : 'show' }}
                     </div>
                   </div>
@@ -147,12 +147,11 @@ export const remarkFile = async (
   ].forEach((plugin: [any]) => {
     md.use(...plugin)
   })
-  containers.forEach(name => {
-    md.use(MarkdownItContainer, name)
-  })
-  const source = await fs.readFile(file, 'utf-8')
+  // containers.forEach(name => {
+  //   md.use(MarkdownItContainer, name)
+  // })
   const { content, data: frontmatter } = matter(source)
   const template = md.render(content)
   debug(`mdrender -> ${file}`)
-  return { template, vueBlocks, matter: frontmatter || {}, toc }
+  return { template, demoBlocks, matter: frontmatter || {}, toc }
 }
