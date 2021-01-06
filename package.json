@@ -29,6 +29,7 @@
   ],
   "scripts": {
     "start": "vite --debug",
+    "start:build": "vite build --debug",
     "dev": "tsc -w -p .",
     "build": "rm -rf dist && tsc -p .",
     "prepublishOnly": "yarn build",
