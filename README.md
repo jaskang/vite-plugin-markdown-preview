@@ -124,7 +124,7 @@ desc: 'desc'
 ```typescript
 import MdComp from './docs/Button.zh-CN.md'
 
-const { matter, toc } = MdComp
+const { matter, toc } = MdComp.$vd
 console.log(matter)
 console.log(toc)
 // matter: {wrapperClass, title, desc}

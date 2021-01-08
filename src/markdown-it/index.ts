@@ -157,7 +157,7 @@ export const remarkFile = (
       {
         includeLevel: [2, 3],
         tocCallback: function (tocMarkdown: any, tocArray: any, tocHtml: any) {
-          toc = tocArray
+          toc = tocArray || []
         }
       }
     ],
