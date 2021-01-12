@@ -37,7 +37,7 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
   }
 
   const vuePlugin = createVuePlugin({
-    include: [/\.md$/, /\.vdpv_\d+$/]
+    include: [/\.md$/, /\.vd$/]
   })
   let config: ResolvedConfig
   const vueDocPlugin: Plugin = {
@@ -47,16 +47,18 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
       config = resolvedConfig
     },
     resolveId(id) {
-      if (/\.vdpv_\d+$/.test(id)) {
-        return id
+      if (/\.md\.vdpv_(\d+)\.vd$/.test(id)) {
+        const idPath: string = id.startsWith(config.root + '/') ? id : path.join(config.root, id.substr(1))
+        debug('resolve demo:', idPath)
+        return idPath
       }
     },
     load(id) {
-      const mat = id.match(/\.md\.vdpv_(\d+)$/)
+      const mat = id.match(/\.md\.vdpv_(\d+)\.vd$/)
       if (mat && mat.length >= 2) {
         const index: number = Number(mat[1])
         debug(`load:${id} ${index}`)
-        const mdFileName = id.replace(`.vdpv_${index}`, '')
+        const mdFileName = id.replace(`.vdpv_${index}.vd`, '')
         const mdFilePath = mdFileName.startsWith(config.root + '/')
           ? mdFileName
           : path.join(config.root, mdFileName.substr(1))
@@ -83,7 +85,7 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
       // hot reload .md files as .vue files
       if (file.endsWith('.md')) {
         const content = await read()
-        debug(`handleHotUpdate:md -> ${file}`)
+        debug(`handleHotUpdate: md -> ${file}`)
         const markdownToVue = createMarkdownRenderFn(_options, config)
         const { component, demoBlocks } = markdownToVue(content, file)
         const prevDemoBlocks = [...(cacheDemos.get(file) || [])]
@@ -97,8 +99,8 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
         demoBlocks.forEach(async (demo, index) => {
           const prevDemo = prevDemoBlocks?.[index]
           if (!prevDemo || demo.id != prevDemo.id || demo.code !== prevDemo.code) {
-            const demoFile = `${file}.${demo.id}`
-            debug(`handleHotUpdate:demo -> ${demoFile}`)
+            const demoFile = `${file}.${demo.id}.vd`
+            debug(`handleHotUpdate: demo -> ${demoFile}`)
             const mods = moduleGraph.getModulesByFile(demoFile)
             const ret = await vuePlugin.handleHotUpdate!({
               file: demoFile,
@@ -115,28 +117,12 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
           }
         })
         // reload the content component
-
-        // id: '/Users/jaskang/GitHub/vite-plugin-vuedoc/playground/components/button.docs.md',
-        // file: '/Users/jaskang/GitHub/vite-plugin-vuedoc/playground/components/button.docs.md',
-        // importers: Set(1) { [ModuleNode] },
-        // importedModules: Set(5) {
-        //   [ModuleNode],
-        //   [ModuleNode],
-        //   [ModuleNode],
-        //   [ModuleNode],
-        //   [ModuleNode]
-        // },
-        // acceptedHmrDeps: Set(0) {},
-        // isSelfAccepting: true,
-        // transformResult: null,
-        // lastHMRTimestamp: 1609931154134,
-        // url: '/playground/components/button.docs.md',
-        // type: 'js'
         const ret = await vuePlugin.handleHotUpdate!({
           ...ctx,
           read: () => component
         })
         return [...updateModules, ...(ret || [])]
+        // return ret
       }
     }
   }

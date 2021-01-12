@@ -35,8 +35,9 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, config: Res
     
     ${demoBlocks
       .map(demo => {
-        const request = `${slash(file)}.${demo.id}`
-        debug(`file:${file} request:${request}`)
+        const request = `${slash(file)}.${demo.id}.vd`
+        debug(`import -> ${file}`)
+        debug(`import -> ${request}`)
         return `import ${demo.id} from '${request}'`
       })
       .join('\n')}

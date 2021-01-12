@@ -6,8 +6,6 @@ wrapperClass: test-wrap
 
 ### vue preview
 
-::: warning
-
 ```vue demo
 <template>
   <div>
@@ -16,8 +14,6 @@ wrapperClass: test-wrap
   </div>
 </template>
 ```
-
-:::
 
 ### vue import preview
 
@@ -78,13 +74,17 @@ description
   <div>num: {{ num }}</div>
   <div>
     <el-button type="primary" icon="el-icon-edit" @click="testclick">add</el-button>
+    text: {{ text }}
   </div>
 </template>
 <script>
+import { testText } from './test'
+
 export default {
   data() {
     return {
-      num: 0
+      num: 0,
+      text: testText()
     }
   },
   methods: {
