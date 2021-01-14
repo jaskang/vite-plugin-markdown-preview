@@ -14,7 +14,7 @@
     "dev": "yarn workspace vite-plugin-vuedoc dev",
     "build": "yarn workspace vite-plugin-vuedoc build",
     "prepublishOnly": "yarn build",
-    "release": "release-it"
+    "release": "lerna publish"
   },
   "devDependencies": {
     "auto-changelog": "^2.2.1",
