@@ -1,20 +1,31 @@
 {
-  "version": "3.0.2",
+  "version": "3.0.3",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "command": {
     "publish": {
       "verifyAccess": false,
       "verifyRegistry": false,
-      "ignoreChanges": ["ignored-file", "*.md", "**/__tests__/**"]
+      "ignoreChanges": [
+        "ignored-file",
+        "*.md",
+        "**/__tests__/**"
+      ]
     },
     "bootstrap": {
       "hoist": true,
-      "npmClientArgs": ["--no-package-lock", "--no-ci"]
+      "npmClientArgs": [
+        "--no-package-lock",
+        "--no-ci"
+      ]
     },
     "version": {
-      "allowBranch": ["master"],
+      "allowBranch": [
+        "master"
+      ],
       "createRelease": "github",
       "conventionalCommits": true,
       "message": "chore(release): publish %s"

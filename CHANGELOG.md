@@ -1,3 +1,246 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 3.0.3 (2021-01-14)
+
+
+### Bug Fixes
+
+* remove peerdeps ([a1f7158](https://github.com/JasKang/vite-plugin-vuedoc/commit/a1f7158a634289559007896c0575271455bafeb4))
+
+
+
+## 3.0.2 (2021-01-12)
+
+
+### Bug Fixes
+
+* vue code block import resolve ([7bf1948](https://github.com/JasKang/vite-plugin-vuedoc/commit/7bf194873bd89a044b6a1379e55befaa84e39387))
+
+
+
+## 3.0.1 (2021-01-10)
+
+
+
+# 3.0.0 (2021-01-06)
+
+
+### Bug Fixes
+
+* remove config transform ([1859294](https://github.com/JasKang/vite-plugin-vuedoc/commit/185929433309ca7868200093a590dfa1bfb4fe85))
+
+
+
+# 3.0.0-0 (2021-01-06)
+
+
+### Features
+
+* code block hmr ([82f7b86](https://github.com/JasKang/vite-plugin-vuedoc/commit/82f7b86b6710107a67ff7269bab252607b1c09c7))
+* feat: support vite 2.0 ([c85129c](https://github.com/JasKang/vite-plugin-vuedoc/commit/c85129c3f125ea87990c24c9d99956d1409d3f91))
+
+
+
+# 2.0.0 (2020-12-31)
+
+
+
+# 2.0.0-beta.4 (2020-12-31)
+
+
+### Bug Fixes
+
+* padding style ([d2f6308](https://github.com/JasKang/vite-plugin-vuedoc/commit/d2f630861d71c1820141a4c06d1bb3efd97150ac))
+
+
+
+# 2.0.0-beta.3 (2020-12-31)
+
+
+### Bug Fixes
+
+* class vuedoc__hljs padding ([6ba4bee](https://github.com/JasKang/vite-plugin-vuedoc/commit/6ba4bee287635464113e44ed32c25bd27fa5bba8))
+
+
+
+# 2.0.0-beta.2 (2020-12-31)
+
+
+### Bug Fixes
+
+* preview style padding ([c642662](https://github.com/JasKang/vite-plugin-vuedoc/commit/c6426624f8e9d50d7d9d39329337cadd1ccc1885))
+
+
+
+# 2.0.0-beta.1 (2020-12-31)
+
+
+### Bug Fixes
+
+* npm file style.css ([933c6cc](https://github.com/JasKang/vite-plugin-vuedoc/commit/933c6cc2a2c91441fdb91568799cb82a3dd5effe))
+
+
+
+# 2.0.0-beta.0 (2020-12-31)
+
+
+
+# 2.0.0-beta (2020-12-31)
+
+
+### Features
+
+* markdown-it ([2326f42](https://github.com/JasKang/vite-plugin-vuedoc/commit/2326f420d26dc6d3db80336b9632cb8647b24b58))
+* v2 ([015ca07](https://github.com/JasKang/vite-plugin-vuedoc/commit/015ca0718df38095c695f62f2f6ca2103a3a9112))
+
+
+
+## 1.2.2 (2020-12-05)
+
+
+### Bug Fixes
+
+* demo handleVueReload path ([6433a76](https://github.com/JasKang/vite-plugin-vuedoc/commit/6433a768902a6b2bf4e9f1959e470cade0fafce0))
+
+
+
+## 1.2.1 (2020-12-05)
+
+
+### Bug Fixes
+
+* markdown demo path error ([3881104](https://github.com/JasKang/vite-plugin-vuedoc/commit/3881104b559ef52b2fedeaee99b020413edd6d83))
+
+
+
+# 1.2.0 (2020-12-03)
+
+
+### Features
+
+* prism theme ([90e3b34](https://github.com/JasKang/vite-plugin-vuedoc/commit/90e3b34423e53651578c270b4517c74155a39648))
+
+
+
+# 1.1.0 (2020-12-03)
+
+
+### Features
+
+* remark-slug remark-gfm remark-math ([4f47b2b](https://github.com/JasKang/vite-plugin-vuedoc/commit/4f47b2ba64606c22a985423ad543290bbcac06c3))
+
+
+
+# 1.0.0 (2020-12-03)
+
+
+### Bug Fixes
+
+* hmr ([3236a9a](https://github.com/JasKang/vite-plugin-vuedoc/commit/3236a9ab7399dc017bef2db39646974711ad179f))
+
+
+### Features
+
+* code import / demo import ([d120265](https://github.com/JasKang/vite-plugin-vuedoc/commit/d120265bf84482814db392f38181529ef11ca5ce))
+* remark ([f009ec4](https://github.com/JasKang/vite-plugin-vuedoc/commit/f009ec482d0cb95e2591384eec19b3fb2b4f51f5))
+* vue blocks ([30bbecf](https://github.com/JasKang/vite-plugin-vuedoc/commit/30bbecf4581b494d7eccffaf509a3e5373a50112))
+
+
+
+## 0.1.1 (2020-11-30)
+
+
+### Bug Fixes
+
+* matter wrapperClass ([cef77fb](https://github.com/JasKang/vite-plugin-vuedoc/commit/cef77fb6e60d8cf180a700b2fe564a8b5777e119))
+
+
+
+# 0.1.0 (2020-11-30)
+
+
+### Bug Fixes
+
+* slash ([0f7e98b](https://github.com/JasKang/vite-plugin-vuedoc/commit/0f7e98b54d983e7abd535d838570f45c56050d5d))
+
+
+### Features
+
+* md file wrapperClass ([efa2931](https://github.com/JasKang/vite-plugin-vuedoc/commit/efa29314ab9ffd534d73a29d125f3c2aeada5b75))
+
+
+
+## 0.0.10 (2020-10-29)
+
+
+### Bug Fixes
+
+* fix ts code in js file bug ([15396f2](https://github.com/JasKang/vite-plugin-vuedoc/commit/15396f249113264a0401785e743c3fbeba43c837)), closes [#2](https://github.com/JasKang/vite-plugin-vuedoc/issues/2)
+
+
+
+## 0.0.9 (2020-10-22)
+
+
+### Bug Fixes
+
+* remove the cache before fixing cache bug ([c13d8f3](https://github.com/JasKang/vite-plugin-vuedoc/commit/c13d8f363753842e637a08afed97457d3001a866))
+
+
+
+## 0.0.8 (2020-10-21)
+
+
+### Bug Fixes
+
+* window resolver path ([af85a66](https://github.com/JasKang/vite-plugin-vuedoc/commit/af85a660594ffe6512e40c17991d451d61bd4204))
+
+
+
+## 0.0.7 (2020-10-17)
+
+
+### Bug Fixes
+
+* wrapper classname ([48257cf](https://github.com/JasKang/vite-plugin-vuedoc/commit/48257cf4e34ba7f0b41299183455b33e44bc522e))
+
+
+
+## 0.0.6 (2020-10-17)
+
+
+### Bug Fixes
+
+* prism style scoped ([71408be](https://github.com/JasKang/vite-plugin-vuedoc/commit/71408bef0484ae2d29ddd2097c66e77ca3231f77))
+
+
+
+## 0.0.5 (2020-10-15)
+
+
+
+## 0.0.4 (2020-10-15)
+
+
+### Bug Fixes
+
+* typescript target ([96cdc8b](https://github.com/JasKang/vite-plugin-vuedoc/commit/96cdc8b642a0a6a8c1bfd38095c49041307456dd))
+
+
+
+## 0.0.3 (2020-10-15)
+
+
+
+## 0.0.2 (2020-10-15)
+
+
+
+
+
 ### Changelog
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
