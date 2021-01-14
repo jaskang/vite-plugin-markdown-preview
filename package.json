@@ -9,8 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "yarn workspace playground start",
-    "start:build": "yarn workspace playground start:build",
+    "start": "yarn build && yarn workspace playground start",
+    "start:build": "yarn build && yarn workspace playground start:build",
     "dev": "yarn workspace vite-plugin-vuedoc dev",
     "build": "yarn workspace vite-plugin-vuedoc build",
     "prepublishOnly": "yarn build",

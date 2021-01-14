@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "dev": "tsc -w -p .",
-    "build": "rm -rf dist && tsc -p .",
+    "build": "tsc -p .",
     "prepublishOnly": "yarn build",
     "release": "release-it"
   },
