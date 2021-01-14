@@ -1,7 +1,3 @@
 {
-"liveServer.settings.root": "/dist",
-"conventionalCommits.scopes": [
-    "deps",
-    "readme"
-]
+  "liveServer.settings.root": "/packages/playground/dist"
 }

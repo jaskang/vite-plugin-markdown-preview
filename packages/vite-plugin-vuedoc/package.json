@@ -1,0 +1,69 @@
+{
+  "name": "vite-plugin-vuedoc",
+  "version": "3.0.2",
+  "author": "jaskang",
+  "license": "MIT",
+  "homepage": "https://github.com/jaskang/vite-plugin-vuedoc",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaskang/vite-plugin-vuedoc.git"
+  },
+  "keywords": [
+    "vite",
+    "vue3",
+    "markdown",
+    "document",
+    "preview"
+  ],
+  "bugs": {
+    "url": "https://github.com/jaskang/vite-plugin-vuedoc/issues"
+  },
+  "files": [
+    "dist",
+    "style.css"
+  ],
+  "scripts": {
+    "dev": "tsc -w -p .",
+    "build": "rm -rf dist && tsc -p .",
+    "prepublishOnly": "yarn build",
+    "release": "release-it"
+  },
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "gray-matter": "^4.0.2",
+    "highlight.js": "^10.5.0",
+    "js-yaml": "^3.14.0",
+    "markdown-it": "^12.0.4",
+    "markdown-it-abbr": "^1.0.4",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-deflist": "^2.1.0",
+    "markdown-it-emoji": "^2.0.0",
+    "markdown-it-footnote": "^3.0.1",
+    "markdown-it-ins": "^3.0.1",
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-latex": "^0.2.0",
+    "markdown-it-mark": "^3.0.1",
+    "markdown-it-source-map": "^0.1.1",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "markdown-it-task-lists": "^2.1.1",
+    "markdown-it-toc-and-anchor": "^4.1.2",
+    "rev-hash": "^3.0.0",
+    "slash": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^8.1.0",
+    "@types/markdown-it": "^12.0.1",
+    "@types/node": "^14.11.2"
+  },
+  "peerDependencies": {
+    "@vitejs/plugin-vue": "^1.0.5",
+    "@vue/compiler-sfc": "^3.0.5",
+    "vite": "^2.0.0-beta.27"
+  }
+}

@@ -13,5 +13,5 @@
     "lib": ["esnext"],
     "baseUrl": "."
   },
-  "include": ["./shim.d.ts", "./src"]
+  "include": ["./shims.d.ts", "./src"]
 }
