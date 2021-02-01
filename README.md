@@ -10,10 +10,6 @@
 - Use Markdown Code Block as Preview components
 - Support vite 2
 
-## vite 1.X
-
-vite 1 use vite-plugin-vuedoc 2.0 [https://github.com/JasKang/vite-plugin-vuedoc/tree/2.0.0]
-
 ## Feature
 
 - [x] markdown components
@@ -43,11 +39,16 @@ yarn add vite-plugin-vuedoc
 
 ```typescript
 // vite.config.ts
-import vitePluginVuedoc from 'vite-plugin-vuedoc'
+import vitePluginVuedoc, { vueDocFiles } from 'vite-plugin-vuedoc'
 import vue from '@vitejs/plugin-vue'
 
 const config: UserConfig = {
-  plugins: [vitePluginVuedoc(), vue()]
+  plugins: [
+    vitePluginVuedoc(), // 1. Must be loaded before @vitejs/plugin-vue
+    vue({
+      include: [...vueDocFiles] // 2. Must include .md | .vd files
+    })
+  ]
 }
 
 export default config

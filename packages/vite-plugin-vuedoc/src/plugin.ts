@@ -1,6 +1,5 @@
 import { ModuleNode, Plugin, ResolvedConfig } from 'vite'
 import { createMarkdownRenderFn } from './markdownToVue'
-import createVuePlugin from '@vitejs/plugin-vue'
 import { DemoBlockType } from './markdown-it'
 import path from 'path'
 
@@ -36,15 +35,14 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
     }
   }
 
-  const vuePlugin = createVuePlugin({
-    include: [/\.md$/, /\.vd$/]
-  })
   let config: ResolvedConfig
+  let vuePlugin: any | undefined
   const vueDocPlugin: Plugin = {
     name: 'vuedoc',
     configResolved(resolvedConfig) {
       // store the resolved config
       config = resolvedConfig
+      vuePlugin = config.plugins.find(p => p.name === 'vite:vue')
     },
     resolveId(id) {
       if (/\.md\.vdpv_(\d+)\.vd$/.test(id)) {
@@ -79,6 +77,9 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
       }
     },
     async handleHotUpdate(ctx) {
+      if (!vuePlugin) {
+        return []
+      }
       // handle config hmr
       const { file, read, timestamp, server } = ctx
       const { moduleGraph } = server
@@ -126,5 +127,5 @@ export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
       }
     }
   }
-  return [vueDocPlugin, vuePlugin]
+  return [vueDocPlugin]
 }
