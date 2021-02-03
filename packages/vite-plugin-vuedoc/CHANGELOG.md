@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/jaskang/vite-plugin-vuedoc/compare/v3.1.0...v3.1.1) (2021-02-03)
+
+**Note:** Version bump only for package vite-plugin-vuedoc
+
+
+
+
+
 # [3.1.0](https://github.com/jaskang/vite-plugin-vuedoc/compare/v3.0.5...v3.1.0) (2021-02-01)
 
 
