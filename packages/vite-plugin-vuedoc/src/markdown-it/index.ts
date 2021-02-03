@@ -117,7 +117,7 @@ export const remarkFile = (
                     <${previewComponent} lang="${lang}" theme="${theme}">
                       <template #code><pre class="hljs language-${lang} hljs--${theme}" v-pre><code>${value}</code></pre></template>
                       <${id} />
-                    <$/{previewComponent}>
+                    </${previewComponent}>
                 </div>`
         } else {
           return `<pre style="display:none;"></pre><div class="vuedoc-demo ${previewClass}">
