@@ -125,7 +125,7 @@ export const remarkFile = (
                     <div class="vuedoc-demo__preview">
                       <${id} />
                     </div>
-                    <div :style="{ height: ${id}Height }" class="vuedoc-demo__source">
+                    <div :style="{ height: ${id}Height + 'px' }" class="vuedoc-demo__source">
                       <div ref="${id}Ref" class="vuedoc-demo__sourceref">
                       <div class="vuedoc__code ${previewClass}"><pre class="hljs vuedoc__hljs language-${lang} hljs--${theme}" v-pre><code>${value}</code></pre></div>
                       </div>

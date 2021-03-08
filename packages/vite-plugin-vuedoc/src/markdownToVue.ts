@@ -60,15 +60,15 @@ export function createMarkdownRenderFn(options: VueDocPluginOptions, config: Res
         ${demoBlocks.map(demo => `const ${demo.id}Ref = ref()`).join('\n')}
         const refs = [${demoBlocks.map(demo => `${demo.id}Ref`).join(',')}]
         const state = reactive({
-          ${demoBlocks.map(demo => `${demo.id}Height: '0px'`).join(',')}
+          ${demoBlocks.map(demo => `${demo.id}Height: 0`).join(',')}
         })
 
         const toggleCode = (index) => {
           const id = '${VUEDOC_PREFIX}' + index
-          if (state[id+'Height'] === '0px') {
-            state[id+'Height'] = ((refs[index].value ? refs[index].value.offsetHeight : 0) || 0) + 'px'
+          if (state[id+'Height'] === 0) {
+            state[id+'Height'] = ((refs[index].value ? refs[index].value.offsetHeight : 0) || 0)
           } else {
-            state[id+'Height'] = 0 + 'px'
+            state[id+'Height'] = 0
           }
         }
 
