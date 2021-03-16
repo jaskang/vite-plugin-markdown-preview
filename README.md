@@ -2,6 +2,9 @@
   <a href="https://www.npmjs.com/package/vite-plugin-vuedoc" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/vite-plugin-vuedoc.svg">
   </a>
+  <a href="https://www.npmjs.com/package/vite-plugin-vuedoc" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/dt/vite-plugin-vuedoc">
+  </a>
 </p>
 
 # vite-plugin-vuedoc
