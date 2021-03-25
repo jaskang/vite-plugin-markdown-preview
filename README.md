@@ -166,7 +166,7 @@ myDemoPreview
   <slot name="code"> -> // code block html
 </template>
 <script>
-export defalut {
+export default {
   prop:{
     lang: String
     theme: String
