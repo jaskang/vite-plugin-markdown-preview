@@ -168,7 +168,7 @@ myDemoPreview
 <script>
 export defalut {
   prop:{
-    lang: String
+    lang: String,
     theme: String
   }
 }
