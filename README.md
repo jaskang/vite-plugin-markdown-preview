@@ -162,13 +162,13 @@ myDemoPreview
 
 ```vue
 <template>
-  <slot> -> // Demo Component
-  <slot name="code"> -> // code block html
+  <slot /> <!-- Demo Component -->
+  <slot name="code" /> <!-- code block html -->
 </template>
 <script>
-export default {
-  prop:{
-    lang: String
+export defalut {
+  props:{
+    lang: String,
     theme: String
   }
 }
