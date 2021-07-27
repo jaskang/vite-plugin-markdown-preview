@@ -20,7 +20,21 @@ export type VueDocPluginOptions = {
 const cacheDemos: Map<string, DemoBlockType[]> = new Map()
 
 export function createVueDocPlugin(options: Partial<VueDocPluginOptions>) {
-  const { wrapperClass = '', previewClass = '', previewComponent = '', markdownIt, highlight } = options
+  const { wrapperClass, previewClass, previewComponent, markdownIt, highlight } = Object.assign(
+    Object.create(null),
+    {
+      wrapperClass: '',
+      previewClass: '',
+      previewComponent: '',
+      markdownIt: {
+        plugins: []
+      },
+      highlight: {
+        theme: 'one-dark'
+      }
+    },
+    options || {}
+  )
   const { plugins = [] } = markdownIt || {}
   const { theme = 'one-dark' } = highlight || {}
   const _options: VueDocPluginOptions = {
