@@ -1,5 +1,5 @@
 ```vue
-<template>test</template>
+<template>aaa</template>
 ```
 
 ### vue preview
@@ -8,9 +8,14 @@
 <template>
   <div>
     <button>button test</button>
-    <button type="primary">primary button</button>
+    <button type="primary" @click="click">primary button</button>
   </div>
 </template>
+<script setup>
+const click = () => {
+  alert('a');
+};
+</script>
 ```
 
 ### vue script import preview
@@ -60,8 +65,9 @@ description
 <template>
   <div>num: {{ num }}</div>
   <div>
+    cccsdf
     <button type="primary" icon="el-icon-edit" @click="testclick">add</button>
-    text: {{ text }}
+    text: {{ text }} ccc
   </div>
 </template>
 <script>

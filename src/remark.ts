@@ -20,19 +20,27 @@ export type CodeBlock = { name: string; path: string; code: string };
 
 export type RemarkVueOptions = {
   file: string;
+  root: string;
   remove: (ids: string[]) => void;
   update: (blocks: CodeBlock[]) => void;
   component?: string;
 };
 export function remarkVue(options: RemarkVueOptions): Plugin {
-  const { file, remove, update, component = 'VueCode' } = options;
-  const resolve = (...args: string[]) => path.resolve(path.dirname(file), ...args);
+  const { file, root, remove, update, component = 'VueCode' } = options;
+
+  const resolve = (...args: string[]) => {
+    let ret = path.resolve(path.dirname(file), ...args);
+    ret = path.relative(root, ret);
+    return `/${ret}`;
+  };
   function transformer(tree): Transformer {
     const oldBlocks = fileCodeMap.get(file) || [];
     const blocks: CodeBlock[] = [];
     visit(tree, 'code', (node: Code, i: number, parent: Parent) => {
       if (node.lang === 'vue') {
-        const name = `VueCode${md5(file).substr(0, 8)}${md5(node.value).substr(0, 8)}`;
+        console.log(i);
+
+        const name = `VueCode${md5(file).substr(0, 8)}I${i}`;
         blocks.push({ name, path: resolve(`./${name}.vue`), code: node.value });
         const demoNode: HTML = {
           type: 'html',
@@ -50,7 +58,7 @@ export function remarkVue(options: RemarkVueOptions): Plugin {
     update(blocks);
 
     const imports = names.reduce((prev, curr) => {
-      return `${prev}import ${curr} from "./${curr}.vue"\n`;
+      return `${prev}import ${curr} from "${resolve(`./${curr}.vue`)}"\n`;
     }, '');
     const script = `<script setup>\n${imports}</script>`;
     tree.children.splice(0, 0, { type: 'html', value: script });
