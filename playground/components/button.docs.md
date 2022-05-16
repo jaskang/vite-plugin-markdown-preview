@@ -1,12 +1,10 @@
----
-title: sdfsa
-dics: asdfs
-wrapperClass: test-wrap
----
+```vue
+<template>test</template>
+```
 
 ### vue preview
 
-```vue demo
+```vue
 <template>
   <div>
     <button>button test</button>
@@ -15,25 +13,14 @@ wrapperClass: test-wrap
 </template>
 ```
 
-### vue import preview
-
-```vue demo src="./test.vue"
-
-```
-
 ### vue script import preview
 
-```vue demo
+```vue
 <template>
-  <div>
-    <DmImport />
-  </div>
+  <div>tests</div>
 </template>
 <script>
-import DmImport from './mdimport.vue'
-export default {
-  components: { DmImport }
-}
+export default {};
 </script>
 ```
 
@@ -44,23 +31,23 @@ code highlight
 > demo need vue code wrapped
 
 ```typescript
-import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
+import { App, defineComponent } from 'vue';
+import { getBlockCls, getCompName } from '@/config';
 
-const blockCls = getBlockCls('Main')
+const blockCls = getBlockCls('Main');
 
 const Main = defineComponent({
   name: getCompName('Main'),
   setup(_, { slots }) {
-    return () => <main class={blockCls}>{slots.default?.()}</main>
+    return () => <main class={blockCls}>{slots.default?.()}</main>;
   }
-})
+});
 
 Main.install = (app: App): void => {
-  app.component(Main.name, Main)
-}
+  app.component(Main.name, Main);
+};
 
-export default Main
+export default Main;
 ```
 
 ### Icon `Button`
@@ -69,30 +56,28 @@ description
 
 > demo need vue code wrapped
 
-```vue demo
+```vue
 <template>
   <div>num: {{ num }}</div>
   <div>
-    <el-button type="primary" icon="el-icon-edit" @click="testclick">add</el-button>
+    <button type="primary" icon="el-icon-edit" @click="testclick">add</button>
     text: {{ text }}
   </div>
 </template>
 <script>
-import { testText } from './test'
-
 export default {
   data() {
     return {
       num: 0,
-      text: testText()
-    }
+      text: 'test'
+    };
   },
   methods: {
     testclick() {
-      this.num++
+      this.num++;
     }
   }
-}
+};
 </script>
 ```
 

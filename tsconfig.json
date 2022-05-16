@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+    "jsx": "preserve",
+    "noImplicitThis": true,
+    "isolatedModules": true,
+    "preserveValueImports": true,
+    "importsNotUsedAsValues": "error",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "lib": ["ESNext"],
+    "types": ["node", "vitest/globals"],
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {}
+  },
+  "exclude": ["dist"]
+}
