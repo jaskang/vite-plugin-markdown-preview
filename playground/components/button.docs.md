@@ -4,10 +4,29 @@
 
 ### vue preview
 
-```vue
+```vue preview
 <template>
   <div>
-    <button @click="click">button</button>
+    <button @click="click">alert button</button>
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    click() {
+      alert('a')
+    },
+  },
+}
+</script>
+```
+
+### vue setup preview
+
+```vue preview
+<template>
+  <div>
+    <button @click="click">setup alert button</button>
   </div>
 </template>
 <script setup>
@@ -17,56 +36,14 @@ const click = () => {
 </script>
 ```
 
-### vue script import preview
+### vue reactive preview
 
-```vue
-<template>
-  <div>tests</div>
-</template>
-<script>
-export default {}
-</script>
-```
-
-### prism
-
-code highlight
-
-> demo need vue code wrapped
-
-```typescript
-import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
-
-const blockCls = getBlockCls('Main')
-
-const Main = defineComponent({
-  name: getCompName('Main'),
-  setup(_, { slots }) {
-    return () => <main class={blockCls}>{slots.default?.()}</main>
-  },
-})
-
-Main.install = (app: App): void => {
-  app.component(Main.name, Main)
-}
-
-export default Main
-```
-
-### Icon `Button`
-
-description
-
-> demo need vue code wrapped
-
-```vue
+```vue preview
 <template>
   <div>num: {{ num }}</div>
   <div>
-    cccsdf
     <button type="primary" icon="el-icon-edit" @click="testclick">add</button>
-    text: {{ text }} ccc
+    text: {{ text }}
   </div>
 </template>
 <script>
@@ -86,11 +63,26 @@ export default {
 </script>
 ```
 
-### Attributes
+### highlight
 
-## table
+code highlight
 
-| First Header | Second Header |
-| ------------ | ------------- |
-| Content Cell | Content Cell  |
-| Content Cell | Content Cell  |
+```ts
+import { App, defineComponent } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
+
+const blockCls = getBlockCls('Main')
+
+const Main = defineComponent({
+  name: getCompName('Main'),
+  setup(_, { slots }) {
+    return () => <main class={blockCls}>{slots.default?.()}</main>
+  },
+})
+
+Main.install = (app: App): void => {
+  app.component(Main.name, Main)
+}
+
+export default Main
+```

@@ -2,7 +2,8 @@ import type { UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Markdown from 'vite-plugin-md'
-import MarkdownVue, { transformer } from './src'
+import shiki from 'markdown-it-shiki'
+import MarkdownVuePreview, { transformer } from './src'
 
 const config: UserConfig = {
   build: {
@@ -18,8 +19,13 @@ const config: UserConfig = {
       transforms: {
         before: transformer,
       },
+      markdownItUses: [[shiki, { theme: 'github-light' }]],
     }),
-    MarkdownVue(),
+    MarkdownVuePreview({
+      shiki: {
+        theme: 'github-light',
+      },
+    }),
   ],
 }
 

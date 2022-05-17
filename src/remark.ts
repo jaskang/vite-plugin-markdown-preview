@@ -21,12 +21,13 @@ export type CodeBlock = { name: string; path: string; code: string }
 export type RemarkVueOptions = {
   file: string
   root: string
+  highlighter: (code: string) => string
   remove: (ids: string[]) => void
   update: (blocks: CodeBlock[]) => void
-  component?: string
 }
+
 export function remarkVue(options: RemarkVueOptions): Plugin {
-  const { file, root, remove, update, component } = options
+  const { file, root, highlighter, remove, update } = options
 
   const resolve = (...args: string[]) => {
     let ret = path.resolve(path.dirname(file), ...args)
@@ -37,13 +38,24 @@ export function remarkVue(options: RemarkVueOptions): Plugin {
     const oldBlocks = fileCodeMap.get(file) || []
     const blocks: CodeBlock[] = []
     visit(tree, 'code', (node: Code, i: number, parent: Parent) => {
-      if (node.lang === 'vue') {
+      const attrs = (node.meta || '').split(' ').reduce((prev, curr) => {
+        const [key, value] = curr.split('=')
+        if (typeof value === 'undefined') {
+          prev[key] = true
+        } else {
+          prev[key] = value
+        }
+        return prev
+      }, {} as Record<string, string | boolean>)
+
+      if (node.lang === 'vue' && attrs['preview']) {
         const name = `VueCode${md5(file).substr(0, 8)}I${i}`
+        const component = typeof attrs['preview'] === 'string' ? attrs['preview'] : 'VueCode'
+        const code = highlighter(node.value)
         blocks.push({ name, path: resolve(`./${name}.vue`), code: node.value })
         const demoNode: HTML = {
           type: 'html',
-          // ${JSON.stringify(node.value)}
-          value: `<${component} source="${encodeURIComponent(node.value)}">
+          value: `<${component} source="${encodeURIComponent(code)}">
   <${name} />
 </${component}>`,
         }

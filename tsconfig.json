@@ -26,5 +26,6 @@
     "rootDir": ".",
     "paths": {}
   },
+  "include": ["shims.d.ts", "src", "playground"],
   "exclude": ["dist"]
 }

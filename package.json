@@ -1,6 +1,6 @@
 {
-  "name": "vite-plugin-md-vue",
-  "version": "0.1.2",
+  "name": "vite-plugin-md-preview",
+  "version": "0.0.1",
   "repository": "git@github.com:JasKang/vite-plugin-md-vue.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "debug": "^4.3.4",
     "fs-extra": "^8.1.0",
     "remark": "^14.0.2",
+    "shiki": "^0.10.1",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.0"
   },
@@ -45,6 +46,7 @@
     "fs-extra": "^10.1.0",
     "happy-dom": "^3.1.1",
     "lint-staged": "^12.4.1",
+    "markdown-it-shiki": "^0.5.1",
     "prettier": "^2.6.2",
     "release-it": "^15.0.0",
     "tsup": "^5.12.7",

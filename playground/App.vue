@@ -7,9 +7,4 @@ import Doc from './components/button.docs.md'
   <Doc></Doc>
 </template>
 
-<style scoped>
-.d-row {
-  background: green;
-  color: white;
-}
-</style>
+<style></style>
