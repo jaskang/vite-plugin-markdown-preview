@@ -9,173 +9,88 @@
 
 # vite-plugin-md-vue
 
-> vite-plugin-vuedoc renamed to vite-plugin-md-vue
+Markdown Vue Code Block Preview
 
-- Use Markdown as Vue components
-- Use Markdown Code Block as Preview components
-- Support vite 2
+> 本插件需要与 `vite-plugin-md` 结合使用，为 `vite-plugin-md` 提供 vue 代码块预览能力。
 
-## Feature
+# 新版本
 
-- [x] vue code preview
-- [x] custom preview component
-- [x] hmr
+> 原 `vite-plugin-vuedoc` 重命名为 `vite-plugin-md-vue`
+> 移除了 markdown 解析能力，改为与 `vite-plugin-md` 结合使用的方式。
 
-## Used
+## 特性
 
-- Elenext: [elenext.vercel.app](https://elenext.vercel.app)
+- [x] Markdown Vue 代码块预览
+- [x] 自定义预览组件
+- [x] 支持热更新
 
-## Install
+## 使用
 
-```sh
-yarn add vite-plugin-md-vue
+```bash
+npm i vite-plugin-md vite-plugin-md-vue -D
+# or
+yarn add vite-plugin-md vite-plugin-md-vue -D
 ```
 
-```typescript
-// vite.config.ts
-import vitePluginVuedoc, { vueDocFiles } from 'vite-plugin-vuedoc';
-import vue from '@vitejs/plugin-vue';
+then add the following to vite.config.ts
 
-const config: UserConfig = {
+```js
+import Vue from '@vitejs/plugin-vue';
+import Markdown from 'vite-plugin-md';
+import MarkdownVue, { transform } from 'vite-plugin-md-vue';
+
+export default {
   plugins: [
-    vitePluginVuedoc(), // 1. Must be loaded before @vitejs/plugin-vue
-    vue({
-      include: [...vueDocFiles] // 2. Must include .md | .vd files
-    })
+    Vue({
+      include: [/\.vue$/, /\.md$/]
+    }),
+    Markdown({
+      transforms: {
+        before: transform
+      }
+    }),
+    MarkdownVue()
   ]
 };
-
-export default config;
 ```
 
-import style
+And import it as a normal Vue component
 
-```
-import 'vite-plugin-vuedoc/style.css'
-```
-
-## VueDocPluginOptions
-
-- wrapperClass: string
-  > The classname of the wrapped markdown component
-- previewClass: string
-  > The classname of the wrapped preview component
-- previewComponent: string
-  > The name of the custom preview component you want to use
-- markdownIt:
-  - plugins: any[]
-    > markdownIt plugins
-- highlight:
-  - theme: 'one-dark' | 'one-light' | string
-    > highlight theme. defalut: one-dark
-
-#### import markdown
-
-```typescript
-import MdComp from './docs/Button.zh-CN.md';
-export const router = createRouter({
-  routes: [
-    { path: '/home', redirect: '/' },
-    {
-      path: '/button',
-      name: 'button',
-      component: MdComp
-    }
-  ]
-});
-```
-
-## VueBlock preview
-
-when the vue code block has a `demo` tag， it can preview the component
-
-\`\`\`vue demo
-
-\`\`\`
-
-## code block import
-
-in code block support import file like this:
-
-\`\`\`vue demo src="./test.vue"
-
-\`\`\`
-
-\`\`\`typescript src="./test.ts"
-
-\`\`\`
-
-## Frontmatter & Toc
-
-```
-// Button.zh-CN.md
----
-wrapperClass: '' // wrapperClass will wrapped current md file
-title: 'title'
-desc: 'desc'
----
-```
-
-```typescript
-import MdComp from './docs/Button.zh-CN.md';
-
-const { matter, toc } = MdComp.$vd;
-console.log(matter);
-console.log(toc);
-// matter: {wrapperClass, title, desc}
-// toc: [{content: string; anchor: string; level: number},{content: string; anchor: string; level: number}]
-```
-
-## Custom Preview Component
-
-```typescript
-// vite.config.ts
-import vitePluginVuedoc from 'vite-plugin-vuedoc';
-
-const config: UserConfig = {
-  plugins: [
-    vitePluginVuedoc({
-      previewComponent: 'myDemoPreview'
-    })
-  ]
-};
-
-export default config;
-```
-
-register your components in you vite app
-
-```
-app.component('myDemoPreview', myDemoPreview)
-```
-
-myDemoPreview
+## Import Markdown as Vue components
 
 ```vue
 <template>
-  <slot />
-  <!-- Demo Component -->
-  <slot name="code" />
-  <!-- code block html -->
+  <HelloWorld />
 </template>
+
 <script>
-export defalut {
-  props:{
-    lang: String,
-    theme: String
+import HelloWorld from './README.md';
+
+export default {
+  components: {
+    HelloWorld
   }
-}
+};
 </script>
 ```
 
-## Markdown Screenshots
+## Use Vue Code Block inside Markdown
 
-![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/packages/playground/src/assets/main.png?raw=true)
+You can even use Vue code inside your markdown, for example
 
-## Preview Screenshots
+```vue
+<template>
+  <div>
+    <button @click="click">button</button>
+  </div>
+</template>
+<script setup>
+const click = () => {
+  alert('a');
+};
+</script>
+```
 
-![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/packages/playground/src/assets/vue.gif?raw=true)
+## License
 
-> vue javascript
-
-![markdown doc](https://github.com/JasKang/vite-plugin-vuedoc/blob/master/packages/playground/src/assets/vue-js.gif?raw=true)
+MIT License © 2020-PRESENT [Jaskang](https://github.com/jsakang)

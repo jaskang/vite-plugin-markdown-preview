@@ -5,6 +5,10 @@ import Markdown from 'vite-plugin-md';
 import MarkdownVue, { transform } from './src';
 
 const config: UserConfig = {
+  build: {
+    outDir: 'playground/dist',
+    emptyOutDir: true
+  },
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/]

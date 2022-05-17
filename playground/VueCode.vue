@@ -6,8 +6,7 @@ export default defineComponent({
     source: String
   },
   setup(props) {
-    const code = computed(() => decodeURIComponent(props.source));
-    console.log(code);
+    const code = computed(() => decodeURI(props.source || ''));
     return { code };
   }
 });

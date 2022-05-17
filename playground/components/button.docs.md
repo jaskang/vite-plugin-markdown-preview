@@ -1,5 +1,5 @@
 ```vue
-<template>ddd</template>
+<template>test</template>
 ```
 
 ### vue preview
@@ -7,8 +7,7 @@
 ```vue
 <template>
   <div>
-    <button>button test</button>
-    <button type="primary" @click="click">primary button</button>
+    <button @click="click">button</button>
   </div>
 </template>
 <script setup>
