@@ -37,7 +37,7 @@ then add the following to vite.config.ts
 ```js
 import Vue from '@vitejs/plugin-vue';
 import Markdown from 'vite-plugin-md';
-import MarkdownVue, { transform } from 'vite-plugin-md-vue';
+import MarkdownVue, { transformer } from 'vite-plugin-md-vue';
 
 export default {
   plugins: [
@@ -46,10 +46,10 @@ export default {
     }),
     Markdown({
       transforms: {
-        before: transform
+        before: transformer // -> 1.
       }
     }),
-    MarkdownVue()
+    MarkdownVue() // -> 2.
   ]
 };
 ```

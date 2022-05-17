@@ -12,8 +12,8 @@
 </template>
 <script setup>
 const click = () => {
-  alert('a');
-};
+  alert('a')
+}
 </script>
 ```
 
@@ -24,7 +24,7 @@ const click = () => {
   <div>tests</div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 ```
 
@@ -35,23 +35,23 @@ code highlight
 > demo need vue code wrapped
 
 ```typescript
-import { App, defineComponent } from 'vue';
-import { getBlockCls, getCompName } from '@/config';
+import { App, defineComponent } from 'vue'
+import { getBlockCls, getCompName } from '@/config'
 
-const blockCls = getBlockCls('Main');
+const blockCls = getBlockCls('Main')
 
 const Main = defineComponent({
   name: getCompName('Main'),
   setup(_, { slots }) {
-    return () => <main class={blockCls}>{slots.default?.()}</main>;
-  }
-});
+    return () => <main class={blockCls}>{slots.default?.()}</main>
+  },
+})
 
 Main.install = (app: App): void => {
-  app.component(Main.name, Main);
-};
+  app.component(Main.name, Main)
+}
 
-export default Main;
+export default Main
 ```
 
 ### Icon `Button`
@@ -74,15 +74,15 @@ export default {
   data() {
     return {
       num: 0,
-      text: 'test'
-    };
+      text: 'test',
+    }
   },
   methods: {
     testclick() {
-      this.num++;
-    }
-  }
-};
+      this.num++
+    },
+  },
+}
 </script>
 ```
 
