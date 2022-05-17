@@ -4,6 +4,7 @@
   "repository": "git@github.com:JasKang/vite-plugin-md-vue.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

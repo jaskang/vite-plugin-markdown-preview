@@ -35,23 +35,23 @@ yarn add vite-plugin-md vite-plugin-md-vue -D
 then add the following to vite.config.ts
 
 ```js
-import Vue from '@vitejs/plugin-vue';
-import Markdown from 'vite-plugin-md';
-import MarkdownVue, { transformer } from 'vite-plugin-md-vue';
+import Vue from '@vitejs/plugin-vue'
+import Markdown from 'vite-plugin-md'
+import MarkdownVue, { transformer } from 'vite-plugin-md-vue'
 
 export default {
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/]
+      include: [/\.vue$/, /\.md$/],
     }),
     Markdown({
       transforms: {
-        before: transformer // -> 1.
-      }
+        before: transformer, // -> 1.
+      },
     }),
-    MarkdownVue() // -> 2.
-  ]
-};
+    MarkdownVue(), // -> 2.
+  ],
+}
 ```
 
 And import it as a normal Vue component
@@ -64,19 +64,22 @@ And import it as a normal Vue component
 </template>
 
 <script>
-import HelloWorld from './README.md';
+import HelloWorld from './README.md'
 
 export default {
   components: {
-    HelloWorld
-  }
-};
+    HelloWorld,
+  },
+}
 </script>
 ```
 
 ## Use Vue Code Block inside Markdown
 
 You can even use Vue code inside your markdown, for example
+
+````markdown
+# this is vue demo
 
 ```vue
 <template>
@@ -86,11 +89,16 @@ You can even use Vue code inside your markdown, for example
 </template>
 <script setup>
 const click = () => {
-  alert('a');
-};
+  alert('a')
+}
 </script>
 ```
+````
 
 ## License
 
 MIT License © 2020-PRESENT [Jaskang](https://github.com/jsakang)
+
+```
+
+```

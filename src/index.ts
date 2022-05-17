@@ -35,13 +35,13 @@ export const transformer = (code: string, file: string) => {
   return ret.value as unknown as string
 }
 
-export function VitePluginMdVue(userOptions: MdVueOptions = {}): PluginOption[] {
+export function MarkdownVue(userOptions: MdVueOptions = {}): PluginOption[] {
   const { component = 'VueCode' } = userOptions
 
   transformOptions.component = component
 
   const plugin: Plugin = {
-    name: 'vite:vue-code',
+    name: 'vite:md-vue',
     enforce: 'pre',
     configResolved(config) {
       transformOptions.root = config.root
@@ -88,4 +88,4 @@ export function VitePluginMdVue(userOptions: MdVueOptions = {}): PluginOption[] 
   return [plugin]
 }
 
-export default VitePluginMdVue
+export default MarkdownVue
