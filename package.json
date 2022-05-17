@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-md-vue",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": "git@github.com:JasKang/vite-plugin-md-vue.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
