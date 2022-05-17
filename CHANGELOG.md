@@ -1,3 +1,20 @@
+
+
+## [0.1.1](https://github.com/JasKang/vite-plugin-md-vue/compare/v3.1.3...v0.1.1) (2022-05-17)
+
+
+### Bug Fixes
+
+* hot reload ([354f156](https://github.com/JasKang/vite-plugin-md-vue/commit/354f1562e72e1c0eabf183a63c12fa2f7f824736))
+* hot update ([df3900b](https://github.com/JasKang/vite-plugin-md-vue/commit/df3900ba5aac2b2716108ed1abd308ed4a3fe99e))
+* version ([cbf81e6](https://github.com/JasKang/vite-plugin-md-vue/commit/cbf81e6d782572e6faf358754ff0f079df958819))
+
+
+### Features
+
+* code demo ([2255aed](https://github.com/JasKang/vite-plugin-md-vue/commit/2255aedce6702c747c52391fe82875101833b679))
+* 新版本 ([5674a90](https://github.com/JasKang/vite-plugin-md-vue/commit/5674a909cea67af78853e3b8e9664ba06467d709))
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
