@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-md-preview",
   "version": "0.0.2",
-  "repository": "git@github.com:JasKang/vite-plugin-md-vue.git",
+  "repository": "git@github.com:JasKang/vite-plugin-md-preview.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
   "type": "module",
