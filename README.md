@@ -13,6 +13,8 @@ markdown 代码块预览插件, 在 markdown 文件中使用 \`\`\` 代码块为
 
 本插件需要与 [vite-plugin-md](https://github.com/antfu/vite-plugin-md) 结合使用，为 `vite-plugin-md` 提供 vue 代码块预览能力。
 
+示例：[https://vite-plugin-md-preview.vercel.app](https://vite-plugin-md-preview.vercel.app)
+
 ## 新版本
 
 > 原 `vite-plugin-vuedoc` 重命名为 `vite-plugin-md-preview`
