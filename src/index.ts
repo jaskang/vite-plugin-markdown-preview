@@ -47,13 +47,15 @@ function VitePluginMdVue(): PluginOption[] {
       vuePlugin = resolvedConfig.plugins.find((p) => p.name === 'vite:vue');
     },
     resolveId(id) {
+      console.log('resolveId', id);
       if (VUE_CODE_REGEXP.test(id)) {
         return `${id}`;
       }
     },
     load(id) {
-      if (VUE_CODE_REGEXP.test(id)) {
-        console.log('load', id);
+      console.log('load', id);
+      const [path, query] = id.split('?', 2);
+      if (VUE_CODE_REGEXP.test(path)) {
         const code = vueBlockMap.get(id);
         if (id.indexOf('VueCode12c8f579I0') >= 0) {
           console.log(code);
@@ -71,19 +73,16 @@ function VitePluginMdVue(): PluginOption[] {
         const updates: Update[] = [];
         for (const [name] of vueBlockMap) {
           const mods = [...(moduleGraph.getModulesByFile(name) || new Set())];
-
+          moduleGraph.onFileChange(name);
           // console.log(mods);
           for (const mod of mods) {
-            mod.lastHMRTimestamp = timestamp;
-            mod.lastInvalidationTimestamp = timestamp;
-            // updates.push({
-            //   type: `js-update`,
-            //   timestamp,
-            //   path: `${mod.url}`,
-            //   acceptedPath: `${mod.url}`
-            // });
+            updates.push({
+              type: `js-update`,
+              timestamp: mod.lastInvalidationTimestamp,
+              path: `${mod.url}`,
+              acceptedPath: `${mod.url}`
+            });
           }
-          // moduleGraph.onFileChange(name);
           // vuePlugin.handleHotUpdate({
           //   ...ctx,
           //   file: name,
@@ -93,10 +92,10 @@ function VitePluginMdVue(): PluginOption[] {
           //   }
           // });
         }
-        // ws.send({
-        //   type: 'update',
-        //   updates
-        // });
+        ws.send({
+          type: 'update',
+          updates
+        });
       }
     }
   };

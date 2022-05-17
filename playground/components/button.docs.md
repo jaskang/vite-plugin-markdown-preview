@@ -1,5 +1,5 @@
 ```vue
-<template>aaa</template>
+<template>ddd</template>
 ```
 
 ### vue preview
