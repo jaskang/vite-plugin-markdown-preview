@@ -40,7 +40,7 @@ yarn add vite-plugin-md vite-plugin-md-preview -D
 import Vue from '@vitejs/plugin-vue'
 import shiki from 'markdown-it-shiki'
 import Markdown from 'vite-plugin-md'
-import MarkdownVue, { transformer } from 'vite-plugin-md-preview'
+import MarkdownPreview, { transformer } from 'vite-plugin-md-preview'
 
 export default {
   plugins: [
@@ -55,7 +55,7 @@ export default {
         md.use(shiki, { theme: 'github-light' }) // 支持代码高亮
       },
     }),
-    MarkdownVue(), // -> 2. 添加插件
+    MarkdownPreview(), // -> 2. 添加插件
   ],
 }
 ```
@@ -148,7 +148,7 @@ const click = () => {
 import Vue from '@vitejs/plugin-vue'
 import shiki from 'markdown-it-shiki'
 import Markdown from 'vite-plugin-md'
-import MarkdownVue, { transformer } from 'vite-plugin-md-preview'
+import MarkdownPreview, { transformer } from 'vite-plugin-md-preview'
 
 export default {
   plugins: [
@@ -161,7 +161,7 @@ export default {
       },
       markdownItUses: [[shiki, { theme: 'github-light' }]], // markdown 中其他代码的高亮
     }),
-    MarkdownVuePreview({
+    MarkdownPreview({
       shiki: { theme: 'github-light' }, // 设置代码高亮主题
     }),
   ],
