@@ -1,7 +1,7 @@
 {
-  "name": "vite-plugin-vuedoc",
+  "name": "vite-plugin-md-vue",
   "version": "1.0.0",
-  "repository": "git@github.com:JasKang/vite-plugin-vuedoc.git",
+  "repository": "git@github.com:JasKang/vite-plugin-md-vue.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
   "type": "module",

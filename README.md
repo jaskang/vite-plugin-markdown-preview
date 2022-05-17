@@ -1,13 +1,15 @@
 <p>
-  <a href="https://www.npmjs.com/package/vite-plugin-vuedoc" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/vite-plugin-vuedoc.svg">
+  <a href="https://www.npmjs.com/package/vite-plugin-md-vue" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/vite-plugin-md-vue.svg">
   </a>
-  <a href="https://www.npmjs.com/package/vite-plugin-vuedoc" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/dt/vite-plugin-vuedoc">
+  <a href="https://www.npmjs.com/package/vite-plugin-md-vue" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/dt/vite-plugin-md-vue">
   </a>
 </p>
 
-# vite-plugin-vuedoc
+# vite-plugin-md-vue
+
+> vite-plugin-vuedoc renamed to vite-plugin-md-vue
 
 - Use Markdown as Vue components
 - Use Markdown Code Block as Preview components
@@ -15,20 +17,9 @@
 
 ## Feature
 
-- [x] markdown components
-  - [x] matter
-  - [x] toc
-  - [x] plugins
-- [x] vue code block
-  - [x] vue preview
-  - [x] code import
-  - [x] customizing the preview component
-  - [x] sourcemap
-- [x] code highlight
-  - [x] theme
-- [x] playground
+- [x] vue code preview
+- [x] custom preview component
 - [x] hmr
-- [ ] tests
 
 ## Used
 
@@ -37,13 +28,13 @@
 ## Install
 
 ```sh
-yarn add vite-plugin-vuedoc
+yarn add vite-plugin-md-vue
 ```
 
 ```typescript
 // vite.config.ts
-import vitePluginVuedoc, { vueDocFiles } from 'vite-plugin-vuedoc'
-import vue from '@vitejs/plugin-vue'
+import vitePluginVuedoc, { vueDocFiles } from 'vite-plugin-vuedoc';
+import vue from '@vitejs/plugin-vue';
 
 const config: UserConfig = {
   plugins: [
@@ -52,9 +43,9 @@ const config: UserConfig = {
       include: [...vueDocFiles] // 2. Must include .md | .vd files
     })
   ]
-}
+};
 
-export default config
+export default config;
 ```
 
 import style
@@ -81,7 +72,7 @@ import 'vite-plugin-vuedoc/style.css'
 #### import markdown
 
 ```typescript
-import MdComp from './docs/Button.zh-CN.md'
+import MdComp from './docs/Button.zh-CN.md';
 export const router = createRouter({
   routes: [
     { path: '/home', redirect: '/' },
@@ -91,7 +82,7 @@ export const router = createRouter({
       component: MdComp
     }
   ]
-})
+});
 ```
 
 ## VueBlock preview
@@ -126,11 +117,11 @@ desc: 'desc'
 ```
 
 ```typescript
-import MdComp from './docs/Button.zh-CN.md'
+import MdComp from './docs/Button.zh-CN.md';
 
-const { matter, toc } = MdComp.$vd
-console.log(matter)
-console.log(toc)
+const { matter, toc } = MdComp.$vd;
+console.log(matter);
+console.log(toc);
 // matter: {wrapperClass, title, desc}
 // toc: [{content: string; anchor: string; level: number},{content: string; anchor: string; level: number}]
 ```
@@ -139,7 +130,7 @@ console.log(toc)
 
 ```typescript
 // vite.config.ts
-import vitePluginVuedoc from 'vite-plugin-vuedoc'
+import vitePluginVuedoc from 'vite-plugin-vuedoc';
 
 const config: UserConfig = {
   plugins: [
@@ -147,9 +138,9 @@ const config: UserConfig = {
       previewComponent: 'myDemoPreview'
     })
   ]
-}
+};
 
-export default config
+export default config;
 ```
 
 register your components in you vite app
@@ -162,8 +153,10 @@ myDemoPreview
 
 ```vue
 <template>
-  <slot /> <!-- Demo Component -->
-  <slot name="code" /> <!-- code block html -->
+  <slot />
+  <!-- Demo Component -->
+  <slot name="code" />
+  <!-- code block html -->
 </template>
 <script>
 export defalut {

@@ -2,7 +2,7 @@ import type { UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import Markdown from 'vite-plugin-md';
-import VitePluginRemark, { transform } from './src';
+import MarkdownVue, { transform } from './src';
 
 const config: UserConfig = {
   plugins: [
@@ -15,7 +15,7 @@ const config: UserConfig = {
         before: transform
       }
     }),
-    VitePluginRemark()
+    MarkdownVue()
   ]
 };
 

@@ -38,8 +38,6 @@ export function remarkVue(options: RemarkVueOptions): Plugin {
     const blocks: CodeBlock[] = [];
     visit(tree, 'code', (node: Code, i: number, parent: Parent) => {
       if (node.lang === 'vue') {
-        console.log(i);
-
         const name = `VueCode${md5(file).substr(0, 8)}I${i}`;
         blocks.push({ name, path: resolve(`./${name}.vue`), code: node.value });
         const demoNode: HTML = {

@@ -1,13 +1,10 @@
-import type { HmrContext, ModuleNode, Plugin, PluginOption, Update } from 'vite';
+import type { Plugin, PluginOption, Update } from 'vite';
 import { remark } from 'remark';
 import { remarkVue } from './remark';
-import path from 'path';
-import { read } from 'fs';
 
 const VUE_CODE_REGEXP = /VueCode[a-z0-9]{8}I\d{1,4}\.vue$/;
 const vueBlockMap = new Map<string, string>();
 let root = process.cwd();
-let vuePlugin: any | undefined;
 
 export function transform(code: string, file: string) {
   const ret = remark()
@@ -16,16 +13,13 @@ export function transform(code: string, file: string) {
       root,
       remove(codePath) {
         for (const name of codePath) {
-          console.log('remove', name);
+          // console.log('remove', name);
           vueBlockMap.delete(`${name}.vue`);
         }
       },
       update(blocks) {
         for (const block of blocks) {
-          console.log('update', block.path);
-          if (block.name.indexOf('VueCode12c8f579I0') >= 0) {
-            console.log(block.code);
-          }
+          // console.log('update', block.path);
           vueBlockMap.set(`${block.path}`, block.code);
         }
       }
@@ -44,32 +38,25 @@ function VitePluginMdVue(): PluginOption[] {
     configResolved(resolvedConfig) {
       config = resolvedConfig;
       root = config.root;
-      vuePlugin = resolvedConfig.plugins.find((p) => p.name === 'vite:vue');
+      // vuePlugin = resolvedConfig.plugins.find((p) => p.name === 'vite:vue');
     },
     resolveId(id) {
-      console.log('resolveId', id);
       if (VUE_CODE_REGEXP.test(id)) {
         return `${id}`;
       }
     },
     load(id) {
-      console.log('load', id);
       const [path, query] = id.split('?', 2);
       if (VUE_CODE_REGEXP.test(path)) {
         const code = vueBlockMap.get(id);
-        if (id.indexOf('VueCode12c8f579I0') >= 0) {
-          console.log(code);
-        }
         return code;
       }
     },
     async handleHotUpdate(ctx) {
       const { file, server } = ctx;
       const { moduleGraph, ws } = server;
-      console.log('handleHotUpdate', file);
 
       if (/\.md$/.test(file)) {
-        const timestamp = Date.now();
         const updates: Update[] = [];
         for (const [name] of vueBlockMap) {
           const mods = [...(moduleGraph.getModulesByFile(name) || new Set())];
@@ -83,14 +70,6 @@ function VitePluginMdVue(): PluginOption[] {
               acceptedPath: `${mod.url}`
             });
           }
-          // vuePlugin.handleHotUpdate({
-          //   ...ctx,
-          //   file: name,
-          //   mods,
-          //   read() {
-          //     return vueBlockMap.get(name);
-          //   }
-          // });
         }
         ws.send({
           type: 'update',
