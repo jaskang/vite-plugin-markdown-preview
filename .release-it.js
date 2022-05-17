@@ -10,7 +10,7 @@ module.exports = {
     'after:release': 'echo Successfully released ${name} v${version} to ${repo.repository}.',
   },
   github: {
-    release: true,
+    // release: true,
   },
   plugins: {
     '@release-it/conventional-changelog': {
