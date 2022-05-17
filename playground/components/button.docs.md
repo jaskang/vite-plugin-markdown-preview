@@ -4,6 +4,8 @@
 
 ### vue preview
 
+默认模式
+
 ```vue preview
 <template>
   <div>
@@ -23,6 +25,8 @@ export default {
 
 ### vue setup preview
 
+支持 setup
+
 ```vue preview
 <template>
   <div>
@@ -37,6 +41,8 @@ const click = () => {
 ```
 
 ### vue reactive preview
+
+响应事件
 
 ```vue preview
 <template>
@@ -63,9 +69,43 @@ export default {
 </script>
 ```
 
+### css
+
+支持 setup
+
+```vue preview
+<template>
+  <div>
+    <button class="btn">蓝字按钮</button>
+  </div>
+</template>
+<style scoped>
+.btn {
+  color: blue;
+}
+</style>
+```
+
+### 不同的样式
+
+搞个其他样式看看
+
+```vue preview=MyVueCode
+<template>
+  <div>
+    <button class="btn">蓝字按钮</button>
+  </div>
+</template>
+<style scoped>
+.btn {
+  color: blue;
+}
+</style>
+```
+
 ### highlight
 
-code highlight
+`vite-plugin-md` 其他代码高亮
 
 ```ts
 import { App, defineComponent } from 'vue'
