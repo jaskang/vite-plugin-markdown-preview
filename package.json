@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-md-preview",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "git@github.com:JasKang/vite-plugin-md-preview.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
