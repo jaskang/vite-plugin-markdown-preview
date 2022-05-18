@@ -1,10 +1,6 @@
-```vue
-<template>test</template>
-```
+### vue code block preview
 
-### vue preview
-
-默认模式
+basic
 
 ```vue preview
 <template>
@@ -23,9 +19,7 @@ export default {
 </script>
 ```
 
-### vue setup preview
-
-支持 setup
+### setup mode preview
 
 ```vue preview
 <template>
@@ -69,9 +63,7 @@ export default {
 </script>
 ```
 
-### css
-
-支持 setup
+### style sure
 
 ```vue preview
 <template>
@@ -86,7 +78,7 @@ export default {
 </style>
 ```
 
-### 不同的样式
+### other theme
 
 搞个其他样式看看
 

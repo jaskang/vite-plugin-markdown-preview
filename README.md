@@ -11,11 +11,11 @@
 
 markdown 代码块预览插件, 在 markdown 文件中使用 \`\`\` 代码块为组件编写 demo 。
 
-本插件需要与 [vite-plugin-md](https://github.com/antfu/vite-plugin-md) 结合使用，为 `vite-plugin-md` 提供 vue 代码块预览能力。
+本插件需要与 [vite-plugin-md](https://github.com/antfu/vite-plugin-md) 结合使用，为 markdown 提供 vue 代码块预览能力。
 
 示例：[https://vite-plugin-md-preview.vercel.app](https://vite-plugin-md-preview.vercel.app)
 
-## 新版本
+## 重要改动
 
 > 原 `vite-plugin-vuedoc` 重命名为 `vite-plugin-md-preview`
 > 移除了 markdown 解析能力，改为与 `vite-plugin-md` 结合使用的方式。
@@ -64,7 +64,7 @@ export default {
 
 ### 注册 `VueCode` 组件
 
-有于自定义需求较多，所以 `vite-plugin-md-preview` 中并没有包含 preview 组件的具体实现，开发者可自行全局注册一个 `VueCode` 组件。
+插件并不包含 preview 组件的具体实现，开发者需自行实现 `VueCode` 并全局注册。
 
 该组件包含一个 `slot` 以及接收一个名为 `source` 的 prop
 
@@ -95,7 +95,7 @@ export default defineComponent({
 ```ts
 const app = createApp(App)
 
-app.component('VueCode', VueCode)
+app.component('VueCode', VueCode) // 必须的
 app.mount('#app')
 ```
 
