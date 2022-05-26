@@ -1,10 +1,10 @@
-import { defineConfig } from 'tsup';
-import pkg from './package.json';
+import { defineConfig } from 'tsup'
+import pkg from './package.json'
 
 export default defineConfig(() => {
   return {
     entryPoints: ['src/index.ts'],
-    format: ['cjs', 'esm'],
+    format: ['esm'],
     // target: 'es2019',
     platform: 'node',
     splitting: false,
@@ -14,10 +14,10 @@ export default defineConfig(() => {
     dts: true,
     define: {
       'process.env.NODE_ENV': '"production"',
-      __TEST__: 'false'
+      __TEST__: 'false',
     },
     banner: {
-      js: `/**\n * name: ${pkg.name}\n * version: ${pkg.version}\n */`
-    }
-  };
-});
+      js: `/**\n * name: ${pkg.name}\n * version: ${pkg.version}\n */`,
+    },
+  }
+})
