@@ -1,6 +1,4 @@
-### vue code block preview
-
-basic
+### Code preview
 
 ```vue preview
 <template>
@@ -19,7 +17,7 @@ export default {
 </script>
 ```
 
-### setup mode preview
+### Setup mode preview
 
 ```vue preview
 <template>
@@ -34,33 +32,19 @@ const click = () => {
 </script>
 ```
 
-### vue reactive preview
+### Custom preview theme
 
-响应事件
-
-```vue preview
+```vue preview=VueCode1
 <template>
-  <div>num: {{ num }}</div>
   <div>
-    <button type="primary" icon="el-icon-edit" @click="testclick">add</button>
-    text: {{ text }}
+    <button class="btn">蓝字按钮</button>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      num: 0,
-      text: 'test',
-    }
-  },
-  methods: {
-    testclick() {
-      this.num++
-    },
-  },
+<style scoped>
+.btn {
+  color: blue;
 }
-</script>
+</style>
 ```
 
 ### style sure
@@ -78,24 +62,7 @@ export default {
 </style>
 ```
 
-### other theme
-
-搞个其他样式看看
-
-```vue preview=MyVueCode
-<template>
-  <div>
-    <button class="btn">蓝字按钮</button>
-  </div>
-</template>
-<style scoped>
-.btn {
-  color: blue;
-}
-</style>
-```
-
-### highlight
+### Other code highlight
 
 `vite-plugin-md` 其他代码高亮
 

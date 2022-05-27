@@ -40,10 +40,10 @@ export default defineComponent({
     <div class="vue-code__slot">
       <slot></slot>
     </div>
+    <div class="vue-code__btn" @click="click">{{ '<>' }}</div>
     <div class="vue-code__wrap">
       <div class="vue-code__source" ref="codeEl" v-html="decodeURIComponent(source)"></div>
     </div>
-    <div class="vue-code__btn" @click="click">{{ currentHeight > 0 ? 'hide' : 'show' }} source</div>
   </div>
 </template>
 <style scoped>

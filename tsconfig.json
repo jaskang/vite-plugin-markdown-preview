@@ -20,7 +20,7 @@
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM"],
     "types": ["node", "vitest/globals"],
     "baseUrl": ".",
     "rootDir": ".",

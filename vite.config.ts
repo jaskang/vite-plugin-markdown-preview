@@ -19,11 +19,11 @@ const config: UserConfig = {
       transforms: {
         before: transformer,
       },
-      markdownItUses: [[shiki, { theme: 'github-light' }]],
+      markdownItUses: [[shiki, { theme: 'vitesse-light' }]],
     }),
     MarkdownVuePreview({
       shiki: {
-        theme: 'github-light',
+        theme: 'vitesse-light',
       },
     }),
   ],
