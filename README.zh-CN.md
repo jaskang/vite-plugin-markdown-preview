@@ -9,28 +9,28 @@
 
 # vite-plugin-md-preview
 
-Markdown code block preview plugin, write component demo in markdown using \```.
+markdown 代码块预览插件, 在 markdown 文件中使用 \`\`\` 代码块为组件编写 demo 。
 
-This plugin needs to be used in combination with [vite-plugin-md](https://github.com/antfu/vite-plugin-md) to provide vue block preview capability for markdown.
+本插件需要与 [vite-plugin-md](https://github.com/antfu/vite-plugin-md) 结合使用，为 markdown 提供 vue 代码块预览能力。
 
-Example: [https://vite-plugin-md-preview.vercel.app](https://vite-plugin-md-preview.vercel.app)
+示例：[https://vite-plugin-md-preview.vercel.app](https://vite-plugin-md-preview.vercel.app)
 
-[中文文档](./README.zh-CN.md)
+[英文文档](./README.md)
 
-## Breaking Change
+## 重要改动
 
-> Rename former `vite-plugin-vuedoc` to `vite-plugin-md-preview`
-> Removed markdown parsing capability and used it in combination with `vite-plugin-md`.
+> 原 `vite-plugin-vuedoc` 重命名为 `vite-plugin-md-preview`
+> 移除了 markdown 解析能力，改为与 `vite-plugin-md` 结合使用的方式。
 
-## Features
+## 特性
 
-- [x] Markdown Vue code block preview
-- [x] Custom preview component, custom display style
-- [x] Hot update support
+- [x] Markdown Vue 代码块预览
+- [x] 自定义预览组件，自定义展示样式
+- [x] 支持热更新
 
-## Use
+## 使用
 
-### Installation
+### 安装
 
 ```bash
 npm i vite-plugin-md vite-plugin-md-preview -D
@@ -38,7 +38,7 @@ npm i vite-plugin-md vite-plugin-md-preview -D
 yarn add vite-plugin-md vite-plugin-md-preview -D
 ```
 
-vite.config.ts
+配置 vite.config.ts
 
 ```js
 import Vue from '@vitejs/plugin-vue'
@@ -49,28 +49,28 @@ import MarkdownPreview, { transformer } from 'vite-plugin-md-preview'
 export default {
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/], // Need to include .md files
+      include: [/\.vue$/, /\.md$/], // 需包含 .md 文件
     }),
     Markdown({
       transforms: {
-        before: transformer, // -> 1. add transformer to vite-plugin-md
+        before: transformer, // -> 1. 为 vite-plugin-md 添加 transformer
       },
       markdownItSetup(md) {
-        md.use(shiki, { theme: 'github-light' }) // Support code highlighting
+        md.use(shiki, { theme: 'github-light' }) // 支持代码高亮
       },
     }),
-    MarkdownPreview(), // -> 2. Add plugins
+    MarkdownPreview(), // -> 2. 添加插件
   ],
 }
 ```
 
-### Register the `VueCode` component
+### 注册 `VueCode` 组件
 
-The plugin does not contain a concrete implementation of the preview component, developers need to implement `VueCode` and register it global.
+插件并不包含 preview 组件的具体实现，开发者需自行实现 `VueCode` 并全局注册。
 
-This component have a `slot` and receives a prop named `source`
+该组件包含一个 `slot` 以及接收一个名为 `source` 的 prop
 
-Example：
+示例：
 
 ```vue
 <script lang="ts">
@@ -92,7 +92,7 @@ export default defineComponent({
 </template>
 ```
 
-Register as a global component
+注册为全局组件
 
 ```ts
 const app = createApp(App)
@@ -101,7 +101,7 @@ app.component('VueCode', VueCode) // 必须的
 app.mount('#app')
 ```
 
-### import the markdown file
+### 引入 markdown 文件
 
 ```vue
 <template>
@@ -119,14 +119,14 @@ export default {
 </script>
 ```
 
-## Using code blocks in markdown files
+## 在 markdown 文件中使用代码块
 
 带有 `preview` 标记的 vue 代码块支持实时预览
 
 ````markdown
-# This is a markdown file
+# 这是一个 markdown 文件
 
-## Below is the code with preview capability
+## 下方是带有预览能力的代码快
 
 ```vue preview
 <template>
@@ -142,11 +142,11 @@ const click = () => {
 ```
 ````
 
-## Highlight
+## 代码高亮
 
-`vite-plugin-md-preview` has [shiki](https://github.com/antfu/markdown-it-shiki) built in to support code highlighting.
+`vite-plugin-md-preview` 中内置了 [shiki](https://github.com/antfu/markdown-it-shiki) 来支持代码高亮。
 
-Note that this option does not handle other non-code highlighting in markdown, and can be made consistent by adding the `markdown-it-shiki` plugin to `vite-plugin-md`.
+需要注意的是该选项并不处理 markdown 中其他非代码的高亮，可以通过在 `vite-plugin-md` 中添加 `markdown-it-shiki` 插件来保持一致。
 
 ```ts
 import Vue from '@vitejs/plugin-vue'
@@ -157,16 +157,16 @@ import MarkdownPreview, { transformer } from 'vite-plugin-md-preview'
 export default {
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/], // Need to include .md files
+      include: [/\.vue$/, /\.md$/], // 需包含 .md 文件
     }),
     Markdown({
       transforms: {
         before: transformer,
       },
-      markdownItUses: [[shiki, { theme: 'github-light' }]], // markdown code highlighting
+      markdownItUses: [[shiki, { theme: 'github-light' }]], // markdown 中其他代码的高亮
     }),
     MarkdownPreview({
-      shiki: { theme: 'github-light' }, // Code highlighting
+      shiki: { theme: 'github-light' }, // 设置代码高亮主题
     }),
   ],
 }
@@ -175,3 +175,7 @@ export default {
 ## License
 
 MIT License © 2020-PRESENT [Jaskang](https://github.com/jsakang)
+
+```
+
+```
