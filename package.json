@@ -4,14 +4,17 @@
   "repository": "git@github.com:JasKang/vite-plugin-md-preview.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
-  "type": "module",
   "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
   "scripts": {
-    "start": "vite serve",
+    "start": "vite dev --debug",
     "build:docs": "vite build",
     "build": "tsup",
     "release": "release-it",
@@ -19,13 +22,9 @@
     "coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@types/mdast": "^3.0.10",
     "debug": "^4.3.4",
     "fs-extra": "^8.1.0",
-    "remark": "^14.0.2",
-    "shiki": "^0.10.1",
-    "unified": "^10.1.2",
-    "unist-util-visit": "^4.1.0"
+    "shiki": "^0.10.1"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^5.0.0",
@@ -45,11 +44,11 @@
     "tsup": "^5.12.7",
     "typescript": "^4.6.3",
     "vite": "^2.9.8",
-    "vite-plugin-md": "^0.13.1",
+    "vite-plugin-md": "^0.14.0",
     "vitest": "^0.12.4",
     "vue": "^3.2.33"
   },
   "peerDependencies": {
-    "vite-plugin-md": "^0.13.1"
+    "vite-plugin-md": "^0.14.0"
   }
 }

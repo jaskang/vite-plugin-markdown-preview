@@ -1,32 +1,30 @@
-import type { UserConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import Markdown from 'vite-plugin-md'
-import shiki from 'markdown-it-shiki'
-import MarkdownVuePreview, { transformer } from './src'
+import path from 'path'
+import Markdown, { code, link, meta } from 'vite-plugin-md'
+import Vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import { document, viewPlugin, viteDocument } from './src'
 
-const config: UserConfig = {
-  build: {
-    outDir: 'playground/dist',
-    emptyOutDir: true,
+const config = defineConfig({
+  resolve: {
+    alias: {
+      '~/': `${path.resolve(__dirname, 'src')}/`,
+    },
   },
   plugins: [
-    vue({
+    Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    vueJsx(),
+    viewPlugin(),
     Markdown({
-      transforms: {
-        before: transformer,
-      },
-      markdownItUses: [[shiki, { theme: 'vitesse-light' }]],
-    }),
-    MarkdownVuePreview({
-      shiki: {
-        theme: 'vitesse-light',
-      },
+      builders: [
+        code({
+          theme: 'base',
+          layoutStructure: 'tabular',
+        }),
+        document(),
+      ],
     }),
   ],
-}
+})
 
 export default config

@@ -1,6 +1,15 @@
+```ts
+const Main = defineComponent({
+  name: getCompName('Main'),
+  setup(_, { slots }) {
+    return () => <main class={blockCls}>{slots.default?.()}</main>
+  },
+})
+```
+
 ### Code preview
 
-```vue preview
+```vue
 <template>
   <div>
     <button @click="click">alert button</button>
@@ -19,7 +28,7 @@ export default {
 
 ### Setup mode preview
 
-```vue preview
+```vue
 <template>
   <div>
     <button @click="click">setup alert button</button>

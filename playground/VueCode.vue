@@ -25,6 +25,7 @@ export default defineComponent({
       currentHeight.value = codeHeight.value
       console.log(codeHeight.value)
     })
+
     return {
       codeEl,
       currentHeight,

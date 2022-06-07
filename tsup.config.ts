@@ -4,12 +4,15 @@ import pkg from './package.json'
 export default defineConfig(() => {
   return {
     entryPoints: ['src/index.ts'],
-    format: ['esm'],
+    format: ['esm', 'cjs'],
     // target: 'es2019',
+    shims: true,
+    bundle: true,
     platform: 'node',
     splitting: false,
     minify: false,
     sourcemap: true,
+    // noExternal: ['remark', 'unified', 'unist-util-visit'],
     clean: true,
     dts: true,
     define: {
