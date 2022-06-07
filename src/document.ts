@@ -1,9 +1,8 @@
-import { vitePluginDocument } from './plugin'
-import { applyCodeAttributes } from './remark'
+import { viteDocument } from './plugin'
+import { fence } from './fence'
 
 export interface documentConfig {}
 
-// const componentName = 'VueDocument'
 const vueBlockMap = new Map<string, string>()
 
 export function createBuilder(name: string, lifecycle: string) {
@@ -32,30 +31,22 @@ export function createBuilder(name: string, lifecycle: string) {
     },
   }
 }
-export const viewPlugin = () => vitePluginDocument(vueBlockMap)
-export const viteDocument = createBuilder('document-initialize', 'initialize')
-  .options()
-  .initializer()
-  .handler(async (p: any, o: any) => {
-    const hasPlugin = p.viteConfig.plugins.some(v => {
-      v.name === 'vite:md-document'
-    })
-    if (!hasPlugin) {
-      p.viteConfig.plugins.unshift(viewPlugin)
-    }
-    return p
-  })
-  .meta({
-    description: 'md-preview document vite',
-  })
+
+export const plugin = () => viteDocument(vueBlockMap)
+
+console.log('initializer')
 
 export const document = createBuilder('document', 'parser')
   .options()
-  .initializer()
+  .initializer(async (p: any, o: any) => {
+    console.log('initializer')
+    // i want register plugin here
+    // p.viteConfig.plugins.push(plugin)
+  })
   .handler(async (p: any, o: any) => {
     const { fileName, viteConfig } = p
     p.parser.use(
-      applyCodeAttributes({
+      fence({
         root: viteConfig.root,
         file: fileName,
         update(block) {

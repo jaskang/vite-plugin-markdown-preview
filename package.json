@@ -14,7 +14,7 @@
     }
   },
   "scripts": {
-    "start": "vite dev --debug",
+    "start": "vite dev",
     "build:docs": "vite build",
     "build": "tsup",
     "release": "release-it",

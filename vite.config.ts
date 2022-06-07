@@ -1,8 +1,8 @@
 import path from 'path'
-import Markdown, { code, link, meta } from 'vite-plugin-md'
+import Markdown, { code } from 'vite-plugin-md'
 import Vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
-import { document, viewPlugin, viteDocument } from './src'
+import { document, plugin as Document } from './src'
 
 const config = defineConfig({
   resolve: {
@@ -14,7 +14,7 @@ const config = defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    viewPlugin(),
+    Document(),
     Markdown({
       builders: [
         code({

@@ -2,7 +2,7 @@ import type { Plugin, PluginOption, Update } from 'vite'
 
 const VUE_CODE_REGEXP = /VueCode[a-z0-9]{8}I\d{1,4}\.vue$/
 
-export function vitePluginDocument(vueBlockMap: Map<string, string>): PluginOption {
+export function viteDocument(vueBlockMap: Map<string, string>): PluginOption {
   const plugin: Plugin = {
     name: 'vite:md-document',
     enforce: 'pre',
@@ -24,8 +24,6 @@ export function vitePluginDocument(vueBlockMap: Map<string, string>): PluginOpti
     },
     resolveId(id) {
       if (VUE_CODE_REGEXP.test(id)) {
-        console.log('VUE_CODE_REGEXP:', id)
-
         return `${id}`
       }
     },
