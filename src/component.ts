@@ -66,7 +66,7 @@ const VueCode = defineComponent({
               {
                 class: 'vue-document__source',
                 ref: 'codeEl',
-                innerHTML: decodeURIComponent(_ctx.source),
+                innerHTML: _ctx.source,
               },
               null,
               8 /* PROPS */,

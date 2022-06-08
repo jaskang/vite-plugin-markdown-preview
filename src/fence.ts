@@ -39,8 +39,9 @@ export function fence(options: RemarkVueOptions) {
         const vueCode = `
 <script setup>
 import ${name} from "${resolve(`./${name}.vue`)}"
-</script>\n
-<${component} source="${encodeURIComponent(codeHtml)}">
+const ${name}Source = ${JSON.stringify(codeHtml)}
+</script>\n 
+<${component} :source="${name}Source">
 <${codeComponent} />
 </${component}>`
         update({ name, path: resolve(`./${name}.vue`), code: token.content })
