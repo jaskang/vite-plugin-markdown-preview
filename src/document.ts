@@ -17,8 +17,8 @@ export const document = createBuilder('document', 'parser')
   .handler(async (p: any, o: any) => {
     const { fileName, viteConfig } = p
 
-    p.addCodeBlock('VueCode', VueCode)
-    p.addStyleBlock('VueCode', style)
+    p.addCodeBlock('VueDocumentScript', VueCode)
+    p.addStyleBlock('VueDocumentStyle', style)
     p.parser.use(
       fence({
         root: viteConfig.root,

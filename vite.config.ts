@@ -8,7 +8,7 @@ const config = defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    Document(), // I want to remove it, and register plugin in builder
+    Document(),
     Markdown({
       builders: [
         code({
