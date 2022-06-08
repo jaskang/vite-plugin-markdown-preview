@@ -1,6 +1,6 @@
 import { createInlineStyle } from '@yankeeinlondon/happy-wrapper'
 
-export const VueCode = `import {
+export const script = `import {
   computed,
   defineComponent,
   onMounted,

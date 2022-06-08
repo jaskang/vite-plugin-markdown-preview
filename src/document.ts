@@ -1,7 +1,7 @@
 import { viteDocument } from './plugin'
 import { fence } from './fence'
 import { createBuilder } from './createBuilder'
-import { VueCode, style } from './component'
+import { script, style } from './component'
 
 export interface documentConfig {}
 
@@ -11,14 +11,13 @@ export const plugin = () => viteDocument(vueBlockMap)
 
 export const document = createBuilder('document', 'parser')
   .options()
-  .initializer(async (p: any, o: any) => {
-    // i want register plugin here
-  })
+  .initializer()
   .handler(async (p: any, o: any) => {
     const { fileName, viteConfig } = p
 
-    p.addCodeBlock('VueDocumentScript', VueCode)
+    p.addCodeBlock('VueDocumentScript', script)
     p.addStyleBlock('VueDocumentStyle', style)
+
     p.parser.use(
       fence({
         root: viteConfig.root,
