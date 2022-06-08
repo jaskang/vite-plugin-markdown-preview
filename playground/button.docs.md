@@ -1,9 +1,6 @@
 ```ts
 const Main = defineComponent({
   name: getCompName('Main'),
-  setup(_, { slots }) {
-    return () => <main class={blockCls}>{slots.default?.()}</main>
-  },
 })
 ```
 

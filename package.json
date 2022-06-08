@@ -22,6 +22,7 @@
     "coverage": "vitest --coverage"
   },
   "dependencies": {
+    "@yankeeinlondon/happy-wrapper": "^1.0.0",
     "debug": "^4.3.4",
     "fs-extra": "^8.1.0",
     "shiki": "^0.10.1"

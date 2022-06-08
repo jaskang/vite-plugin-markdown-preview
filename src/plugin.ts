@@ -8,19 +8,6 @@ export function viteDocument(vueBlockMap: Map<string, string>): PluginOption {
     enforce: 'pre',
     async configResolved(config) {
       console.log('md-document configResolved')
-
-      // const shiki = await getHighlighter({
-      //   theme: 'github-light',
-      //   langs: ['vue'],
-      //   ...shikiOptions,
-      // })
-      // transformOptions.highlighter =
-      //   highlighter ||
-      //   ((code: string) => {
-      //     return shiki.codeToHtml(code, { lang: 'vue' })
-      //   })
-      // transformOptions.root = config.root
-      // vuePlugin = resolvedConfig.plugins.find((p) => p.name === 'vite:vue');
     },
     resolveId(id) {
       if (VUE_CODE_REGEXP.test(id)) {

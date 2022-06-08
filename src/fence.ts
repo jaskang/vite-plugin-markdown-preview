@@ -23,17 +23,17 @@ export function fence(options: RemarkVueOptions) {
   }
   return (md: any) => {
     const fence = md.renderer.rules.fence
-    md.renderer.rules.fence = (tokens, idx) => {
-      const fenceToken = tokens[idx]
+    console.log('fence:', fence)
 
-      const info = fenceToken.info ? md.utils.unescapeAll(fenceToken.info).trim() : ''
+    md.renderer.rules.fence = (tokens, idx, options, env, slf) => {
+      const token = tokens[idx]
+      const info = token.info ? md.utils.unescapeAll(token.info).trim() : ''
       const lang = info.split(/(\s+)/g)[0]
-      console.log('lang:', lang, fenceToken.info)
       if (lang !== 'vue') {
-        const ret = fence(tokens, idx)
+        const ret = fence(tokens, idx, options, env, slf)
         return ret
       } else {
-        const ret = fence(tokens, idx)
+        const ret = fence(tokens, idx, options, env, slf)
         const hash = md5(file).substr(0, 8)
         const name = `VueCode${hash}I${idx}`
         const codeComponent = `vue-code${hash}-i${idx}`
@@ -45,7 +45,7 @@ import ${name} from "${resolve(`./${name}.vue`)}"
 <${component} source="${encodeURIComponent(ret)}">
 <${codeComponent} />
 </${component}>`
-        update({ name, path: resolve(`./${name}.vue`), code: fenceToken.content })
+        update({ name, path: resolve(`./${name}.vue`), code: token.content })
         return vueCode
       }
     }
