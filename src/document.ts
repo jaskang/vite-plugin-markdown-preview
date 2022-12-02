@@ -1,6 +1,6 @@
+import { createBuilder } from 'vite-plugin-md'
 import { viteDocument } from './plugin'
 import { fence } from './fence'
-import { createBuilder } from './createBuilder'
 import { script, style } from './component'
 
 export interface documentConfig {}

@@ -1,51 +1,31 @@
 import type { Plugin, PluginOption, Update } from 'vite'
 
-const VUE_CODE_REGEXP = /VueCode[a-z0-9]{8}I\d{1,4}\.vue$/
+const CODE_VUE_REGEXP = /MarkdownCodeVue[a-z0-9]{8}I\d{1,4}\.vue$/
 
-export function viteDocument(vueBlockMap: Map<string, string>): PluginOption {
-  const plugin: Plugin = {
-    name: 'vite:md-document',
+export function markdownPreview(vueBlockMap: Map<string, string>): Plugin {
+  let envType: 'default' | 'vitepress' | 'vuepress' = 'default'
+
+  const virtualModuleId = 'virtual:my-module'
+  const resolvedVirtualModuleId = '\0' + virtualModuleId
+
+  return {
+    name: 'markdown-preview',
     enforce: 'pre',
     async configResolved(config) {
-      console.log('md-document configResolved')
+      const isVitepress = config.plugins.find(p => p.name === 'vitepress')
+      const isVuepress = config.plugins.find(p => p.name === 'vuepress')
+      envType = isVitepress ? 'vitepress' : isVuepress ? 'vuepress' : 'default'
     },
     resolveId(id) {
-      if (VUE_CODE_REGEXP.test(id)) {
+      if (CODE_VUE_REGEXP.test(id)) {
         return `${id}`
       }
     },
     load(id) {
-      if (VUE_CODE_REGEXP.test(id)) {
+      if (CODE_VUE_REGEXP.test(id)) {
         const code = vueBlockMap.get(id)
         return code
       }
     },
-    async handleHotUpdate(ctx) {
-      const { file, server } = ctx
-      const { moduleGraph, ws } = server
-
-      if (/\.md$/.test(file)) {
-        const updates: Update[] = []
-        for (const [name] of vueBlockMap) {
-          const mods = [...(moduleGraph.getModulesByFile(name) || new Set())]
-          moduleGraph.onFileChange(name)
-          // console.log(mods);
-          for (const mod of mods) {
-            updates.push({
-              type: `js-update`,
-              timestamp: mod.lastInvalidationTimestamp,
-              path: `${mod.url}`,
-              acceptedPath: `${mod.url}`,
-            })
-          }
-        }
-        ws.send({
-          type: 'update',
-          updates,
-        })
-      }
-    },
   }
-
-  return plugin
 }
