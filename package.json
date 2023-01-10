@@ -4,14 +4,15 @@
   "repository": "git@github.com:JasKang/vite-plugin-md-preview.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
   "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
-    }
+    ".": "./dist/index.js",
+    "./component": "./dist/component.js"
   },
   "scripts": {
     "start": "vite dev",
