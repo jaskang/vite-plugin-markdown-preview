@@ -1,0 +1,11 @@
+{
+  "name": "vuepress",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vuepress dev"
+  },
+  "devDependencies": {
+    "vite-plugin-vuedoc": "workspace:*"
+  }
+}

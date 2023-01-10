@@ -5,7 +5,7 @@ export default defineConfig(() => {
   return {
     entryPoints: ['src/index.ts', 'src/component.ts'],
     format: ['esm', 'cjs'],
-    bundle: false,
+    skipNodeModulesBundle: true,
     platform: 'node',
     splitting: false,
     minify: false,

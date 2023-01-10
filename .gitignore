@@ -6,3 +6,6 @@ dist
 dist-ssr
 node_modules
 temp
+.temp
+cache
+.cache

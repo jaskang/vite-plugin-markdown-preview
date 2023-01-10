@@ -76,4 +76,18 @@ export function VueDoc(): Plugin {
   }
 }
 
+export const VueDocVuepress = {
+  name: 'vuepress-plugin-vuedoc',
+  extendsBundlerOptions: (bundlerOptions, app) => {
+    // 修改 @vuepress/bundler-vite 的配置项
+    if (app.options.bundler.name === '@vuepress/bundler-vite') {
+      bundlerOptions.viteOptions ??= {}
+      bundlerOptions.viteOptions.plugins ??= []
+      bundlerOptions.viteOptions.plugins.push(VueDoc())
+    } else {
+      throw new Error('vuedoc 只支持 @vuepress/bundler-vite')
+    }
+  },
+}
+
 export default VueDoc

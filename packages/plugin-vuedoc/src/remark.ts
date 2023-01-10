@@ -31,7 +31,7 @@ export function remarkDemoBlock(id: string, code: string) {
         1,
         {
           type: 'html',
-          value: `<ViteVueDoc 
+          value: `<VueDoc 
 lang="${decodeURIComponent(node.lang || '')}" 
 meta="${decodeURIComponent(node.meta || '')}" 
 code="${encodeURIComponent(node.value)}">
@@ -41,7 +41,7 @@ code="${encodeURIComponent(node.value)}">
         node,
         {
           type: 'html',
-          value: '\n</template></ViteVueDoc>',
+          value: '\n</template></VueDoc>',
         }
       )
       return index + 3

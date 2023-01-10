@@ -1,3 +1,5 @@
+# playground-vite
+
 ```ts
 const Main = defineComponent({
   name: getCompName('Main'),
@@ -9,7 +11,7 @@ const Main = defineComponent({
 
 ### Code preview
 
-```vue
+```vue demo
 <template>
   <div>
     <button @click="click">alert button</button>
@@ -28,7 +30,7 @@ export default {
 
 ### Setup mode preview
 
-```vue
+```vue demo
 <template>
   <div>
     <button @click="click">setup alert button</button>
@@ -43,7 +45,7 @@ const click = () => {
 
 ### Custom preview theme
 
-```vue preview=VueCode1
+```vue demo=VueCode1
 <template>
   <div>
     <button class="btn">蓝字按钮</button>
@@ -58,7 +60,7 @@ const click = () => {
 
 ### style sure
 
-```vue preview
+```vue demo
 <template>
   <div>
     <button class="btn">蓝字按钮</button>
@@ -69,28 +71,4 @@ const click = () => {
   color: blue;
 }
 </style>
-```
-
-### Other code highlight
-
-`vite-plugin-md` 其他代码高亮
-
-```ts
-import { App, defineComponent } from 'vue'
-import { getBlockCls, getCompName } from '@/config'
-
-const blockCls = getBlockCls('Main')
-
-const Main = defineComponent({
-  name: getCompName('Main'),
-  setup(_, { slots }) {
-    return () => <main class={blockCls}>{slots.default?.()}</main>
-  },
-})
-
-Main.install = (app: App): void => {
-  app.component(Main.name, Main)
-}
-
-export default Main
 ```

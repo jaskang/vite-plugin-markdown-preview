@@ -1,0 +1,11 @@
+{
+  "name": "vite",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite dev"
+  },
+  "devDependencies": {
+    "vite-plugin-vuedoc": "workspace:*"
+  }
+}
