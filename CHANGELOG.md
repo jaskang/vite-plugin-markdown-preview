@@ -1,5 +1,7 @@
-## [0.0.3](https://github.com/JasKang/vite-plugin-md-preview/compare/v3.1.3...v0.1.1) (2022-05-17)
+Changelog:
+
+# [4.0.0](https://github.com/JasKang/vite-plugin-vuedoc/compare/v0.0.5...v4.0.0) (2023-01-10)
 
 ### Features
 
-- 新版本 ([5674a90](https://github.com/JasKang/vite-plugin-md-preview/commit/5674a909cea67af78853e3b8e9664ba06467d709))
+- 支持 vite 4 ([8cf2714](https://github.com/JasKang/vite-plugin-vuedoc/commit/8cf27140d3fb4e797b9779c8a418587b3cf4f76a))
