@@ -1,14 +1,14 @@
 import { resolveComponent, defineComponent, ref, createVNode } from 'vue'
 const ViteVueDocBlockStyles = `
-.mdvue-demo {
+.vuedoc-demo {
   border-radius: 4px;
   overflow: hidden;
 }
-.mdvue-demo__preview {
+.vuedoc-demo__preview {
   padding: 20px;
   border: 1px solid var(--vp-c-divider-light);
 }
-.mdvue-demo__toolbar {
+.vuedoc-demo__toolbar {
   height: 38px;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@ const ViteVueDocBlockStyles = `
   /* background-color: rgb(248 250 252/ 1); */
   border-top: none;
 }
-.mdvue-demo__toolbar .mdvue-demo__btn {
+.vuedoc-demo__toolbar .vuedoc-demo__btn {
   width: 38px;
   height: 100%;
   align-items: center;
@@ -27,21 +27,21 @@ const ViteVueDocBlockStyles = `
   justify-content: center;
   cursor: pointer;
 }
-.mdvue-demo__toolbar .mdvue-demo__btn:hover {
+.vuedoc-demo__toolbar .vuedoc-demo__btn:hover {
   background-color: rgb(248 250 252 / 1);
 }
-.mdvue-demo__toolbar svg {
+.vuedoc-demo__toolbar svg {
   width: 1rem;
   height: 1rem;
 }
-.mdvue-demo__toolbar {
+.vuedoc-demo__toolbar {
 }
-.mdvue-demo__code div[class*='language-'] {
+.vuedoc-demo__code div[class*='language-'] {
   margin: 0;
   border-radius: 0;
 }
 
-.mdvue-demo__code {
+.vuedoc-demo__code {
 }
 `
 let shouldInjectStyle = true
@@ -56,8 +56,8 @@ function styleInject(css) {
     }
   }
 }
-const ViteVueDocBlock = defineComponent({
-  name: 'ViteVueDocBlock',
+const VueDocBlock = defineComponent({
+  name: 'VueDocBlock',
   props: {
     code: { type: String, required: true },
     lang: { type: String, required: true },
@@ -83,61 +83,65 @@ const ViteVueDocBlock = defineComponent({
       }
     }
     return () =>
-      createVNode('div', { class: 'mdvue-demo' }, [
-        createVNode('div', { class: 'mdvue-demo__preview' }, [slots.default && slots.default()]),
-        createVNode('div', { class: 'mdvue-demo__toolbar' }, [
-          createVNode('div', { class: 'mdvue-demo__btn mdvue-demo__btn-copy', onClick: copyCode }, [
-            copied.value
-              ? createVNode(
-                  'svg',
-                  {
-                    xmlns: 'http://www.w3.org/2000/svg',
-                    fill: 'none',
-                    height: '20',
-                    width: '20',
-                    stroke: 'currentColor',
-                    'stroke-width': '2',
-                    viewBox: '0 0 24 24',
-                  },
-                  [
-                    createVNode(
-                      'path',
-                      {
-                        'stroke-linecap': 'round',
-                        'stroke-linejoin': 'round',
-                        d: 'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4',
-                      },
-                      null
-                    ),
-                  ]
-                )
-              : createVNode(
-                  'svg',
-                  {
-                    xmlns: 'http://www.w3.org/2000/svg',
-                    fill: 'none',
-                    height: '20',
-                    width: '20',
-                    stroke: 'currentColor',
-                    'stroke-width': '2',
-                    viewBox: '0 0 24 24',
-                  },
-                  [
-                    createVNode(
-                      'path',
-                      {
-                        'stroke-linecap': 'round',
-                        'stroke-linejoin': 'round',
-                        d: 'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2',
-                      },
-                      null
-                    ),
-                  ]
-                ),
-          ]),
+      createVNode('div', { class: 'vuedoc-demo' }, [
+        createVNode('div', { class: 'vuedoc-demo__preview' }, [slots.default && slots.default()]),
+        createVNode('div', { class: 'vuedoc-demo__toolbar' }, [
           createVNode(
             'div',
-            { class: 'mdvue-demo__btn mdvue-demo__btn-code', onClick: toggleCode },
+            { class: 'vuedoc-demo__btn vuedoc-demo__btn-copy', onClick: copyCode },
+            [
+              copied.value
+                ? createVNode(
+                    'svg',
+                    {
+                      xmlns: 'http://www.w3.org/2000/svg',
+                      fill: 'none',
+                      height: '20',
+                      width: '20',
+                      stroke: 'currentColor',
+                      'stroke-width': '2',
+                      viewBox: '0 0 24 24',
+                    },
+                    [
+                      createVNode(
+                        'path',
+                        {
+                          'stroke-linecap': 'round',
+                          'stroke-linejoin': 'round',
+                          d: 'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4',
+                        },
+                        null
+                      ),
+                    ]
+                  )
+                : createVNode(
+                    'svg',
+                    {
+                      xmlns: 'http://www.w3.org/2000/svg',
+                      fill: 'none',
+                      height: '20',
+                      width: '20',
+                      stroke: 'currentColor',
+                      'stroke-width': '2',
+                      viewBox: '0 0 24 24',
+                    },
+                    [
+                      createVNode(
+                        'path',
+                        {
+                          'stroke-linecap': 'round',
+                          'stroke-linejoin': 'round',
+                          d: 'M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2',
+                        },
+                        null
+                      ),
+                    ]
+                  ),
+            ]
+          ),
+          createVNode(
+            'div',
+            { class: 'vuedoc-demo__btn vuedoc-demo__btn-code', onClick: toggleCode },
             [
               createVNode(
                 'svg',
@@ -160,14 +164,14 @@ const ViteVueDocBlock = defineComponent({
             ]
           ),
         ]),
-        createVNode('div', { class: 'mdvue-demo__code', style: { height: height.value + 'px' } }, [
+        createVNode('div', { class: 'vuedoc-demo__code', style: { height: height.value + 'px' } }, [
           createVNode('div', { ref: codeEl }, [slots.code && slots.code()]),
         ]),
       ])
   },
 })
-const ViteVueDoc = defineComponent({
-  name: 'ViteVueDoc',
+const VueDoc = defineComponent({
+  name: 'VueDoc',
   props: {
     code: { type: String, required: true },
     lang: { type: String, required: true },
@@ -176,7 +180,7 @@ const ViteVueDoc = defineComponent({
   },
   setup(props, { slots }) {
     styleInject(ViteVueDocBlockStyles)
-    const DemoBlock = props.component ? resolveComponent(props.component) : ViteVueDocBlock
+    const DemoBlock = props.component ? resolveComponent(props.component) : VueDocBlock
     return () =>
       createVNode(
         DemoBlock,
@@ -189,4 +193,4 @@ const ViteVueDoc = defineComponent({
       )
   },
 })
-export default ViteVueDoc
+export default VueDoc

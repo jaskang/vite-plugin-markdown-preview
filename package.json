@@ -1,9 +1,10 @@
 {
   "name": "vite-plugin-vuedoc",
   "version": "4.0.0",
-  "repository": "git@github.com:JasKang/vite-plugin-md-preview.git",
+  "repository": "git@github.com:JasKang/vite-plugin-vuedoc.git",
   "author": "jaskang <jaskang@qq.com>",
   "license": "MIT",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
@@ -11,8 +12,17 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/index.js",
-    "./component": "./dist/component.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./component": {
+      "types": "./dist/component.d.ts",
+      "import": "./dist/component.js",
+      "require": "./dist/component.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "start": "vite dev",
