@@ -6,7 +6,7 @@
 
 ## 示例
 
-![](./playground/vitepress/.vitepress/public/1.png)
+![](https://md-preview.jaskang.vip/1.png)
 
 ## 安装
 
@@ -73,7 +73,7 @@ _下方代码块将会被解析为 vue 组件并展示_
 
 **经过 `vite-plugin-md-preview` 处理后：**
 
-![](./playground/vitepress/.vitepress/public/2.png)
+![](https://md-preview.jaskang.vip/2.png)
 
 ## 自定义预览组件
 
@@ -95,4 +95,4 @@ app.component('CodePreview', MyCodePreview)
 
 **示例自定义展示组件:**
 
-![](./playground/vitepress/.vitepress/public/3.png)
+![](https://md-preview.jaskang.vip/3.png)

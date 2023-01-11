@@ -7,6 +7,7 @@ export default defineConfig({
   title: 'vite-plugin-md-preview',
   description: 'vite-plugin-md-preview vitepress playground',
   vite: {
+    publicDir: 'public',
     plugins: [vueJsx(), MdPreview()],
   },
   themeConfig: {
