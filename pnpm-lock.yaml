@@ -4,6 +4,7 @@ importers:
 
   .:
     specifiers:
+      '@changesets/changelog-git': ^0.1.14
       '@changesets/cli': ^2.26.0
       '@jaskang/config': ^0.0.7
       '@jaskang/eslint-config': ^0.0.7
@@ -19,6 +20,7 @@ importers:
       vitest: ^0.26.3
       vue: ^3.2.45
     devDependencies:
+      '@changesets/changelog-git': 0.1.14
       '@changesets/cli': 2.26.0
       '@jaskang/config': 0.0.7
       '@jaskang/eslint-config': 0.0.7_z6jn4luhndly6szzkk2fv4o2bi
