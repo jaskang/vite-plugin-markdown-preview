@@ -52,6 +52,7 @@
     "vitest": "^0.26.3",
     "vue": "^3.2.45"
   },
+  "packageManager": "pnpm@7.11.0",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
