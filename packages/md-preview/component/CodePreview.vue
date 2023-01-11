@@ -1,30 +1,42 @@
-<script setup>
-import { ref } from 'vue'
-const props = defineProps({
-  code: { type: String, required: true },
-  lang: { type: String, required: true },
-  meta: { type: String, required: true },
-})
-const codeEl = ref()
-const height = ref(0)
-const copied = ref(false)
-const toggleCode = () => {
-  const targetHeight = codeEl.value ? codeEl.value.offsetHeight : 0
-  height.value = height.value === 0 ? targetHeight : 0
-}
-const copyCode = () => {
-  if (!copied.value) {
-    try {
-      navigator.clipboard.writeText(props.code)
-    } catch (err) {
-      console.log(err)
+<script>
+import { ref, defineComponent } from 'vue'
+
+export default defineComponent({
+  props: {
+    code: { type: String, required: true },
+    lang: { type: String, required: true },
+    meta: { type: String, required: true },
+  },
+  setup(props) {
+    const codeEl = ref()
+    const height = ref(0)
+    const copied = ref(false)
+    const toggleCode = () => {
+      const targetHeight = codeEl.value ? codeEl.value.offsetHeight : 0
+      height.value = height.value === 0 ? targetHeight : 0
     }
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 1000)
-  }
-}
+    const copyCode = () => {
+      if (!copied.value) {
+        try {
+          navigator.clipboard.writeText(props.code)
+        } catch (err) {
+          console.log(err)
+        }
+        copied.value = true
+        setTimeout(() => {
+          copied.value = false
+        }, 1000)
+      }
+    }
+    return {
+      codeEl,
+      height,
+      copied,
+      toggleCode,
+      copyCode,
+    }
+  },
+})
 </script>
 <template>
   <div :class="['mdp-demo', height.value > 0 && 'is-expanded']">

@@ -30,7 +30,7 @@ pnpm install vite-plugin-md-preview
 
 ## 在 Vitepress 中使用
 
-vitepress 自带了 markdown 解析，直接在 `.vitepress/config.ts` 中接入就行
+在 `.vitepress/config.ts` 中配置插件
 
 ```ts
 import { defineConfig } from 'vitepress'
@@ -45,7 +45,7 @@ export default defineConfig({
 
 ## 在 Vite 中使用
 
-本插件依赖 `vite-plugin-vue-markdown` 的 markdown 解析能力。
+`vite-plugin-md-preview` 依赖 `vite-plugin-vue-markdown` 的 markdown 解析能力, 所以还需要安装 `vite-plugin-vue-markdown`
 
 ```ts
 // vite.config.ts
@@ -67,7 +67,7 @@ const config = defineConfig({
 export default config
 ```
 
-## 预览标识
+## 代码预览标识
 
 给需要预览的 vue 代码块加上 `preview` 标记。
 
