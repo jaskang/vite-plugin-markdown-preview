@@ -29,7 +29,8 @@
   "scripts": {
     "dev:vite": "pnpm --filter test-vite dev",
     "dev:vitepress": "pnpm --filter test-vitepress dev",
-    "build:docs": "pnpm --filter test-vitepress build",
+    "docs:build": "pnpm --filter vite-plugin-md-preview build && pnpm --filter test-vitepress build",
+    "docs:preview": "pnpm --filter test-vitepress preview",
     "build": "pnpm --filter vite-plugin-md-preview build",
     "test": "vitest",
     "coverage": "vitest --coverage"
