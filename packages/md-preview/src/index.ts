@@ -40,7 +40,8 @@ export function MdPreview(options?: MdPreviewOptions): Plugin {
     },
     async load(id) {
       if (CODE_VUE_REGEXP.test(id)) {
-        const demoCode = DemoBlockMap.get(id)
+        const blockId = '/' + path.relative(config.root, id)
+        const demoCode = DemoBlockMap.get(id) || DemoBlockMap.get(blockId) 
         return demoCode
       }
       if (id.endsWith('.md')) {

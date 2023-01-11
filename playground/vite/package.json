@@ -13,7 +13,7 @@
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "vite-plugin-vue-markdown"
+        "vite"
       ]
     }
   }
