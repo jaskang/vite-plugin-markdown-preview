@@ -1,5 +1,11 @@
 # vite-plugin-md-preview
 
+## 1.0.2
+
+### Patch Changes
+
+- 5485b80: 添加 readme
+
 ## 1.0.1
 
 ### Patch Changes
