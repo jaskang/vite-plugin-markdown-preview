@@ -1,17 +1,8 @@
 # playground-vite
 
-```ts
-const Main = defineComponent({
-  name: getCompName('Main'),
-  setup(_, { slots }) {
-    return () => <main class={blockCls}>{slots.default?.()}</main>
-  },
-})
-```
-
 ### Code preview
 
-```vue demo
+```vue preview
 <template>
   <div>
     <button @click="click">alert button</button>
@@ -30,45 +21,29 @@ export default {
 
 ### Setup mode preview
 
-```vue demo
+```vue preview
 <template>
-  <div>
-    <button @click="click">setup alert button</button>
-  </div>
+  <div>当前计数为：{{ count }} <button @click="count++">点我！</button></div>
 </template>
 <script setup>
-const click = () => {
-  alert('a')
-}
+import { ref } from 'vue'
+const count = ref(0)
 </script>
 ```
 
 ### Custom preview theme
 
-```vue demo=VueCode1
+```vue preview=VueCode
 <template>
-  <div>
-    <button class="btn">蓝字按钮</button>
-  </div>
+  <div class="btn">当前计数为：{{ count }} <button @click="count++">点我！</button></div>
 </template>
+<script setup>
+import { ref } from 'vue'
+const count = ref(0)
+</script>
 <style scoped>
 .btn {
-  color: blue;
-}
-</style>
-```
-
-### style sure
-
-```vue demo
-<template>
-  <div>
-    <button class="btn">蓝字按钮</button>
-  </div>
-</template>
-<style scoped>
-.btn {
-  color: blue;
+  color: red;
 }
 </style>
 ```

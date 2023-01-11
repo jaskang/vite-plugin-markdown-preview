@@ -31,26 +31,24 @@
     "dev:vitepress": "pnpm --filter test-vitepress dev",
     "build:docs": "vite build",
     "build": "pnpm --filter vite-plugin-md-preview build",
-    "release": "release-it",
     "test": "vitest",
     "coverage": "vitest --coverage"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.0",
     "@jaskang/config": "^0.0.7",
     "@jaskang/eslint-config": "^0.0.7",
-    "@release-it/conventional-changelog": "^5.1.1",
     "@types/node": "^16.18.11",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "eslint": "^8.31.0",
     "prettier": "^2.8.2",
-    "release-it": "^15.6.0",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4",
+    "vite": "^4.0.4",
     "vite-plugin-inspect": "^0.7.14",
     "vitest": "^0.26.3",
-    "vue": "^3.2.45",
-    "vite": "^4.0.4"
+    "vue": "^3.2.45"
   },
   "pnpm": {
     "peerDependencyRules": {
