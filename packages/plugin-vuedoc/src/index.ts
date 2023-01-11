@@ -1,24 +1,37 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import type { Plugin } from 'vite'
-import { remarkDemoBlock } from './remark'
+import { type EnvType, remarkDemoBlock } from './remark'
 const CODE_VUE_REGEXP = /.md.DemoBlockI\d{1,4}\.vue$/
 const DemoBlockMap = new Map<string, string>()
 
-export function VueDoc(): Plugin {
-  let envType: 'vite' | 'vitepress' | 'vuepress' = 'vite'
+export type MdPreviewOptions = {
+  component?: string
+}
+
+export type MdPreviewConfig = {
+  root: string
+  component: string
+  type: 'vite' | 'vitepress'
+}
+
+export function MdPreview(options?: MdPreviewOptions): Plugin {
   let vuePlugin: any = null
-  let root = ''
+  let envType: EnvType
+  const config: MdPreviewConfig = Object.assign(
+    { component: 'CodePreview', type: 'vite' as const, root: '' },
+    options
+  )
   return {
-    name: 'vite:vuedoc',
-    enforce: 'pre',
-    configResolved(config) {
-      root = config.root
-      const isVitepress = config.plugins.find(p => p.name === 'vitepress')
-      const isVuepress = config.plugins.find(p => p.name === 'vuepress')
-      vuePlugin = config.plugins.find(p => p.name === 'vite:vue')
-      envType = isVitepress ? 'vitepress' : isVuepress ? 'vuepress' : 'vite'
-      console.log(envType)
+    name: 'vite:md-preview',
+    enforce: 'pre' as const,
+    async configResolved(cfg) {
+      const isVitepress = cfg.plugins.find(p => p.name === 'vitepress')
+      vuePlugin = cfg.plugins.find(p => p.name === 'vite:vue')
+      envType = isVitepress ? 'vitepress' : 'vite'
+
+      config.root = cfg.root
+      config.type = envType
     },
     resolveId(id) {
       if (CODE_VUE_REGEXP.test(id)) {
@@ -31,12 +44,10 @@ export function VueDoc(): Plugin {
         return demoCode
       }
       if (id.endsWith('.md')) {
-        const { code, blocks } = remarkDemoBlock(id, fs.readFileSync(id, 'utf8'))
+        const { code, blocks } = remarkDemoBlock(id, fs.readFileSync(id, 'utf8'), config)
         for (const k of Object.keys(blocks)) {
           const blockKey = `${id}.${k}.vue`
-          const blockId = '/' + path.relative(root, blockKey)
-          // console.log('DemoBlockMap.set', blockId, blocks[k])
-
+          const blockId = '/' + path.relative(config.root, blockKey)
           DemoBlockMap.set(blockId, blocks[k])
         }
         return code
@@ -47,11 +58,11 @@ export function VueDoc(): Plugin {
       const { moduleGraph } = server
       server.moduleGraph
       if (file.endsWith('.md')) {
-        const { blocks } = remarkDemoBlock(file, fs.readFileSync(file, 'utf8'))
+        const { blocks } = remarkDemoBlock(file, fs.readFileSync(file, 'utf8'), config)
         const updates: any[] = []
         for (const k of Object.keys(blocks)) {
           const blockKey = `${file}.${k}.vue`
-          const blockId = '/' + path.relative(root, blockKey)
+          const blockId = '/' + path.relative(config.root, blockKey)
           DemoBlockMap.set(blockId, blocks[k])
 
           const mod = moduleGraph.getModuleById(blockId)
@@ -76,18 +87,4 @@ export function VueDoc(): Plugin {
   }
 }
 
-export const VueDocVuepress = {
-  name: 'vuepress-plugin-vuedoc',
-  extendsBundlerOptions: (bundlerOptions, app) => {
-    // 修改 @vuepress/bundler-vite 的配置项
-    if (app.options.bundler.name === '@vuepress/bundler-vite') {
-      bundlerOptions.viteOptions ??= {}
-      bundlerOptions.viteOptions.plugins ??= []
-      bundlerOptions.viteOptions.plugins.push(VueDoc())
-    } else {
-      throw new Error('vuedoc 只支持 @vuepress/bundler-vite')
-    }
-  },
-}
-
-export default VueDoc
+export default MdPreview

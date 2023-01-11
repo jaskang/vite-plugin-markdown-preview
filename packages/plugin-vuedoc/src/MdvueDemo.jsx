@@ -1,30 +1,30 @@
-import { resolveComponent, defineComponent, ref } from 'vue'
+import { defineComponent, ref, getCurrentInstance } from 'vue'
 
-const ViteVueDocBlockStyles = `
+const MdPreviewBlockStyles = `
 :root{
-  --vuedoc-border-color: var(--vp-c-divider-light-2, rgba(60, 60, 60, .12));
-  --vuedoc-btn-bg-hover: var(--vp-c-gray-light-5, #f2f2f2);
+  --mdp-border-color: var(--vp-c-divider-light-2, rgba(60, 60, 60, .12));
+  --mdp-btn-bg-hover: var(--vp-c-gray-light-5, #f2f2f2);
 }
 .dark {
-  --vuedoc-border-color: var(--vp-c-divider-dark-2, rgba(84, 84, 84, .48));
-  --vuedoc-btn-bg-hover: var(--vp-c-gray-dark-3, #3a3a3a);
+  --mdp-border-color: var(--vp-c-divider-dark-2, rgba(84, 84, 84, .48));
+  --mdp-btn-bg-hover: var(--vp-c-gray-dark-3, #3a3a3a);
 }
-.vuedoc-demo {
+.mdp-demo {
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid var(--vuedoc-border-color);
+  border: 1px solid var(--mdp-border-color);
 }
-.vuedoc-demo__preview {
+.mdp-demo__preview {
   padding: 20px;
 }
-.vuedoc-demo__toolbar {
+.mdp-demo__toolbar {
   height: 38px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border-top: 1px solid var(--vuedoc-border-color);
+  border-top: 1px solid var(--mdp-border-color);
 }
-.vuedoc-demo__btn {
+.mdp-demo__btn {
   width: 38px;
   height: 100%;
   align-items: center;
@@ -33,23 +33,30 @@ const ViteVueDocBlockStyles = `
   display: flex;
   justify-content: center;
   cursor: pointer;
+  user-select: none;
 }
-.vuedoc-demo__btn:hover {
-  background-color: var(--vuedoc-btn-bg-hover);
+.mdp-demo__btn:hover {
+  background-color: var(--mdp-btn-bg-hover);
 }
 
-.vuedoc-demo__toolbar svg {
+.mdp-demo__toolbar svg {
   width: 1rem;
   height: 1rem;
 }
 
-.vuedoc-demo.is-expanded .vuedoc-demo__code{
-  border-top: 1px solid var(--vuedoc-border-color);
+.mdp-demo.is-expanded .mdp-demo__code{
+  border-top: 1px solid var(--mdp-border-color);
 }
 
-.vuedoc-demo__code div[class*='language-'] {
+.mdp-demo__code div[class*='language-'] {
   margin: 0;
   border-radius: 0;
+}
+.mdp-demo__code pre {
+  margin: 0;
+}
+.mdp-demo__code .shiki {
+  padding: 1rem;
 }
 `
 
@@ -57,12 +64,12 @@ let shouldInjectStyle = true
 function styleInject(css) {
   if (shouldInjectStyle) {
     if (typeof window !== 'undefined') {
-      const el = document.getElementById('vuedoc-style')
+      const el = document.getElementById('mdp-style')
       if (!el) {
         const head = document.head || document.getElementsByTagName('head')[0]
         const style = document.createElement('style')
         style.setAttribute('type', 'text/css')
-        style.setAttribute('id', 'vuedoc-style')
+        style.setAttribute('id', 'mdp-style')
         if (style.styleSheet) {
           style.styleSheet.cssText = css
         } else {
@@ -75,8 +82,8 @@ function styleInject(css) {
   }
 }
 
-const VueDocBlock = defineComponent({
-  name: 'VueDocBlock',
+const MdPreviewBlock = defineComponent({
+  name: 'MdPreviewBlock',
   props: {
     code: { type: String, required: true },
     lang: { type: String, required: true },
@@ -104,10 +111,10 @@ const VueDocBlock = defineComponent({
       }
     }
     return () => (
-      <div class={['vuedoc-demo', height.value > 0 && 'is-expanded']}>
-        <div class="vuedoc-demo__preview">{slots.default && slots.default()}</div>
-        <div class="vuedoc-demo__toolbar">
-          <div class="vuedoc-demo__btn vuedoc-demo__btn-copy" onClick={copyCode}>
+      <div class={['mdp-demo', height.value > 0 && 'is-expanded']}>
+        <div class="mdp-demo__preview">{slots.default && slots.default()}</div>
+        <div class="mdp-demo__toolbar">
+          <div class="mdp-demo__btn mdp-demo__btn-copy" onClick={copyCode}>
             {copied.value ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +149,7 @@ const VueDocBlock = defineComponent({
               </svg>
             )}
           </div>
-          <div class="vuedoc-demo__btn vuedoc-demo__btn-code" onClick={toggleCode}>
+          <div class="mdp-demo__btn mdp-demo__btn-code" onClick={toggleCode}>
             <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
               <path
                 fill="none"
@@ -155,7 +162,7 @@ const VueDocBlock = defineComponent({
             </svg>
           </div>
         </div>
-        <div class="vuedoc-demo__code" style={{ height: height.value + 'px' }}>
+        <div class="mdp-demo__code" style={{ height: height.value + 'px' }}>
           <div ref={codeEl}>{slots.code && slots.code()}</div>
         </div>
       </div>
@@ -163,17 +170,19 @@ const VueDocBlock = defineComponent({
   },
 })
 
-const VueDoc = defineComponent({
-  name: 'VueDoc',
+const MdPreview = defineComponent({
+  name: 'MdPreview',
   props: {
     code: { type: String, required: true },
     lang: { type: String, required: true },
     meta: { type: String, default: '' },
-    component: { type: String },
+    component: { type: String, required: true },
   },
   setup(props, { slots }) {
-    styleInject(ViteVueDocBlockStyles)
-    const DemoBlock = props.component ? resolveComponent(props.component) : VueDocBlock
+    styleInject(MdPreviewBlockStyles)
+    const instance = getCurrentInstance()
+    const Component = instance.appContext.app.component(props.component)
+    const DemoBlock = Component ? Component : MdPreviewBlock
     return () => (
       <DemoBlock
         code={decodeURIComponent(props.code)}
@@ -186,4 +195,4 @@ const VueDoc = defineComponent({
   },
 })
 
-export default VueDoc
+export default MdPreview

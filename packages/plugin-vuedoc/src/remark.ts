@@ -3,15 +3,13 @@ import { fromMarkdown } from 'mdast-util-from-markdown'
 import { toMarkdown } from 'mdast-util-to-markdown'
 import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
 import type { Code, Parent } from 'mdast'
+import { MdPreviewConfig } from '.'
 
-export function remarkDemoBlock(id: string, code: string) {
+export type EnvType = 'vite' | 'vitepress'
+
+export function remarkDemoBlock(id: string, code: string, config: MdPreviewConfig) {
   const tree = fromMarkdown(code, {
-    mdastExtensions: [
-      frontmatterFromMarkdown(['yaml', 'toml']),
-      // gfmFromMarkdown(),
-      // mathFromMarkdown(),
-      // directiveFromMarkdown,
-    ],
+    mdastExtensions: [frontmatterFromMarkdown(['yaml', 'toml'])],
   })
 
   const blocks: Record<string, string> = {}
@@ -31,17 +29,19 @@ export function remarkDemoBlock(id: string, code: string) {
         1,
         {
           type: 'html',
-          value: `<VueDoc 
+          value: `<MdPreview 
 lang="${decodeURIComponent(node.lang || '')}" 
 meta="${decodeURIComponent(node.meta || '')}" 
-code="${encodeURIComponent(node.value)}">
+code="${encodeURIComponent(node.value)}"
+component="${config.component}"
+>
 <${name}/>
 <template #code>`,
         },
         node,
         {
           type: 'html',
-          value: '\n</template></VueDoc>',
+          value: '\n</template></MdPreview>',
         }
       )
       return index + 3
@@ -51,7 +51,7 @@ code="${encodeURIComponent(node.value)}">
     tree.children.push({
       type: 'html',
       value: `<script setup>\n
-      import VueDoc from 'vite-plugin-vuedoc/component'
+      import MdPreview from 'vite-plugin-md-preview/component'
       ${Object.keys(blocks)
         .map(k => `import ${k} from "${id}.${k}.vue";`)
         .join('\n')}\n</script>`,

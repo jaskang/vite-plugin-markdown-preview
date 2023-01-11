@@ -9,23 +9,15 @@
 
 # vite-plugin-md-preview
 
-markdown 代码块预览插件, 在 markdown 文件中使用 \`\`\` 代码块为组件编写 demo 。
-
-本插件需要与 [vite-plugin-md](https://github.com/antfu/vite-plugin-md) 结合使用，为 markdown 提供 vue 代码块预览能力。
+markdown 代码预览插件, 在 markdown 中使用 \`\`\` 代码块为组件编写 demo。
 
 示例：[https://vite-plugin-md-preview.vercel.app](https://vite-plugin-md-preview.vercel.app)
 
 [英文文档](./README.md)
 
-## 重要改动
-
-> 原 `vite-plugin-vuedoc` 重命名为 `vite-plugin-md-preview`
-> 移除了 markdown 解析能力，改为与 `vite-plugin-md` 结合使用的方式。
-
 ## 特性
 
 - [x] Markdown Vue 代码块预览
-- [x] 自定义预览组件，自定义展示样式
 - [x] 支持热更新
 
 ## 使用

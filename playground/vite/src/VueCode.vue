@@ -3,7 +3,7 @@ import { computed, defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
   props: {
-    source: {
+    code: {
       type: String,
       default: '',
     },

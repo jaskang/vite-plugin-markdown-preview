@@ -1,11 +1,20 @@
 {
-  "name": "vite",
+  "name": "test-vite",
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "vite dev"
+    "dev": "vite dev"
   },
   "devDependencies": {
-    "vite-plugin-vuedoc": "workspace:*"
+    "vite-plugin-md-preview": "workspace:*",
+    "vite-plugin-vue-markdown": "^0.22.2",
+    "markdown-it-shiki": "^0.7.2"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "vite-plugin-vue-markdown"
+      ]
+    }
   }
 }

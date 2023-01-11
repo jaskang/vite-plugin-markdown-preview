@@ -1,11 +1,12 @@
 {
-  "name": "vitepress",
+  "name": "test-vitepress",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vitepress dev"
   },
   "devDependencies": {
-    "vite-plugin-vuedoc": "workspace:*"
+    "vite-plugin-md-preview": "workspace:*",
+    "vitepress": "1.0.0-alpha.35"
   }
 }

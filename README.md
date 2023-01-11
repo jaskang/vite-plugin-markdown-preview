@@ -19,7 +19,7 @@ Example: [https://vite-plugin-md-preview.vercel.app](https://vite-plugin-md-prev
 
 ## Breaking Change
 
-> Rename former `vite-plugin-vuedoc` to `vite-plugin-md-preview`
+> Rename former `vite-plugin-md-preview` to `vite-plugin-md-preview`
 > Removed markdown parsing capability and used it in combination with `vite-plugin-md`.
 
 ## Features

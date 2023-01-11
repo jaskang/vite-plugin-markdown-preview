@@ -1,11 +1,11 @@
 {
-  "name": "vite-plugin-vuedoc-monorepo",
+  "name": "vite-plugin-md-preview-monorepo",
   "private": true,
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
-  "homepage": "https://github.com/vitejs/vite-plugin-vuedoc/",
-  "repository": "git@github.com:JasKang/vite-plugin-vuedoc.git",
+  "homepage": "https://github.com/vitejs/vite-plugin-md-preview/",
+  "repository": "git@github.com:JasKang/vite-plugin-md-preview.git",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -27,11 +27,10 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "dev:vite": "pnpm --filter vite dev",
-    "dev:vitepress": "pnpm --filter vitepress dev",
-    "dev:vuepress": "pnpm --filter vuepress dev",
+    "dev:vite": "pnpm --filter test-vite dev",
+    "dev:vitepress": "pnpm --filter test-vitepress dev",
     "build:docs": "vite build",
-    "build": "pnpm --filter vite-plugin-vuedoc build",
+    "build": "pnpm --filter vite-plugin-md-preview build",
     "release": "release-it",
     "test": "vitest",
     "coverage": "vitest --coverage"
@@ -43,19 +42,15 @@
     "@types/node": "^16.18.11",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "@vuepress/client": "2.0.0-beta.60",
     "eslint": "^8.31.0",
     "prettier": "^2.8.2",
     "release-it": "^15.6.0",
     "tsup": "^6.5.0",
     "typescript": "^4.9.4",
-    "vite": "^4.0.4",
     "vite-plugin-inspect": "^0.7.14",
-    "vite-plugin-vue-markdown": "^0.22.2",
-    "vitepress": "1.0.0-alpha.35",
     "vitest": "^0.26.3",
     "vue": "^3.2.45",
-    "vuepress": "2.0.0-beta.60"
+    "vite": "^4.0.4"
   },
   "pnpm": {
     "peerDependencyRules": {

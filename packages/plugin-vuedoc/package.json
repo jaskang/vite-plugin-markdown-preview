@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-vuedoc",
+  "name": "vite-plugin-md-preview",
   "version": "4.0.0",
   "description": "",
   "license": "MIT",
@@ -10,13 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaskang/vite-plugin-vuedoc.git",
+    "url": "git+https://github.com/jaskang/vite-plugin-md-preview.git",
     "directory": "packages/plugin-vue"
   },
   "bugs": {
-    "url": "https://github.com/jaskang/vite-plugin-vuedoc/issues"
+    "url": "https://github.com/jaskang/vite-plugin-md-preview/issues"
   },
-  "homepage": "https://github.com/jaskang/vite-plugin-vuedoc",
+  "homepage": "https://github.com/jaskang/vite-plugin-md-preview",
   "files": [
     "dist"
   ],
