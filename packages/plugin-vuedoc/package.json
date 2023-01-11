@@ -39,6 +39,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "prepublishOnly": "pnpm build",
     "release": "release-it",
     "test": "vitest",
     "coverage": "vitest --coverage"
