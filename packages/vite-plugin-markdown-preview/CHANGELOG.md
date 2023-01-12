@@ -1,5 +1,11 @@
 # vite-plugin-markdown-preview
 
+## 1.0.3
+
+### Patch Changes
+
+- a7c1a65: 隐藏代码时 visibility hidden
+
 ## 1.0.2
 
 ### Patch Changes
