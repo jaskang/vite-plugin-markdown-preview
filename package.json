@@ -1,11 +1,11 @@
 {
-  "name": "vite-plugin-md-preview-monorepo",
+  "name": "vite-plugin-markdown-preview-monorepo",
   "private": true,
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
-  "homepage": "https://github.com/vitejs/vite-plugin-md-preview/",
-  "repository": "git@github.com:JasKang/vite-plugin-md-preview.git",
+  "homepage": "https://github.com/vitejs/vite-plugin-markdown-preview/",
+  "repository": "git@github.com:JasKang/vite-plugin-markdown-preview.git",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -29,9 +29,9 @@
   "scripts": {
     "start:vite": "pnpm --filter test-vite dev",
     "start:vitepress": "pnpm --filter test-vitepress dev",
-    "docs:build": "pnpm --filter vite-plugin-md-preview build && pnpm --filter test-vitepress build",
+    "docs:build": "pnpm --filter vite-plugin-markdown-preview build && pnpm --filter test-vitepress build",
     "docs:preview": "pnpm --filter test-vitepress preview",
-    "build": "pnpm --filter vite-plugin-md-preview build",
+    "build": "pnpm --filter vite-plugin-markdown-preview build",
     "test": "vitest",
     "coverage": "vitest --coverage"
   },

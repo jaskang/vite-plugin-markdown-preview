@@ -1,4 +1,4 @@
-# vite-plugin-md-preview
+# vite-plugin-markdown-preview
 
 ## 1.0.2
 

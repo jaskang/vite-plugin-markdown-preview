@@ -36,7 +36,7 @@ importers:
       vitest: 0.26.3
       vue: 3.2.45
 
-  packages/md-preview:
+  packages/vite-plugin-markdown-preview:
     specifiers:
       '@types/mdast': ^3.0.10
       debug: ^4.3.4
@@ -56,21 +56,21 @@ importers:
   playground/vite:
     specifiers:
       markdown-it-shiki: ^0.7.2
-      vite-plugin-md-preview: workspace:*
+      vite-plugin-markdown-preview: workspace:*
       vite-plugin-vue-markdown: ^0.22.2
     devDependencies:
       markdown-it-shiki: 0.7.2
-      vite-plugin-md-preview: link:../../packages/md-preview
+      vite-plugin-markdown-preview: link:../../packages/vite-plugin-markdown-preview
       vite-plugin-vue-markdown: 0.22.2
 
   playground/vitepress:
     specifiers:
       sass: ^1.57.1
-      vite-plugin-md-preview: workspace:*
+      vite-plugin-markdown-preview: workspace:*
       vitepress: 1.0.0-alpha.35
     devDependencies:
       sass: 1.57.1
-      vite-plugin-md-preview: link:../../packages/md-preview
+      vite-plugin-markdown-preview: link:../../packages/vite-plugin-markdown-preview
       vitepress: 1.0.0-alpha.35_sass@1.57.1
 
 packages:

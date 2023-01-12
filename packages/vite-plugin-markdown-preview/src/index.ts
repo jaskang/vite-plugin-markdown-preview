@@ -23,7 +23,7 @@ export function MdPreview(options?: MdPreviewOptions): Plugin {
     options
   )
   return {
-    name: 'vite:md-preview',
+    name: 'vite:markdown-preview',
     enforce: 'pre' as const,
     async configResolved(cfg) {
       const isVitepress = cfg.plugins.find(p => p.name === 'vitepress')
@@ -41,7 +41,7 @@ export function MdPreview(options?: MdPreviewOptions): Plugin {
     async load(id) {
       if (CODE_VUE_REGEXP.test(id)) {
         const blockId = '/' + path.relative(config.root, id)
-        const demoCode = DemoBlockMap.get(id) || DemoBlockMap.get(blockId) 
+        const demoCode = DemoBlockMap.get(id) || DemoBlockMap.get(blockId)
         return demoCode
       }
       if (id.endsWith('.md')) {

@@ -1,17 +1,17 @@
 <p>
-  <a href="https://www.npmjs.com/package/vite-plugin-md-preview" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/vite-plugin-md-preview.svg">
+  <a href="https://www.npmjs.com/package/vite-plugin-markdown-preview" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/vite-plugin-markdown-preview.svg">
   </a>
-  <a href="https://www.npmjs.com/package/vite-plugin-md-preview" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/dt/vite-plugin-md-preview">
+  <a href="https://www.npmjs.com/package/vite-plugin-markdown-preview" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/dt/vite-plugin-markdown-preview">
   </a>
 </p>
 
-# vite-plugin-md-preview
+# vite-plugin-markdown-preview
 
 markdown 代码预览插件, 在 markdown 中使用 \`\`\` 代码块为组件编写 demo。
 
-示例：[https://vite-plugin-md-preview.vercel.app](https://vite-plugin-md-preview.vercel.app)
+示例：[https://vite-plugin-markdown-preview.vercel.app](https://vite-plugin-markdown-preview.vercel.app)
 
 [英文文档](./README.md)
 
@@ -25,9 +25,9 @@ markdown 代码预览插件, 在 markdown 中使用 \`\`\` 代码块为组件编
 ### 安装
 
 ```bash
-npm i vite-plugin-md vite-plugin-md-preview -D
+npm i vite-plugin-md vite-plugin-markdown-preview -D
 # or
-yarn add vite-plugin-md vite-plugin-md-preview -D
+yarn add vite-plugin-md vite-plugin-markdown-preview -D
 ```
 
 配置 vite.config.ts
@@ -36,7 +36,7 @@ yarn add vite-plugin-md vite-plugin-md-preview -D
 import Vue from '@vitejs/plugin-vue'
 import shiki from 'markdown-it-shiki'
 import Markdown from 'vite-plugin-md'
-import MarkdownPreview, { transformer } from 'vite-plugin-md-preview'
+import MarkdownPreview, { transformer } from 'vite-plugin-markdown-preview'
 
 export default {
   plugins: [
@@ -136,7 +136,7 @@ const click = () => {
 
 ## 代码高亮
 
-`vite-plugin-md-preview` 中内置了 [shiki](https://github.com/antfu/markdown-it-shiki) 来支持代码高亮。
+`vite-plugin-markdown-preview` 中内置了 [shiki](https://github.com/antfu/markdown-it-shiki) 来支持代码高亮。
 
 需要注意的是该选项并不处理 markdown 中其他非代码的高亮，可以通过在 `vite-plugin-md` 中添加 `markdown-it-shiki` 插件来保持一致。
 
@@ -144,7 +144,7 @@ const click = () => {
 import Vue from '@vitejs/plugin-vue'
 import shiki from 'markdown-it-shiki'
 import Markdown from 'vite-plugin-md'
-import MarkdownPreview, { transformer } from 'vite-plugin-md-preview'
+import MarkdownPreview, { transformer } from 'vite-plugin-markdown-preview'
 
 export default {
   plugins: [

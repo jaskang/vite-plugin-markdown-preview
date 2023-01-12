@@ -1,21 +1,21 @@
-# vite-plugin-md-preview
+# vite-plugin-markdown-preview
 
 基于 `vite`/`vitepress` 的 markdown 代码块预览插件。
 
-`vite-plugin-md-preview` 能将 markdown 文档中带有 `preview` 标识的 vue 代码块替换为 vue 组件。
+`vite-plugin-markdown-preview` 能将 markdown 文档中带有 `preview` 标识的 vue 代码块替换为 vue 组件。
 
 ## 示例
 
-![](https://md-preview.jaskang.vip/1.png)
+![](https://markdown-preview.jaskang.vip/1.png)
 
 ## 安装
 
 安装依赖
 
 ```shell
-npm install vite-plugin-md-preview
+npm install vite-plugin-markdown-preview
 # or
-pnpm install vite-plugin-md-preview
+pnpm install vite-plugin-markdown-preview
 ```
 
 ## 在 Vitepress 中使用
@@ -24,7 +24,7 @@ pnpm install vite-plugin-md-preview
 
 ```ts
 import { defineConfig } from 'vitepress'
-import MdPreview from 'vite-plugin-md-preview'
+import MdPreview from 'vite-plugin-markdown-preview'
 
 export default defineConfig({
   vite: {
@@ -35,14 +35,14 @@ export default defineConfig({
 
 ## 在 Vite 中使用
 
-`vite-plugin-md-preview` 依赖 `vite-plugin-vue-markdown` 的 markdown 解析能力, 所以还需要安装 `vite-plugin-vue-markdown`
+`vite-plugin-markdown-preview` 依赖 `vite-plugin-vue-markdown` 的 markdown 解析能力, 所以还需要安装 `vite-plugin-vue-markdown`
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-vue-markdown'
-import MdPreview from 'vite-plugin-md-preview'
+import MdPreview from 'vite-plugin-markdown-preview'
 
 const config = defineConfig({
   plugins: [
@@ -71,9 +71,9 @@ _下方代码块将会被解析为 vue 组件并展示_
 ```
 ````
 
-**经过 `vite-plugin-md-preview` 处理后：**
+**经过 `vite-plugin-markdown-preview` 处理后：**
 
-![](https://md-preview.jaskang.vip/2.png)
+![](https://markdown-preview.jaskang.vip/2.png)
 
 ## 自定义预览组件
 
@@ -95,4 +95,4 @@ app.component('CodePreview', MyCodePreview)
 
 **示例自定义展示组件:**
 
-![](https://md-preview.jaskang.vip/3.png)
+![](https://markdown-preview.jaskang.vip/3.png)

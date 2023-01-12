@@ -6,17 +6,7 @@
 
 ## 示例
 
-```vue preview
-<template>
-  <div>当前计数为：{{ count }}</div>
-  <br />
-  <button @click="count++">点我！</button>
-</template>
-<script setup>
-import { ref } from 'vue'
-const count = ref(0)
-</script>
-```
+TODO:
 
 ## 安装
 
@@ -30,7 +20,7 @@ pnpm install vite-plugin-markdown-preview
 
 ## 在 Vitepress 中使用
 
-在 `.vitepress/config.ts` 中配置插件
+vitepress 自带了 markdown 解析，直接在 `.vitepress/config.ts` 中接入就行
 
 ```ts
 import { defineConfig } from 'vitepress'
@@ -45,7 +35,7 @@ export default defineConfig({
 
 ## 在 Vite 中使用
 
-`vite-plugin-markdown-preview` 依赖 `vite-plugin-vue-markdown` 的 markdown 解析能力, 所以还需要安装 `vite-plugin-vue-markdown`
+本插件依赖 `vite-plugin-vue-markdown` 的 markdown 解析能力。
 
 ```ts
 // vite.config.ts
@@ -67,7 +57,7 @@ const config = defineConfig({
 export default config
 ```
 
-## 代码预览标识
+## 预览标识
 
 给需要预览的 vue 代码块加上 `preview` 标记。
 
@@ -83,11 +73,7 @@ _下方代码块将会被解析为 vue 组件并展示_
 
 **经过 `vite-plugin-markdown-preview` 处理后：**
 
-_下方代码块将会被解析为 vue 组件并展示_
-
-```vue preview
-<template>我是 vue 模板</template>
-```
+TODO:
 
 ## 自定义预览组件
 
@@ -109,19 +95,4 @@ app.component('CodePreview', MyCodePreview)
 
 **示例自定义展示组件:**
 
-```vue preview=MyCodePreview
-<template>
-  <div class="text">当前计数为：{{ count }}</div>
-  <button @click="count++">点我！</button>
-</template>
-<script setup>
-import { ref } from 'vue'
-const count = ref(0)
-</script>
-<style scoped lang="scss">
-.text {
-  color: red;
-  margin-bottom: 1rem;
-}
-</style>
-```
+TODO:

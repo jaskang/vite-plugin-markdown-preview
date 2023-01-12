@@ -1,6 +1,6 @@
 {
-  "name": "vite-plugin-md-preview",
-  "version": "1.0.2",
+  "name": "vite-plugin-markdown-preview",
+  "version": "0.0.1",
   "description": "",
   "license": "MIT",
   "author": "jaskang",
@@ -10,13 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaskang/vite-plugin-md-preview.git",
+    "url": "git+https://github.com/jaskang/vite-plugin-markdown-preview.git",
     "directory": "packages/plugin-vue"
   },
   "bugs": {
-    "url": "https://github.com/jaskang/vite-plugin-md-preview/issues"
+    "url": "https://github.com/jaskang/vite-plugin-markdown-preview/issues"
   },
-  "homepage": "https://github.com/jaskang/vite-plugin-md-preview",
+  "homepage": "https://github.com/jaskang/vite-plugin-markdown-preview",
   "files": [
     "dist",
     "component"

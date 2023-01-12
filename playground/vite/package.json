@@ -6,7 +6,7 @@
     "dev": "vite dev"
   },
   "devDependencies": {
-    "vite-plugin-md-preview": "workspace:*",
+    "vite-plugin-markdown-preview": "workspace:*",
     "vite-plugin-vue-markdown": "^0.22.2",
     "markdown-it-shiki": "^0.7.2"
   },
