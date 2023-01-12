@@ -35,6 +35,7 @@
     "test": "vitest",
     "add-version": "pnpm changeset add",
     "update-version": "pnpm changeset version",
+    "release": "pnpm changeset publish",
     "coverage": "vitest --coverage"
   },
   "devDependencies": {
