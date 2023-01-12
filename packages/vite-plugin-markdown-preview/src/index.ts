@@ -5,20 +5,20 @@ import { type EnvType, remarkDemoBlock } from './remark'
 const CODE_VUE_REGEXP = /.md.DemoBlockI\d{1,4}\.vue$/
 const DemoBlockMap = new Map<string, string>()
 
-export type MdPreviewOptions = {
+export type MarkdownPreviewOptions = {
   component?: string
 }
 
-export type MdPreviewConfig = {
+export type MarkdownPreviewConfig = {
   root: string
   component: string
   type: 'vite' | 'vitepress'
 }
 
-export function MdPreview(options?: MdPreviewOptions): Plugin {
+export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
   let vuePlugin: any = null
   let envType: EnvType
-  const config: MdPreviewConfig = Object.assign(
+  const config: MarkdownPreviewConfig = Object.assign(
     { component: 'CodePreview', type: 'vite' as const, root: '' },
     options
   )
@@ -88,4 +88,4 @@ export function MdPreview(options?: MdPreviewOptions): Plugin {
   }
 }
 
-export default MdPreview
+export default MarkdownPreview

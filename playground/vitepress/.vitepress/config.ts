@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import MdPreview from 'vite-plugin-markdown-preview'
+import MarkdownPreview from 'vite-plugin-markdown-preview'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -8,7 +8,7 @@ export default defineConfig({
   description: 'vite-plugin-markdown-preview vitepress playground',
   vite: {
     publicDir: 'public',
-    plugins: [vueJsx(), MdPreview()],
+    plugins: [vueJsx(), MarkdownPreview()],
   },
   themeConfig: {
     socialLinks: [

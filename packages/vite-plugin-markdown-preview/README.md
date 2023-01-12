@@ -24,11 +24,11 @@ pnpm install vite-plugin-markdown-preview
 
 ```ts
 import { defineConfig } from 'vitepress'
-import MdPreview from 'vite-plugin-markdown-preview'
+import MarkdownPreview from 'vite-plugin-markdown-preview'
 
 export default defineConfig({
   vite: {
-    plugins: [MdPreview()],
+    plugins: [MarkdownPreview()],
   },
 })
 ```
@@ -42,7 +42,7 @@ export default defineConfig({
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-vue-markdown'
-import MdPreview from 'vite-plugin-markdown-preview'
+import MarkdownPreview from 'vite-plugin-markdown-preview'
 
 const config = defineConfig({
   plugins: [
@@ -50,7 +50,7 @@ const config = defineConfig({
       include: [/\.vue$/, /\.md$/],
     }),
     Markdown(),
-    MdPreview(),
+    MarkdownPreview(),
   ],
 })
 
