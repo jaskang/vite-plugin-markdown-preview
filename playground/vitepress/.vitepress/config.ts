@@ -11,6 +11,9 @@ export default defineConfig({
     plugins: [vueJsx(), MdPreview()],
   },
   themeConfig: {
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/JasKang/vite-plugin-markdown-preview' },
+    ],
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present jaskang',

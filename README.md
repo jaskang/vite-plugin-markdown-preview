@@ -4,6 +4,8 @@
 
 `vite-plugin-markdown-preview` 能将 markdown 文档中带有 `preview` 标识的 vue 代码块替换为 vue 组件。
 
+文档：[https://markdown-preview.jaskang.vip](https://markdown-preview.jaskang.vip)
+
 ## 示例
 
 ![](https://markdown-preview.jaskang.vip/1.png)
