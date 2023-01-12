@@ -33,6 +33,8 @@
     "docs:preview": "pnpm --filter test-vitepress preview",
     "build": "pnpm --filter vite-plugin-markdown-preview build",
     "test": "vitest",
+    "add-version": "pnpm changeset add",
+    "update-version": "pnpm changeset version",
     "coverage": "vitest --coverage"
   },
   "devDependencies": {
