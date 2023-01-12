@@ -13,6 +13,10 @@
     "url": "git+https://github.com/jaskang/vite-plugin-markdown-preview.git",
     "directory": "packages/plugin-vue"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "bugs": {
     "url": "https://github.com/jaskang/vite-plugin-markdown-preview/issues"
   },
