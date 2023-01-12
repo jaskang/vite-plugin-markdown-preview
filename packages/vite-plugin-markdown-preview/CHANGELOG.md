@@ -1,5 +1,11 @@
 # vite-plugin-markdown-preview
 
+## 1.0.2
+
+### Patch Changes
+
+- 750dd92: 修复 codepreview 显式逻辑
+
 ## 1.0.1
 
 ### Patch Changes
