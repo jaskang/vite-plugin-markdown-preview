@@ -91,7 +91,7 @@ export default defineComponent({
         </svg>
       </div>
     </div>
-    <div class="mdp-demo__code" :style="{ height: height + 'px' }">
+    <div class="mdp-demo__code" v-show="height > 0" :style="{ height: height + 'px' }">
       <div ref="codeEl">
         <slot name="code" />
       </div>
