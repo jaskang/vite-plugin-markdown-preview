@@ -91,7 +91,10 @@ export default defineComponent({
         </svg>
       </div>
     </div>
-    <div class="mdp-demo__code" v-show="height > 0" :style="{ height: height + 'px' }">
+    <div
+      class="mdp-demo__code"
+      :style="{ height: height + 'px', visibility: height > 0 ? 'visible' : 'hidden' }"
+    >
       <div ref="codeEl">
         <slot name="code" />
       </div>
@@ -145,7 +148,6 @@ export default defineComponent({
 .mdp-demo.is-expanded .mdp-demo__code {
   border-top: 1px solid var(--mdp-border-color);
 }
-
 .mdp-demo__code div[class*='language-'] {
   margin: 0;
   border-radius: 0;
