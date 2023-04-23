@@ -1,5 +1,11 @@
 # vite-plugin-markdown-preview
 
+## 1.0.4
+
+### Patch Changes
+
+- bcc03ad: block 修改为 hash 模式
+
 ## 1.0.3
 
 ### Patch Changes
