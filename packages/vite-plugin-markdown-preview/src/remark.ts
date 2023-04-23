@@ -2,10 +2,15 @@ import { visit, type Node } from 'unist-util-visit'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { toMarkdown } from 'mdast-util-to-markdown'
 import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
+import { createHash } from 'node:crypto'
 import type { Code, Parent } from 'mdast'
 import { MarkdownPreviewConfig } from '.'
 
 export type EnvType = 'vite' | 'vitepress'
+
+export function getHash(text: string): string {
+  return createHash('sha256').update(text).digest('hex').substring(0, 8)
+}
 
 function praseMeta(meta?: string | null) {
   const metaArr = (meta || '').split(' ')
@@ -24,13 +29,14 @@ export function remarkDemoBlock(id: string, code: string, config: MarkdownPrevie
   const blocks: Record<string, string> = {}
 
   visit(tree as Node, 'code', (node: Code, index: number, parent: Parent) => {
-    const i = Object.keys(blocks).length
+    
     const lang = (node.lang || '').split(':')[0]
     const meta = praseMeta(node.meta)
     const preview = meta['preview']
     const isDemo = preview && lang === 'vue'
     if (isDemo) {
-      const name = `DemoBlockI${i}`
+      const hash = getHash(node.value)
+      const name = `DemoBlockI${hash}`
       blocks[name] = node.value
 
       parent.children.splice(

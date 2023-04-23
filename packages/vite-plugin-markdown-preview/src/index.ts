@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import type { Plugin } from 'vite'
 import { type EnvType, remarkDemoBlock } from './remark'
-const CODE_VUE_REGEXP = /.md.DemoBlockI\d{1,4}\.vue$/
+const CODE_VUE_REGEXP = /.md.DemoBlockI[a-zA-Z0-9]{8}\.vue$/
 const DemoBlockMap = new Map<string, string>()
 
 export type MarkdownPreviewOptions = {
@@ -41,6 +41,7 @@ export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
     async load(id) {
       if (CODE_VUE_REGEXP.test(id)) {
         const blockId = '/' + path.relative(config.root, id)
+
         const demoCode = DemoBlockMap.get(id) || DemoBlockMap.get(blockId)
         return demoCode
       }
