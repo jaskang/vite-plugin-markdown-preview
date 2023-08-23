@@ -36,6 +36,7 @@
       "require": "./dist/index.cjs"
     },
     "./component": "./component/index.js",
+    "./component/": "./component/",
     "./package.json": "./package.json"
   },
   "scripts": {
