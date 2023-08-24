@@ -6,15 +6,8 @@
     "dev": "vite dev"
   },
   "devDependencies": {
-    "vite-plugin-markdown-preview": "workspace:*",
-    "vite-plugin-vue-markdown": "^0.22.2",
-    "markdown-it-shiki": "^0.7.2"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "vite"
-      ]
-    }
+    "markdown-it-shiki": "^0.9.0",
+    "unplugin-vue-markdown": "^0.24.1",
+    "vite-plugin-markdown-preview": "workspace:*"
   }
 }

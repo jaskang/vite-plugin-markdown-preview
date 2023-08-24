@@ -4,7 +4,7 @@ import pkg from './package.json'
 export default defineConfig(() => {
   return {
     entryPoints: ['src/index.ts'],
-    format: ['esm', 'cjs'],
+    format: ['esm'],
     skipNodeModulesBundle: true,
     platform: 'node',
     splitting: false,

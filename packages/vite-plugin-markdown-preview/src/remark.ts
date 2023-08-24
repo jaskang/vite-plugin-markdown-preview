@@ -66,7 +66,7 @@ component="${typeof preview === 'string' ? preview : config.component}"
     tree.children.push({
       type: 'html',
       value: `<script setup>\n
-      import MarkdownPreview from 'vite-plugin-markdown-preview/component'
+      import MarkdownPreview from 'mdp:CodePreviewBlock'
       ${Object.keys(blocks)
         .map(k => `import ${k} from "${id}.${k}.vue";`)
         .join('\n')}\n</script>`,

@@ -32,10 +32,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     },
-    "./component": "./component/index.js",
     "./package.json": "./package.json"
   },
   "scripts": {

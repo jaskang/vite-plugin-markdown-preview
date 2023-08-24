@@ -1,8 +1,8 @@
 import { defineComponent, createVNode, getCurrentInstance } from 'vue'
-import CodePreview from './CodePreview.vue'
+import CodePreview from 'mdp:CodePreview.vue'
 
-const MarkdownPreview = defineComponent({
-  name: 'MarkdownPreview',
+const CodePreviewBlock = defineComponent({
+  name: 'CodePreviewBlock',
   props: {
     code: { type: String, required: true },
     lang: { type: String, required: true },
@@ -29,4 +29,4 @@ const MarkdownPreview = defineComponent({
   },
 })
 
-export default MarkdownPreview
+export default CodePreviewBlock

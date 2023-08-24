@@ -1,11 +1,14 @@
-<script setup lang="ts">
-import { h, ref } from 'vue'
-const props = defineProps({
-  code: { type: String, required: true },
-  lang: { type: String, required: true },
-  meta: { type: String, required: true },
+<script lang="ts">
+import { defineComponent, h, ref } from 'vue'
+export default defineComponent({
+  props:{
+    code: { type: String, required: true },
+    lang: { type: String, required: true },
+    meta: { type: String, required: true },
+  }
 })
 </script>
+
 <template>
   <div class="my-code-preview">
     <div class="my-code-preview__slot">

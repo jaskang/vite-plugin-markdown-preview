@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 
@@ -7,9 +8,8 @@ export default defineConfig({
   title: 'vite-plugin-markdown-preview',
   description: 'vite-plugin-markdown-preview vitepress playground',
   vite: {
-    publicDir: 'public',
-    plugins: [vueJsx(), MarkdownPreview()],
-  },
+    plugins: [vue(), vueJsx(), MarkdownPreview()],
+  }, 
   themeConfig: {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/JasKang/vite-plugin-markdown-preview' },

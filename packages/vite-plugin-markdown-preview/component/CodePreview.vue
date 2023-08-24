@@ -2,6 +2,7 @@
 import { ref, defineComponent } from 'vue'
 
 export default defineComponent({
+  name: 'CodePreview',
   props: {
     code: { type: String, required: true },
     lang: { type: String, required: true },
@@ -39,7 +40,7 @@ export default defineComponent({
 })
 </script>
 <template>
-  <div :class="['mdp-demo', height.value > 0 && 'is-expanded']">
+  <div :class="['mdp-demo', height > 0 && 'is-expanded']">
     <div class="mdp-demo__preview">
       <slot />
     </div>

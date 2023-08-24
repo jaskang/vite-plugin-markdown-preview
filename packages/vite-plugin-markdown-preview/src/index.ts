@@ -1,9 +1,15 @@
 import fs from 'node:fs'
-import path from 'node:path'
+import path, { dirname } from 'node:path'
 import type { Plugin } from 'vite'
 import { type EnvType, remarkDemoBlock } from './remark'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+
 const CODE_VUE_REGEXP = /.md.DemoBlockI[a-zA-Z0-9]{8}\.vue$/
 const DemoBlockMap = new Map<string, string>()
+
 
 export type MarkdownPreviewOptions = {
   component?: string
@@ -18,13 +24,22 @@ export type MarkdownPreviewConfig = {
 export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
   let vuePlugin: any = null
   let envType: EnvType
+
+  const codePreviewId = 'mdp:CodePreview.vue'
+  const codePreviewResolvedId = '\0' + codePreviewId
+  const codePreviewSource = fs.readFileSync(path.resolve(__dirname, '../component/CodePreview.vue'), 'utf-8')
+
+  const codePreviewBlockId = 'mdp:CodePreviewBlock'
+  const codePreviewBlockResolvedId = '\0' + codePreviewBlockId
+  const codePreviewBlockSource = fs.readFileSync(path.resolve(__dirname, '../component/CodePreviewBlock.js'), 'utf-8')
+
   const config: MarkdownPreviewConfig = Object.assign(
     { component: 'CodePreview', type: 'vite' as const, root: '' },
     options
   )
   return {
     name: 'vite:markdown-preview',
-    enforce: 'pre' as const,
+    // enforce: 'pre',
     async configResolved(cfg) {
       const isVitepress = cfg.plugins.find(p => p.name === 'vitepress')
       vuePlugin = cfg.plugins.find(p => p.name === 'vite:vue')
@@ -34,11 +49,25 @@ export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
       config.type = envType
     },
     resolveId(id) {
+      if (id === codePreviewId) {
+        return codePreviewResolvedId
+      }
+      if (id === codePreviewBlockId) {
+        return codePreviewBlockResolvedId
+      }
       if (CODE_VUE_REGEXP.test(id)) {
         return id
       }
     },
     async load(id) {
+      if (id === codePreviewResolvedId) {
+        console.log('codePreviewResolvedId', codePreviewResolvedId, codePreviewSource);
+        return codePreviewSource
+      }
+      if (id === codePreviewBlockResolvedId) {
+        console.log('codePreviewBlockResolvedId', codePreviewBlockResolvedId, codePreviewBlockSource);
+        return codePreviewBlockSource
+      }
       if (CODE_VUE_REGEXP.test(id)) {
         const blockId = '/' + path.relative(config.root, id)
 
