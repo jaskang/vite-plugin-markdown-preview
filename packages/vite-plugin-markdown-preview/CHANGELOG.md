@@ -1,5 +1,11 @@
 # vite-plugin-markdown-preview
 
+## 1.1.0
+
+### Minor Changes
+
+- 4f72226: 内置预览组件调整为虚拟模块
+
 ## 1.0.4
 
 ### Patch Changes
