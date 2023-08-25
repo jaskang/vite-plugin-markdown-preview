@@ -4,6 +4,7 @@
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
+  "type": "module",
   "homepage": "https://github.com/vitejs/vite-plugin-markdown-preview/",
   "repository": "git@github.com:JasKang/vite-plugin-markdown-preview.git",
   "scripts": {
