@@ -1,15 +1,15 @@
 import fs from 'node:fs'
 import path, { dirname } from 'node:path'
-import type { Plugin } from 'vite'
-import { type EnvType, remarkDemoBlock } from './remark'
 import { fileURLToPath } from 'node:url'
+
+import type { Plugin } from 'vite'
+
+import { type EnvType, remarkDemoBlock } from './remark'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-
 const CODE_VUE_REGEXP = /.md.DemoBlockI[a-zA-Z0-9]{8}\.vue$/
 const DemoBlockMap = new Map<string, string>()
-
 
 export type MarkdownPreviewOptions = {
   component?: string
@@ -25,13 +25,19 @@ export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
   let vuePlugin: any = null
   let envType: EnvType
 
-  const codePreviewId = 'mdp:CodePreview.vue'
-  const codePreviewResolvedId = '\0' + codePreviewId
-  const codePreviewSource = fs.readFileSync(path.resolve(__dirname, '../component/CodePreview.vue'), 'utf-8')
+  const codePreview = 'mdp:code-preview'
+  const codePreviewId = '\0' + codePreview
+  const codePreviewSource = fs.readFileSync(
+    path.resolve(__dirname, './component/index.js'),
+    'utf-8'
+  )
 
-  const codePreviewBlockId = 'mdp:CodePreviewBlock'
-  const codePreviewBlockResolvedId = '\0' + codePreviewBlockId
-  const codePreviewBlockSource = fs.readFileSync(path.resolve(__dirname, '../component/CodePreviewBlock.js'), 'utf-8')
+  const codePreviewCss = 'mdp:code-preview.css'
+  const codePreviewCssId = '\0' + codePreviewCss
+  const codePreviewCssSource = fs.readFileSync(
+    path.resolve(__dirname, './component/style.css'),
+    'utf-8'
+  )
 
   const config: MarkdownPreviewConfig = Object.assign(
     { component: 'CodePreview', type: 'vite' as const, root: '' },
@@ -49,24 +55,22 @@ export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
       config.type = envType
     },
     resolveId(id) {
-      if (id === codePreviewId) {
-        return codePreviewResolvedId
+      if (id === codePreview) {
+        return codePreviewId
       }
-      if (id === codePreviewBlockId) {
-        return codePreviewBlockResolvedId
+      if (id === codePreviewCss) {
+        return codePreviewCssId
       }
       if (CODE_VUE_REGEXP.test(id)) {
         return id
       }
     },
     async load(id) {
-      if (id === codePreviewResolvedId) {
-        console.log('codePreviewResolvedId', codePreviewResolvedId, codePreviewSource);
+      if (id === codePreviewId) {
         return codePreviewSource
       }
-      if (id === codePreviewBlockResolvedId) {
-        console.log('codePreviewBlockResolvedId', codePreviewBlockResolvedId, codePreviewBlockSource);
-        return codePreviewBlockSource
+      if (id === codePreviewCssId) {
+        return codePreviewCssSource
       }
       if (CODE_VUE_REGEXP.test(id)) {
         const blockId = '/' + path.relative(config.root, id)

@@ -1,0 +1,6 @@
+{
+  "extends": ["@jaskang/eslint-config/vue"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "warn"
+  }
+}

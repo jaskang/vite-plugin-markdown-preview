@@ -37,21 +37,23 @@ export default defineConfig({
 
 ## 在 Vite 中使用
 
-`vite-plugin-markdown-preview` 依赖 `vite-plugin-vue-markdown` 的 markdown 解析能力, 所以还需要安装 `vite-plugin-vue-markdown`
+`vite-plugin-markdown-preview` 依赖 [`unplugin-vue-markdown`](https://github.com/mdit-vue/unplugin-vue-markdown) 的 markdown 解析能力, 所以还需要安装 `unplugin-vue-markdown`
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import Markdown from 'vite-plugin-vue-markdown'
+import Markdown from 'unplugin-vue-markdown/vite'
 import MarkdownPreview from 'vite-plugin-markdown-preview'
 
 const config = defineConfig({
   plugins: [
     Vue({
-      include: [/\.vue$/, /\.md$/],
+      include: [/\.vue$/, /\.md$/], // <-- allows Vue to compile Markdown files
     }),
-    Markdown(),
+    Markdown({
+      /* options */
+    }),
     MarkdownPreview(),
   ],
 })

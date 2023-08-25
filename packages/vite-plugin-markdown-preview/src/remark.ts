@@ -1,9 +1,11 @@
-import { visit, type Node } from 'unist-util-visit'
-import { fromMarkdown } from 'mdast-util-from-markdown'
-import { toMarkdown } from 'mdast-util-to-markdown'
-import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
 import { createHash } from 'node:crypto'
+
 import type { Code, Parent } from 'mdast'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
+import { toMarkdown } from 'mdast-util-to-markdown'
+import { type Node, visit } from 'unist-util-visit'
+
 import { MarkdownPreviewConfig } from '.'
 
 export type EnvType = 'vite' | 'vitepress'
@@ -29,7 +31,6 @@ export function remarkDemoBlock(id: string, code: string, config: MarkdownPrevie
   const blocks: Record<string, string> = {}
 
   visit(tree as Node, 'code', (node: Code, index: number, parent: Parent) => {
-    
     const lang = (node.lang || '').split(':')[0]
     const meta = praseMeta(node.meta)
     const preview = meta['preview']
@@ -44,7 +45,7 @@ export function remarkDemoBlock(id: string, code: string, config: MarkdownPrevie
         1,
         {
           type: 'html',
-          value: `<MarkdownPreview 
+          value: `<CodePreviewWrapper 
 lang="${decodeURIComponent(node.lang || '')}" 
 meta="${decodeURIComponent(node.meta || '')}" 
 code="${encodeURIComponent(node.value)}"
@@ -56,7 +57,7 @@ component="${typeof preview === 'string' ? preview : config.component}"
         node,
         {
           type: 'html',
-          value: '\n</template></MarkdownPreview>',
+          value: '\n</template></CodePreviewWrapper>',
         }
       )
       return index + 3
@@ -66,7 +67,8 @@ component="${typeof preview === 'string' ? preview : config.component}"
     tree.children.push({
       type: 'html',
       value: `<script setup>\n
-      import MarkdownPreview from 'mdp:CodePreviewBlock'
+      import 'mdp:code-preview.css'
+      import { CodePreviewWrapper } from 'mdp:code-preview'
       ${Object.keys(blocks)
         .map(k => `import ${k} from "${id}.${k}.vue";`)
         .join('\n')}\n</script>`,

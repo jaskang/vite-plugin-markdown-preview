@@ -21,10 +21,6 @@
     "url": "https://github.com/jaskang/vite-plugin-markdown-preview/issues"
   },
   "homepage": "https://github.com/jaskang/vite-plugin-markdown-preview",
-  "files": [
-    "dist",
-    "component"
-  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -36,8 +32,13 @@
     },
     "./package.json": "./package.json"
   },
+  "files": [
+    "dist",
+    "component"
+  ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && pnpm build:component",
+    "build:component": "vite build",
     "prepublishOnly": "pnpm build",
     "release": "release-it",
     "test": "vitest",

@@ -1,8 +1,9 @@
-import { defineComponent, createVNode, getCurrentInstance } from 'vue'
-import CodePreview from 'mdp:CodePreview.vue'
+import { createVNode, defineComponent, getCurrentInstance } from 'vue'
 
-const CodePreviewBlock = defineComponent({
-  name: 'CodePreviewBlock',
+import CodePreview from './CodePreview.vue'
+
+const CodePreviewWrapper = defineComponent({
+  name: 'CodePreviewWrapper',
   props: {
     code: { type: String, required: true },
     lang: { type: String, required: true },
@@ -11,7 +12,7 @@ const CodePreviewBlock = defineComponent({
   },
   setup(props, ctx) {
     const instance = getCurrentInstance()
-    const Component = instance.appContext.app.component(props.component)
+    const Component = instance!.appContext.app.component(props.component)
     const DemoBlock = Component ? Component : CodePreview
     return () =>
       createVNode(
@@ -29,4 +30,4 @@ const CodePreviewBlock = defineComponent({
   },
 })
 
-export default CodePreviewBlock
+export { CodePreview, CodePreviewWrapper }
