@@ -8,6 +8,6 @@
     "preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "vite-plugin-markdown-preview": "^1.1.0"
+    "vite-plugin-markdown-preview": "workspace:*"
   }
 }
