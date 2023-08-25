@@ -25,17 +25,17 @@ export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
   let vuePlugin: any = null
   let envType: EnvType
 
-  const codePreview = 'mdp:code-preview'
+  const codePreview = 'vmp:components'
   const codePreviewId = '\0' + codePreview
   const codePreviewSource = fs.readFileSync(
-    path.resolve(__dirname, './component/index.js'),
+    path.resolve(__dirname, './components/index.js'),
     'utf-8'
   )
 
-  const codePreviewCss = 'mdp:code-preview.css'
+  const codePreviewCss = 'vmp:components.css'
   const codePreviewCssId = '\0' + codePreviewCss
   const codePreviewCssSource = fs.readFileSync(
-    path.resolve(__dirname, './component/style.css'),
+    path.resolve(__dirname, './components/style.css'),
     'utf-8'
   )
 

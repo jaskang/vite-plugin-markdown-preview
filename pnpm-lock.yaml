@@ -100,7 +100,7 @@ importers:
   playground/vitepress:
     devDependencies:
       vite-plugin-markdown-preview:
-        specifier: workspace:*
+        specifier: ^1.1.0
         version: link:../../packages/vite-plugin-markdown-preview
 
 packages:

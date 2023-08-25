@@ -67,8 +67,8 @@ component="${typeof preview === 'string' ? preview : config.component}"
     tree.children.push({
       type: 'html',
       value: `<script setup>\n
-      import 'mdp:code-preview.css'
-      import { CodePreviewWrapper } from 'mdp:code-preview'
+      import 'vmp:components.css'
+      import { CodePreviewWrapper } from 'vmp:components'
       ${Object.keys(blocks)
         .map(k => `import ${k} from "${id}.${k}.vue";`)
         .join('\n')}\n</script>`,

@@ -30,6 +30,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -37,8 +41,8 @@
     "component"
   ],
   "scripts": {
-    "build": "tsup && pnpm build:component",
-    "build:component": "vite build",
+    "build": "tsup && pnpm build:components",
+    "build:components": "vite build",
     "prepublishOnly": "pnpm build",
     "release": "release-it",
     "test": "vitest",

@@ -1,14 +1,13 @@
-import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import Markdown from 'unplugin-vue-markdown/vite'
-import MarkdownPreview from 'vite-plugin-markdown-preview'
-
 import Shiki from 'markdown-it-shiki'
+import Markdown from 'unplugin-vue-markdown/vite'
+import { defineConfig } from 'vite'
+import MarkdownPreview from 'vite-plugin-markdown-preview'
 
 const config = defineConfig({
   plugins: [
-    MarkdownPreview(), 
+    MarkdownPreview(),
     Vue({
       include: [/\.vue$/, /\.md$/], // <--
     }),

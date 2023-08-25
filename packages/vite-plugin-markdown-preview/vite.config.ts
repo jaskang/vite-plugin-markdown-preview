@@ -13,11 +13,11 @@ export default defineConfig({
   css: {},
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/component/index.ts'),
+      entry: resolve(__dirname, 'src/components/index.ts'),
       formats: ['es'],
       fileName: 'index',
     },
-    outDir: resolve(__dirname, 'dist/component'),
+    outDir: resolve(__dirname, 'dist/components'),
     emptyOutDir: true,
     minify: true,
     sourcemap: 'inline',
@@ -32,11 +32,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    vue(),
-    vueJsx(),
-    dts({
-      rollupTypes: true,
-    }),
-  ],
+  plugins: [vue(), vueJsx(), dts()],
 })
