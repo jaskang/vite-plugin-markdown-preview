@@ -1,5 +1,11 @@
 # vite-plugin-markdown-preview
 
+## 1.1.1
+
+### Patch Changes
+
+- [`00fd0e3`](https://github.com/JasKang/vite-plugin-markdown-preview/commit/00fd0e349b4d677dd96c78915b6222b384bdacbb) Thanks [@JasKang](https://github.com/JasKang)! - fix: 导出内置组件
+
 ## 1.1.0
 
 ### Minor Changes
