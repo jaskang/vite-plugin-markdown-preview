@@ -4,6 +4,7 @@ import type { Code, Parent } from 'mdast'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
 import { toMarkdown } from 'mdast-util-to-markdown'
+import { frontmatter } from 'micromark-extension-frontmatter'
 import { type Node, visit } from 'unist-util-visit'
 
 import { MarkdownPreviewConfig } from '.'
@@ -25,6 +26,7 @@ function praseMeta(meta?: string | null) {
 }
 export function remarkDemoBlock(id: string, code: string, config: MarkdownPreviewConfig) {
   const tree = fromMarkdown(code, {
+    extensions: [frontmatter(['yaml', 'toml'])],
     mdastExtensions: [frontmatterFromMarkdown(['yaml', 'toml'])],
   })
 
