@@ -38,7 +38,7 @@ export function MarkdownPreview(options?: MarkdownPreviewOptions): Plugin {
     path.resolve(__dirname, './components/style.css'),
     'utf-8'
   )
-
+  
   const config: MarkdownPreviewConfig = Object.assign(
     { component: 'CodePreview', type: 'vite' as const, root: '' },
     options

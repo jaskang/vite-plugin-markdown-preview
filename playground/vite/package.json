@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "markdown-it-shiki": "^0.9.0",
-    "unplugin-vue-markdown": "^0.24.1",
+    "unplugin-vue-markdown": "^0.25.2",
     "vite-plugin-markdown-preview": "workspace:*"
   }
 }

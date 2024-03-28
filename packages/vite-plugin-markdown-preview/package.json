@@ -50,12 +50,12 @@
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "mdast-util-from-markdown": "^1.2.0",
-    "mdast-util-frontmatter": "^1.0.0",
-    "mdast-util-to-markdown": "^1.5.0",
-    "unist-util-visit": "^4.1.1"
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-frontmatter": "^2.0.1",
+    "mdast-util-to-markdown": "^2.1.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@types/mdast": "^3.0.10"
+    "@types/mdast": "^4.0.3"
   }
 }

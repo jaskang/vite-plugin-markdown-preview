@@ -1,10 +1,9 @@
 import { createHash } from 'node:crypto'
 
-import type { Code, Parent } from 'mdast'
 import { fromMarkdown } from 'mdast-util-from-markdown'
 import { frontmatterFromMarkdown, frontmatterToMarkdown } from 'mdast-util-frontmatter'
 import { toMarkdown } from 'mdast-util-to-markdown'
-import { type Node, visit } from 'unist-util-visit'
+import { visit } from 'unist-util-visit'
 
 import { MarkdownPreviewConfig } from '.'
 
@@ -30,7 +29,7 @@ export function remarkDemoBlock(id: string, code: string, config: MarkdownPrevie
 
   const blocks: Record<string, string> = {}
 
-  visit(tree as Node, 'code', (node: Code, index: number, parent: Parent) => {
+  visit(tree, 'code', (node, index , parent) => {
     const lang = (node.lang || '').split(':')[0]
     const meta = praseMeta(node.meta)
     const preview = meta['preview']
@@ -39,9 +38,8 @@ export function remarkDemoBlock(id: string, code: string, config: MarkdownPrevie
       const hash = getHash(node.value)
       const name = `DemoBlockI${hash}`
       blocks[name] = node.value
-
-      parent.children.splice(
-        index,
+      parent!.children.splice(
+        index!,
         1,
         {
           type: 'html',
@@ -60,7 +58,7 @@ component="${typeof preview === 'string' ? preview : config.component}"
           value: '\n</template></CodePreviewWrapper>',
         }
       )
-      return index + 3
+      return index! + 3
     }
   })
   if (Object.keys(blocks).length > 0) {
